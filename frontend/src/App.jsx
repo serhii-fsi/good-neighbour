@@ -12,9 +12,6 @@ import OwnHelpList from "./pages/OwnHelpList";
 import OwnHelpOffered from "./pages/OwnHelpOffered";
 import OwnProfile from "./pages/OwnProfile";
 
-import SignupForm from "./components/SignupForm";
-import LoginForm from "./components/LoginForm";
-
 function App() {
   return (
     <>
