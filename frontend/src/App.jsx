@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
-import SignUpLogin from "./pages/SignupLogin";
+import SignupLogin from "./pages/SignupLogin";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Header />
       <SignupLogin />
       <Routes>
-        <Route path="/" element={<SignUpLogin />} />
+        <Route/>
       </Routes>
       <NavBar />
     </>
