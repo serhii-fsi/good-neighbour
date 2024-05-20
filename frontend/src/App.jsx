@@ -5,13 +5,18 @@ import NavBar from "./components/NavBar";
 import SignupLogin from "./pages/SignupLogin";
 import Homepage from "./pages/Homepage";
 
+import SignupForm from "./components/SignupForm";
+import LoginForm from "./components/LoginForm";
+
 function App() {
   return (
     <>
       <Header />
-      <SignupLogin />
       <Routes>
         <Route path="/home" element={<Homepage />} />
+        <Route path="/" element={<SignupLogin />} />
+        <Route path="/signup" element={<SignupForm /> } />
+        <Route path="/login" element={<LoginForm /> }  />
       </Routes>
       <NavBar />
     </>
