@@ -95,7 +95,7 @@ function Homepage() {
       <br />
       <HelpListView helpList={helpList} />
       <br />
-      <Link to={"/makehelprequest"}>Request Some Help</Link>
+      <Link to={"/helprequest"}>Request Some Help</Link>
       <br />
       <br />
     </>
