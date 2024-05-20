@@ -1,48 +1,49 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "listen.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "start": "npm run build && node ./server.js",
-    "build": "rimraf ./dist && tsc",
-    "start:dev": "npx nodemon",
-    "setup-dbs": "psql -f ./db/setup.sql",
-    "seed-prod": "NODE_ENV=production npm run seed",
-    "seed": "node ./db/seeds/run-seed.js",
-    "test": "jest"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@babel/preset-env": "^7.24.5",
-    "@babel/preset-typescript": "^7.24.1",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.12",
-    "@types/pg": "^8.11.6",
-    "@types/pg-format": "^1.0.5",
-    "@types/supertest": "^6.0.2",
-    "jest": "^29.7.0",
-    "jest-extended": "^4.0.2",
-    "jest-sorted": "^1.0.15",
-    "nodemon": "^3.1.0",
-    "pg-format": "^1.0.4",
-    "rimraf": "^5.0.7",
-    "supertest": "^7.0.0",
-    "ts-jest": "^29.1.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "pg": "^8.11.5"
-  }
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "listen.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "start": "npm run build && node ./server.js",
+        "build": "rimraf ./dist && tsc",
+        "start:dev": "npx nodemon",
+        "setup-dbs": "psql -f ./app/db/setup.sql",
+        "seed-test": "NODE_ENV=test npm run seed",
+        "seed-prod": "NODE_ENV=production npm run seed",
+        "seed": "ts-node ./app/db/run-seed.ts",
+        "test": "jest"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/preset-env": "^7.24.5",
+        "@babel/preset-typescript": "^7.24.1",
+        "@types/cors": "^2.8.17",
+        "@types/express": "^4.17.21",
+        "@types/jest": "^29.5.12",
+        "@types/node": "^20.12.12",
+        "@types/pg": "^8.11.6",
+        "@types/pg-format": "^1.0.5",
+        "@types/supertest": "^6.0.2",
+        "jest": "^29.7.0",
+        "jest-extended": "^4.0.2",
+        "jest-sorted": "^1.0.15",
+        "nodemon": "^3.1.0",
+        "pg-format": "^1.0.4",
+        "rimraf": "^5.0.7",
+        "supertest": "^7.0.0",
+        "ts-jest": "^29.1.2",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.4.5"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "pg": "^8.11.5"
+    }
 }
