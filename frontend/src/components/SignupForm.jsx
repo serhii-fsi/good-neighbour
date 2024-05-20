@@ -34,4 +34,4 @@ function SignupForm() {
     )
 }
 
-export default SignUpForm;
+export default SignupForm;
