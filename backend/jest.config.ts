@@ -14,7 +14,7 @@ const config: Config.InitialOptions = {
     ],
     "^.+\\.jsx?$": "babel-jest",
   },
-  testMatch: ["**/__tests__/**/*.ts", "**/?(*.)+(spec|test).ts"],
+  testMatch: ["**/tests/**/*.ts", "**/?(*.)+(spec|test).ts"],
 };
 
 export default config;
