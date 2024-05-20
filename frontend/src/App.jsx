@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import SignupLogin from "./pages/SignupLogin";
+import Homepage from "./pages/Homepage";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <Header />
       <SignupLogin />
       <Routes>
-        <Route/>
+        <Route path="/home" element={<Homepage />} />
       </Routes>
       <NavBar />
     </>
