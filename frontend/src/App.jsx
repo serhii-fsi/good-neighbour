@@ -12,13 +12,16 @@ import OwnHelpList from "./pages/OwnHelpList";
 import OwnHelpOffered from "./pages/OwnHelpOffered";
 import OwnProfile from "./pages/OwnProfile";
 
+import SignupForm from "./components/SignupForm";
+import LoginForm from "./components/LoginForm";
+
 function App() {
   return (
     <>
       <Header />
-      <SignupLogin />
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<SignupLogin />} />
+        <Route path="/home" element={<Homepage />} />
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/map" element={<MapPage />} />

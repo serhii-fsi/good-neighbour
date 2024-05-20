@@ -1,9 +1,10 @@
-import seed from "./seeds/data/seed";
-import db from "./connection";
+import seed from "./seed";
+import db from "../connection";
+
+import testData from "./data/test/index";
 
 const ENV = process.env.NODE_ENV || "development";
 
-const testData: any[] = [];
 const devData: any[] = [];
 
 const runSeed = async (data: any) => {
