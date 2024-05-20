@@ -1,6 +1,4 @@
-import { Link, Routes, Route } from 'react-router-dom';
-import SignupForm from '../components/SignupForm';
-import LoginForm from '../components/LoginForm';
+import { Link } from 'react-router-dom';
 
 function SignupLogin() {
     return (
@@ -11,12 +9,6 @@ function SignupLogin() {
     <Link to="/login">
     <button type="button" className="block">Log in</button>
     </Link>
-    <div className='column'>
-    <Routes>
-    <Route path="/signup" element={<SignupForm /> } />
-    <Route path="/login" element={<LoginForm /> }  />
-    </Routes>
-    </div>
     </>
     )
 }
