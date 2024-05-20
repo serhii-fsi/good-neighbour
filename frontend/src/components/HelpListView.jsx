@@ -1,5 +1,5 @@
 function HelpListView() {
-  return <p>*Helplist placeholder*</p>;
+  return <p>*HelpListView placeholder*</p>;
 }
 
 export default HelpListView;

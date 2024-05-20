@@ -1,5 +1,5 @@
-function SignupForm() {
-    return <>signup form</>
+function SignUpForm() {
+  return <p>*SignUpForm placeholder*</p>;
 }
 
-export default SignupForm;
+export default SignUpForm;

@@ -1,5 +1,5 @@
 function LoginForm() {
-    return <>Login form goes here</>
+  return <p>*LoginForm placeholder*</p>;
 }
 
 export default LoginForm;
