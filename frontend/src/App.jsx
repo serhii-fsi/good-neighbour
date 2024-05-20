@@ -8,6 +8,7 @@ function App() {
   return (
     <>
       <Header />
+      <SignupLogin />
       <Routes>
         <Route path="/" element={<SignUpLogin />} />
       </Routes>
