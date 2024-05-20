@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 function Header() {
   return (
     <>
-      <h1>Good Neighbour</h1>;
+      <h1>Good Neighbour</h1>
       <NavBar />
     </>
   );
