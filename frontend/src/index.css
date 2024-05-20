@@ -14,13 +14,18 @@
 }
 
 .block {
-  display: block;
-  width: 100%;
+  display: inline-block;
+  width: 20%;
   border: none;
-  background-color: #9ef3d4;
+  background-color: #99f098;
   padding: 14px 28px;
   font-size: 16px;
   cursor: pointer;
   text-align: center;
+  border-radius: 12px;
+  margin: 8px;
 }
 
+.column {
+  flex-direction: column;
+}
