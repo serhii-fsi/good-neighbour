@@ -4,12 +4,11 @@ function NavBar() {
   return (
     <footer>
       <nav>
-        <Link to={"/home"}>Homepage | </Link>
-        <Link to={"/helplist"}>Help Requests | </Link>
+        <Link to={"/"}>Homepage/Help Requests | </Link>
         <Link to={"/map"}>Help Map | </Link>
-        <Link to={"/own-helplist"}>Your Help Requests | </Link>
-        <Link to={"/own-offeredlist"}>Help You've Offered | </Link>
-        <Link to={"/user-profile"}>Profile | </Link>
+        <Link to={"/ownHelplist"}>Your Help Requests | </Link>
+        <Link to={"/ownHelpOffered"}>Help You've Offered | </Link>
+        <Link to={"/profile"}>Profile | </Link>
       </nav>
     </footer>
   );
