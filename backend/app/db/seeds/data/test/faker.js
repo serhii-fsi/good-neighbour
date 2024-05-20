@@ -55,13 +55,7 @@ let usersArr = generateUsers();
 // });
 
 function generateTypes() {
-    const typeArr = [
-        "Groceries",
-        "Rides",
-        "Cleaning",
-        "Packages",
-        "DIY",
-    ];
+    const typeArr = ["Groceries", "Rides", "Cleaning", "Packages", "DIY"];
 
     const types = typeArr.map((type) => ({
         type: type,
@@ -78,15 +72,15 @@ let types = generateTypes();
 // });
 
 function generateRequests() {
-    let requests = []
+    let requests = [];
 
     for (let i = 1; i <= 10; i++) {
-        const userID = faker.number.int({min: 1, max:10})
-        const typeID = faker.number.int({min:1, max: 5});
-        const description = faker.lorem.paragraph()
-        const title = faker.lorem.word({ length: { min: 2, max: 5}})
-        const createdAt = faker.date.recent()
-        const dateHelpNeeded = faker.date.soon()
+        const userID = faker.number.int({ min: 1, max: 10 });
+        const typeID = faker.number.int({ min: 1, max: 5 });
+        const description = faker.lorem.paragraph();
+        const title = faker.lorem.word({ length: { min: 2, max: 5 } });
+        const createdAt = faker.date.recent();
+        const dateHelpNeeded = faker.date.soon();
         const location = faker.helpers.arrayElement([
             "CV8 2SW",
             "CV8 2TB",
@@ -99,17 +93,22 @@ function generateRequests() {
             "CV32 6EQ",
             "CV32 6ES",
         ]);
-        const requestStatus = faker.helpers.arrayElement(["Completed", "Accepted", "In progress", "Declined"])
+        const requestStatus = faker.helpers.arrayElement([
+            "Completed",
+            "Accepted",
+            "In progress",
+            "Declined",
+        ]);
         requests.push({
-            user_id : userID,
+            user_id: userID,
             type_id: typeID,
             title: title,
             description: description,
             created_at: createdAt,
-            requestDate: dateHelpNeeded,
-            location: location,
-            status: requestStatus
-        })
+            req_date: dateHelpNeeded,
+            post_code: location,
+            status: requestStatus,
+        });
     }
     return requests;
 }
@@ -120,23 +119,22 @@ fs.writeFile("requests.json", JSON.stringify(requests), (err) => {
     console.log("File saved!");
 });
 
-
 function generateResponses() {
-    let responses = []
+    let responses = [];
 
     for (let i = 1; i <= 10; i++) {
-        const userID = faker.number.int({min: 1, max:10})
-        const requestID = faker.number.int({min:1, max: 10});
-        const description = faker.lorem.paragraph()
-        const createdAt = faker.date.recent()
-        const requestStatus = faker.helpers.arrayElement(["Accepted", "In progress", "Declined"])
+        const userID = faker.number.int({ min: 1, max: 10 });
+        const requestID = faker.number.int({ min: 1, max: 10 });
+        const description = faker.lorem.paragraph();
+        const createdAt = faker.date.recent();
+        const requestStatus = faker.helpers.arrayElement(["Accepted", "In progress", "Declined"]);
         responses.push({
-            user_id : userID,
+            user_id: userID,
             request_id: requestID,
             body_response: description,
             created_at: createdAt,
-            status: requestStatus
-        })
+            status: requestStatus,
+        });
     }
     return responses;
 }

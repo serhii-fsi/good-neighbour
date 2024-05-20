@@ -1,6 +1,6 @@
 import { Pool, PoolConfig } from "pg";
 import dotenv from "dotenv";
-import path from "path";
+
 const ENV = process.env.NODE_ENV || "development";
 
 dotenv.config({
