@@ -1,3 +1,5 @@
-function MapPage() {}
+function MapPage() {
+  return <p>*MapPage placeholder*</p>;
+}
 
 export default MapPage;
