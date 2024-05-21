@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 import HelpList from "../components/HelpList";
 import Loading from "../presentations/Loading";
 import getRequests from "../api";
 
-function Homepage() {
+function HelpListView() {
   const [helpList, setHelpList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -46,13 +45,11 @@ function Homepage() {
   }, [dateQuery, typeQuery]);
 
   if (isLoading) {
-    return <Loading text={"Homepage"} />;
+    return <Loading text={"help requests near you"} />;
   }
   return (
     <>
-      <h2>Homepage</h2>
-      <Link to={"/map"}>See Map</Link>
-      <br />
+      <h2>Help Requests Near You</h2>
       <label htmlFor="date">Filter requests by date needed: </label>
       <select name="date-options" id="date" onChange={handleDateChange}>
         <option value="">All Help Requests</option>
@@ -74,11 +71,8 @@ function Homepage() {
       <br />
       <HelpList helpList={helpList} />
       <br />
-      <Link to={"/helprequest"}>Request Some Help</Link>
-      <br />
-      <br />
     </>
   );
 }
 
-export default Homepage;
+export default HelpListView;

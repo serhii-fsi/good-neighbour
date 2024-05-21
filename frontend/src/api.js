@@ -11,3 +11,7 @@ export function getOwnHelpList(user_id) {
 export function getOfferedHelpList(user_id) {
   return axios.get(`/api/requests/${user_id}`);
 }
+
+export function getHelpView(request_id) {
+  return axios.get(`/api/requests/${request_id}`);
+}
