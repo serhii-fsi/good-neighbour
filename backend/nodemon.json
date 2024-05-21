@@ -1,6 +1,6 @@
 {
-  "watch": ["app"],
-  "ext": ".ts,.js",
-  "ignore": [],
-  "exec": "npx ts-node ./server.ts"
+    "watch": ["app"],
+    "ext": ".ts,.js",
+    "ignore": [],
+    "exec": "npx ts-node ./app/server.ts"
 }
