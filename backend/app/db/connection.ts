@@ -16,12 +16,6 @@ const config: PoolConfig = {};
 if (ENV === "production") {
     config.connectionString = process.env.DATABASE_URL;
     config.max = 2;
-} else {
-    config.host = process.env.PGHOST || "localhost";
-    config.port = parseInt(process.env.PGPORT || "5432", 10);
-    config.database = process.env.PG_DATABASE;
-    config.user = process.env.PGUSER;
-    config.password = process.env.PGPASSWORD;
 }
 
 const db = new Pool(config);

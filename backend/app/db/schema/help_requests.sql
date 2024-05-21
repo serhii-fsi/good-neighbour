@@ -1,5 +1,5 @@
-CREATE TABLE requests (
-    req_id SERIAL PRIMARY KEY,
+CREATE TABLE help_requests (
+    id SERIAL PRIMARY KEY,
     title VARCHAR NOT NULL,
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
     type_id INT REFERENCES types(type_id) ON DELETE CASCADE NOT NULL,
