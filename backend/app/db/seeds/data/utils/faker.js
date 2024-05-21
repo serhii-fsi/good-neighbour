@@ -71,8 +71,8 @@ let types = generateTypes();
 //     console.log("File saved!");
 // });
 
-function generateRequests() {
-    let requests = [];
+function generateHelpRequests() {
+    let helpRequests = [];
 
     for (let i = 1; i <= 10; i++) {
         const userID = faker.number.int({ min: 1, max: 10 });
@@ -99,7 +99,7 @@ function generateRequests() {
             "In progress",
             "Declined",
         ]);
-        requests.push({
+        helpRequests.push({
             user_id: userID,
             type_id: typeID,
             title: title,
@@ -110,37 +110,57 @@ function generateRequests() {
             status: requestStatus,
         });
     }
-    return requests;
+    return helpRequests;
 }
-let requests = generateRequests();
+let helpRequests = generateHelpRequests();
 
-fs.writeFile("requests.json", JSON.stringify(requests), (err) => {
+fs.writeFile("help-requests.json", JSON.stringify(helpRequests), (err) => {
     if (err) throw err;
     console.log("File saved!");
 });
 
-function generateResponses() {
-    let responses = [];
+function generateComments() {
+    let comments = [];
 
     for (let i = 1; i <= 10; i++) {
         const userID = faker.number.int({ min: 1, max: 10 });
-        const requestID = faker.number.int({ min: 1, max: 10 });
+        const helpRequestID = faker.number.int({ min: 1, max: 10 });
         const description = faker.lorem.paragraph();
         const createdAt = faker.date.recent();
-        const requestStatus = faker.helpers.arrayElement(["Accepted", "In progress", "Declined"]);
-        responses.push({
+        comments.push({
             user_id: userID,
-            request_id: requestID,
+            help_request_id: helpRequestID,
             body_response: description,
             created_at: createdAt,
-            status: requestStatus,
         });
     }
-    return responses;
+    return comments;
 }
-let responses = generateResponses();
+let comments = generateComments();
 
-// fs.writeFile("responses.json", JSON.stringify(responses), (err) => {
+fs.writeFile("comments.json", JSON.stringify(comments), (err) => {
+    if (err) throw err;
+    console.log("File saved!");
+});
+
+function generateHelpOffers() {
+    let helpOffers = []
+    for (let i = 1; i <= 10; i++) {
+    const helpRequestStatus = faker.helpers.arrayElement(["Accepted", "In progress", "Declined"]);
+    const userID = faker.number.int({ min: 1, max: 10 });
+    const helpRequestID = faker.number.int({ min: 1, max: 10 });
+    helpOffers.push({
+        user_id: userID,
+        help_request_id: helpRequestID,
+        status: helpRequestStatus,
+    })
+}
+return helpOffers
+}
+
+let helpOffers = generateHelpOffers()
+
+// fs.writeFile("help-offers.json", JSON.stringify(helpOffers), (err) => {
 //     if (err) throw err;
 //     console.log("File saved!");
 // });

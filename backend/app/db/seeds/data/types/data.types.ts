@@ -1,8 +1,9 @@
 export interface TestData {
     usersData: User[];
     typesData: HelpType[];
-    requestsData: HelpRequest[];
-    responsesData: HelpResponse[];
+    helpRequestsData: HelpRequest[];
+    commentsData: Comments[];
+    helpOffersData: HelpOffers[];
 }
 
 export interface User {
@@ -37,11 +38,18 @@ export interface HelpRequest {
     status: string;
 }
 
-export interface HelpResponse {
+export interface Comments {
     id?: string;
     user_id: string;
-    request_id: string;
+    help_request_id: string;
     body_response: string;
     created_at: string;
+    status: string;
+}
+
+export interface HelpOffers {
+    id?: string;
+    user_id: string;
+    help_request_id: string;
     status: string;
 }

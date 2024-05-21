@@ -6,10 +6,11 @@ import { TestData } from "./data/types/data.types";
 
 import db from "../connection";
 
-const schemaFiles = ["users.sql", "types.sql", "help_requests.sql", "help_offers.sql"];
+const schemaFiles = ["users.sql", "types.sql", "help_requests.sql", "help_offers.sql", "comments.sql"];
 
 const createTables = async () => {
     await db.query(`
+    DROP TABLE IF EXISTS comments;
     DROP TABLE IF EXISTS help_offers;
     DROP TABLE IF EXISTS help_requests;
     DROP TABLE IF EXISTS types;
@@ -28,8 +29,9 @@ const createTables = async () => {
 const seed = async ({
     usersData,
     typesData,
-    requestsData,
-    responsesData,
+    helpRequestsData,
+    commentsData,
+    helpOffersData,
 }: TestData): Promise<void> => {
     await createTables();
 
@@ -69,7 +71,7 @@ const seed = async ({
 
     const insertRequestsDataStr = format(
         "INSERT INTO help_requests (user_id, type_id, title, description, created_at, req_date, post_code, status) VALUES %L",
-        requestsData.map(
+        helpRequestsData.map(
             ({ user_id, type_id, title, description, created_at, req_date, post_code, status }) => [
                 user_id,
                 type_id,
@@ -83,21 +85,30 @@ const seed = async ({
         )
     );
 
-    const insertHelpOffersDataStr = format(
-        "INSERT INTO help_offers (user_id, req_id, created_at, description, status) VALUES %L",
-        responsesData.map(({ user_id, request_id, body_response, created_at, status }) => [
+    const insertCommentsDataStr = format(
+        "INSERT INTO comments (user_id, help_request_id, created_at, description) VALUES %L",
+        commentsData.map(({ user_id, help_request_id, body_response, created_at }) => [
             user_id,
-            request_id,
+            help_request_id,
             created_at,
             body_response,
-            status,
         ])
     );
 
+    const insertHelpOffersDataStr = format(
+        "INSERT INTO help_offers (user_id, help_request_id, status) VALUES %L",
+        helpOffersData.map(({ user_id, help_request_id, status }) => [
+            user_id,
+            help_request_id,
+            status,
+        ])
+    );
     await db.query(insertUsersStr);
     await db.query(insertHelpTypeDataStr);
     await db.query(insertRequestsDataStr);
     await db.query(insertHelpOffersDataStr);
+    await db.query(insertCommentsDataStr);
+
 };
 
 export default seed;
