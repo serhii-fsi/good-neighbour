@@ -1,5 +1,5 @@
-function CommentConversation() {
-  return <p>*CommentConversation placeholder*</p>;
+function CommentConversation({ commentThread }) {
+  return <></>;
 }
 
 export default CommentConversation;

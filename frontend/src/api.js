@@ -2,8 +2,8 @@ import axios from "axios";
 
 // GET:
 
-export default function getHelpRequests(path) {
-  return axios.get(`${path}`);
+export default function getHelpRequests(endpoint) {
+  return axios.get(`${endpoint}`);
 }
 
 export function getOwnHelpList(user_id) {
@@ -28,7 +28,7 @@ export function getUsers() {
 
 export function getUserProfile(user_id) {
   return axios.get(`/api/users/${user_id}`);
-} // ??
+}
 
 // POST:
 
@@ -56,6 +56,13 @@ export function updateOfferedHelp(help_offer_id) {
 
 export function updateOwnProfile(user_id) {
   return axios.patch(`/api/users/${user_id}`, {});
+}
+
+export function updateComment(help_request_id, comment_id) {
+  return axios.patch(
+    `/api/help-requests/${help_request_id}/comments/${comment_id}`,
+    {}
+  );
 }
 
 // DELETE:

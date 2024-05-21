@@ -28,11 +28,11 @@ function HelpListView() {
   }
 
   useEffect(() => {
-    let path = "/api/help-requests";
+    let endpoint = "/api/help-requests";
     if (dateQuery) {
-      path += `?date=${dateQuery}`;
+      endpoint += `?date=${dateQuery}`;
     } else if (typeQuery) {
-      path += `?type=${typeQuery}`;
+      endpoint += `?type=${typeQuery}`;
     }
     getHelpRequests(path)
       .then((response) => {
