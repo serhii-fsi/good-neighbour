@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import HelpList from "../components/HelpList";
 import Loading from "../presentations/Loading";
-import getRequests from "../api";
+import getHelpRequests from "../api";
 
 function Homepage() {
   const [helpList, setHelpList] = useState([]);
@@ -29,15 +29,15 @@ function Homepage() {
   }
 
   useEffect(() => {
-    let path = "/api/requests";
+    let path = "/api/help-requests";
     if (dateQuery) {
       path += `?date=${dateQuery}`;
     } else if (typeQuery) {
       path += `?type=${typeQuery}`;
     }
-    getRequests(path)
+    getHelpRequests(path)
       .then((response) => {
-        setHelpList(response.data.requestsData);
+        setHelpList(response.data.helpRequestsData);
         setIsLoading(false);
       })
       .catch((err) => {

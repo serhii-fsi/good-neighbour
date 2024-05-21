@@ -11,7 +11,7 @@ function OwnOfferedHelp() {
   useEffect(() => {
     getOfferedHelpList(user_id)
       .then((response) => {
-        setOfferedHelpList(response.data.requestsData);
+        setOfferedHelpList(response.data.helpRequestsData);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -32,7 +32,7 @@ function OwnOfferedHelp() {
       {/* <ul>
         {offeredHelpList.map((request) => {
           return (
-            <li key={request.request_id}>
+            <li key={request.help_request_id}>
               <HelpCard request={request} />
             </li>
           );

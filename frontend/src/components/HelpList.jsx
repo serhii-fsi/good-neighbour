@@ -9,7 +9,7 @@ function HelpList({ helpList }) {
     // <ul>
     //   {helpList.map((request) => {
     //     return (
-    //       <li key={request.request_id}>{<HelpCard request={request} />}</li>
+    //       <li key={request.help_request_id}>{<HelpCard request={request} />}</li>
     //     );
     //   })}
     // </ul>
