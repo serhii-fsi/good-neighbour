@@ -27,7 +27,7 @@ const helpRequestsData = [
         "created_at": "2024-05-21T08:43:09.400Z",
         "req_date": "2024-05-21T16:26:18.857Z",
         "post_code": "CV8 2TB",
-        "status": "Declined"
+        "status": "Closed"
     },
     {
         "user_id": 10,
@@ -67,7 +67,7 @@ const helpRequestsData = [
         "created_at": "2024-05-20T23:33:47.819Z",
         "req_date": "2024-05-22T04:04:29.494Z",
         "post_code": "CV8 2TB",
-        "status": "Declined"
+        "status": "Closed"
     },
     {
         "user_id": 1,
@@ -87,7 +87,7 @@ const helpRequestsData = [
         "created_at": "2024-05-21T07:53:43.293Z",
         "req_date": "2024-05-22T00:22:34.212Z",
         "post_code": "CV8 2NZ",
-        "status": "Declined"
+        "status": "Closed"
     },
     {
         "user_id": 8,
