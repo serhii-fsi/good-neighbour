@@ -18,9 +18,12 @@ import HelpView from "./pages/HelpView";
 import OwnHelpList from "./pages/OwnHelpList";
 import OwnOfferedHelp from "./pages/OwnOfferedHelp";
 
+import UserProvider from "./contexts/User";
+
 function App() {
   return (
     <>
+    <UserProvider>
       <Header />
       <Routes>
         <Route path="/" element={<SignupLogin />} />
@@ -39,6 +42,7 @@ function App() {
         <Route path="/requestHelp" element={<RequestHelp />} />
       </Routes>
       <NavBar />
+    </UserProvider>
     </>
   );
 }

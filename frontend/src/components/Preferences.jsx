@@ -11,7 +11,8 @@ function Preferences() {
   const [avatarUrl, setAvatarUrl] = useState("");
   const [age, setAge] = useState("");
 
-  function handleSignupSubmit() {
+  function handleSignupSubmit(event) {
+    event.preventDefault();
     // send post request to api
     // goes to user profile with these details submitted
   }
@@ -46,7 +47,7 @@ function Preferences() {
 
 
   return (
-    <form onSubmit={""}>
+    <form onSubmit={handleSignupSubmit}>
       <div>
       <label htmlFor="username" value={""}>Username: </label>
       <input id="user-name" type="text" onChange={handleUsernameChange} placeholder="type your username"></input>
@@ -75,7 +76,7 @@ function Preferences() {
       <label htmlFor="age" value={""}>Age (years): </label>
       <input id="age" type="number" onChange={handleAgeChange} placeholder="input your age in years"></input>
       </div>
-      <button>Sign up</button>
+      <button>Update details</button>
     </form>
   )
 }
