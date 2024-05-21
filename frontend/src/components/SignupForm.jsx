@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom'
 
 function SignupForm() {
 
@@ -28,8 +29,10 @@ function SignupForm() {
         <div>
             <label htmlFor="password">Create password: </label>
             <input id="password" type="password" placeholder="type your password" onChange={handlePasswordChange} value={password}></input>
-        </div>    
-    <button>Sign up</button>
+        </div>
+    <Link to="/preferences">
+        <button>Sign up</button>
+    </Link>
     </form>
     )
 }

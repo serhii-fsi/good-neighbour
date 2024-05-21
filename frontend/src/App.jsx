@@ -11,6 +11,7 @@ import HelpRequest from "./pages/HelpRequest";
 import OwnHelpList from "./pages/OwnHelpList";
 import OwnOfferedHelp from "./pages/OwnOfferedHelp";
 import OwnProfile from "./pages/OwnProfile";
+import Preferences from "./components/Preferences";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/ownHelplist" element={<OwnHelpList />} />
         <Route path="/ownOfferedHelp" element={<OwnOfferedHelp />} />
         <Route path="/profile" element={<OwnProfile />} />
+        <Route path="/preferences" element={<Preferences />} />
       </Routes>
       <NavBar />
     </>
