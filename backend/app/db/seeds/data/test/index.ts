@@ -1,6 +1,7 @@
-import requestsData from "./requests.js";
-import responsesData from "./responses.js";
+import helpRequestsData from "./help-requests.js";
+import commentsData from "./comments.js";
 import typesData from "./types.js";
 import usersData from "./users.js";
+import helpOffersData from "./help-offers.js"
 
-export default { requestsData, responsesData, typesData, usersData };
+export default { helpRequestsData, commentsData, typesData, usersData, helpOffersData };
