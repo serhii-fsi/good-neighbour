@@ -6,14 +6,14 @@ import { TestData } from "./data/types/data.types";
 
 import db from "../connection";
 
-const schemaFiles = ["users.sql", "types.sql", "requests.sql", "responses.sql"];
+const schemaFiles = ["users.sql", "types.sql", "help_requests.sql", "help_offers.sql"];
 
 const createTables = async () => {
     await db.query(`
-  DROP TABLE IF EXISTS responses;
-  DROP TABLE IF EXISTS requests;
-  DROP TABLE IF EXISTS types;
-  DROP TABLE IF EXISTS users;
+    DROP TABLE IF EXISTS help_offers;
+    DROP TABLE IF EXISTS help_requests;
+    DROP TABLE IF EXISTS types;
+    DROP TABLE IF EXISTS users;
 `);
 
     for (const file of schemaFiles) {
@@ -68,7 +68,7 @@ const seed = async ({
     );
 
     const insertRequestsDataStr = format(
-        "INSERT INTO requests (user_id, type_id, title, description, created_at, req_date, post_code, status) VALUES %L",
+        "INSERT INTO help_requests (user_id, type_id, title, description, created_at, req_date, post_code, status) VALUES %L",
         requestsData.map(
             ({ user_id, type_id, title, description, created_at, req_date, post_code, status }) => [
                 user_id,
@@ -83,8 +83,8 @@ const seed = async ({
         )
     );
 
-    const insertResponsesDataStr = format(
-        "INSERT INTO responses (user_id, req_id, created_at, description, status) VALUES %L",
+    const insertHelpOffersDataStr = format(
+        "INSERT INTO help_offers (user_id, req_id, created_at, description, status) VALUES %L",
         responsesData.map(({ user_id, request_id, body_response, created_at, status }) => [
             user_id,
             request_id,
@@ -97,7 +97,7 @@ const seed = async ({
     await db.query(insertUsersStr);
     await db.query(insertHelpTypeDataStr);
     await db.query(insertRequestsDataStr);
-    await db.query(insertResponsesDataStr);
+    await db.query(insertHelpOffersDataStr);
 };
 
 export default seed;

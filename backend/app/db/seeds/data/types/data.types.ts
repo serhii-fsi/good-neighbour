@@ -6,7 +6,8 @@ export interface TestData {
 }
 
 export interface User {
-    user_id?: string;
+    id?: string;
+    user_id: string;
     first_name: string;
     last_name: string;
     email: string;
@@ -25,7 +26,8 @@ export interface HelpType {
 }
 
 export interface HelpRequest {
-    user_id?: number;
+    id?: string;
+    user_id: number;
     type_id: number;
     title: string;
     description: string;
@@ -36,7 +38,8 @@ export interface HelpRequest {
 }
 
 export interface HelpResponse {
-    user_id?: string;
+    id?: string;
+    user_id: string;
     request_id: string;
     body_response: string;
     created_at: string;
