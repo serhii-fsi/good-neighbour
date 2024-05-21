@@ -2,11 +2,17 @@ import format from "pg-format";
 import { readFileSync } from "fs";
 import path from "path";
 
-import { TestData } from "./data/types/data.types";
+import { Data } from "./data/types/data.types";
 
 import db from "../connection";
 
-const schemaFiles = ["users.sql", "types.sql", "help_requests.sql", "help_offers.sql", "comments.sql"];
+const schemaFiles = [
+    "users.sql",
+    "types.sql",
+    "help_requests.sql",
+    "help_offers.sql",
+    "comments.sql",
+];
 
 const createTables = async () => {
     await db.query(`
@@ -20,9 +26,9 @@ const createTables = async () => {
     for (const file of schemaFiles) {
         const filePath = path.join(`${__dirname}/../../db/schema`, file);
         const sql = readFileSync(filePath, "utf-8");
-        console.log(`Executing ${file}...`);
+        // console.log(`Executing ${file}...`);
         await db.query(sql);
-        console.log(`${file} executed successfully.`);
+        // console.log(`${file} executed successfully.`);
     }
 };
 
@@ -32,7 +38,7 @@ const seed = async ({
     helpRequestsData,
     commentsData,
     helpOffersData,
-}: TestData): Promise<void> => {
+}: Data): Promise<void> => {
     await createTables();
 
     const insertUsersStr = format(
@@ -108,7 +114,6 @@ const seed = async ({
     await db.query(insertRequestsDataStr);
     await db.query(insertHelpOffersDataStr);
     await db.query(insertCommentsDataStr);
-
 };
 
 export default seed;

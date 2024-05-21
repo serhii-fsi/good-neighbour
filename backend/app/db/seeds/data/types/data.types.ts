@@ -1,14 +1,12 @@
-export interface TestData {
+export interface Data {
     usersData: User[];
     typesData: HelpType[];
     helpRequestsData: HelpRequest[];
-    commentsData: Comments[];
-    helpOffersData: HelpOffers[];
+    commentsData: Comment[];
+    helpOffersData: HelpOffer[];
 }
 
 export interface User {
-    id?: string;
-    user_id: string;
     first_name: string;
     last_name: string;
     email: string;
@@ -27,7 +25,6 @@ export interface HelpType {
 }
 
 export interface HelpRequest {
-    id?: string;
     user_id: number;
     type_id: number;
     title: string;
@@ -38,18 +35,15 @@ export interface HelpRequest {
     status: string;
 }
 
-export interface Comments {
-    id?: string;
-    user_id: string;
-    help_request_id: string;
+export interface Comment {
+    user_id: number;
+    help_request_id: number;
     body_response: string;
     created_at: string;
-    status: string;
 }
 
-export interface HelpOffers {
-    id?: string;
-    user_id: string;
-    help_request_id: string;
+export interface HelpOffer {
+    user_id: number;
+    help_request_id: number;
     status: string;
 }
