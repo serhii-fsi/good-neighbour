@@ -11,8 +11,6 @@ function Homepage() {
 
   const [dateParams, setDateParams] = useSearchParams();
   let dateQuery = dateParams.get("date");
-  const [radiusParams, setRadiusParams] = useSearchParams();
-  let radiusQuery = radiusParams.get("radius");
   const [typeParams, setTypeParams] = useSearchParams();
   let typeQuery = typeParams.get("type");
 
@@ -23,13 +21,6 @@ function Homepage() {
     dateQuery = newParams.get("date");
   }
 
-  function handleRadiusChange(event) {
-    const newParams = new URLSearchParams(radiusParams);
-    newParams.set("radius", event.target.value);
-    setRadiusParams(newParams);
-    radiusQuery = newParams.get("radius");
-  }
-
   function handleTypeChange(event) {
     const newParams = new URLSearchParams(typeParams);
     newParams.set("type", event.target.value);
@@ -38,15 +29,13 @@ function Homepage() {
   }
 
   useEffect(() => {
-    let urlStr = "/api/requests";
+    let path = "/api/requests";
     if (dateQuery) {
-      urlStr += `?date=${dateQuery}`;
-    } else if (radiusQuery) {
-      urlStr += `?radius=${radiusQuery}`;
+      path += `?date=${dateQuery}`;
     } else if (typeQuery) {
-      urlStr += `?type=${typeQuery}`;
+      path += `?type=${typeQuery}`;
     }
-    getRequests(urlStr)
+    getRequests(path)
       .then((response) => {
         setHelpList(response.data.requests);
         setIsLoading(false);
@@ -54,10 +43,10 @@ function Homepage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [dateQuery, radiusQuery, typeQuery]);
+  }, [dateQuery, typeQuery]);
 
   if (isLoading) {
-    return <Loading page={"homepage"} />;
+    return <Loading text={"Homepage"} />;
   }
   return (
     <>
@@ -73,18 +62,8 @@ function Homepage() {
         <option value="onemonth">Needed within a month</option>
       </select>
       <br />
-      <label htmlFor="radius">Filter requests by radius: </label>
-      <select name="radius-options" id="radius" onChange={handleRadiusChange}>
-        <option value="">All Help Requests</option>
-        <option value="<0.1miles">Up to 0.1 miles</option>
-        <option value="<0.2miles">Up to 0.2 miles</option>
-        <option value="<0.3miles">Up to 0.3 miles</option>
-        <option value="<0.4miles">Up to 0.4 miles</option>
-        <option value="<0.5miles">Up to 0.5 miles</option>
-      </select>
-      <br />
       <label htmlFor="types">Filter requests by type: </label>
-      <select name="help-type-options" id="types" onChange={handleTypeChange}>
+      <select name="type-options" id="types" onChange={handleTypeChange}>
         <option value="">All Help Requests</option>
         <option value="transport">Transport</option>
         <option value="household">Household</option>
