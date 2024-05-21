@@ -11,7 +11,7 @@ function OwnHelpList() {
   useEffect(() => {
     getOwnHelpList(user_id)
       .then((response) => {
-        setOwnHelpList(response.data.requestsData);
+        setOwnHelpList(response.data.helpRequestsData);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -32,7 +32,7 @@ function OwnHelpList() {
       {/* <ul>
         {ownHelpList.map((request) => {
           return (
-            <li key={request.request_id}>
+            <li key={request.help_request_id}>
               Hello
               <HelpCard request={request} />
             </li>

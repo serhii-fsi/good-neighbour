@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import HelpList from "../components/HelpList";
 import Loading from "../presentations/Loading";
-import getRequests from "../api";
+import getHelpRequests from "../api";
 
 function HelpListView() {
   const [helpList, setHelpList] = useState([]);
@@ -28,15 +28,15 @@ function HelpListView() {
   }
 
   useEffect(() => {
-    let path = "/api/requests";
+    let path = "/api/help-requests";
     if (dateQuery) {
       path += `?date=${dateQuery}`;
     } else if (typeQuery) {
       path += `?type=${typeQuery}`;
     }
-    getRequests(path)
+    getHelpRequests(path)
       .then((response) => {
-        setHelpList(response.data.requestsData);
+        setHelpList(response.data.helpRequestsData);
         setIsLoading(false);
       })
       .catch((err) => {
