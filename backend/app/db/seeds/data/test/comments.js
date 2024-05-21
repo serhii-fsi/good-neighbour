@@ -36,10 +36,7 @@ const commentsData = [
         "created_at": "2024-05-20T23:29:35.994Z"
     },
     {
-        "user_id": 4,
-        "help_request_id": 2,
-        "body_response": "Cibo eaque suspendo celebrer damno curatio defero benevolentia. Demoror xiphias vallum solutio. Assentator adulescens censura pecco quibusdam animadverto labore vulticulus.",
-        "created_at": "2024-05-20T22:42:11.139Z"
+
     },
     {
         "user_id": 6,
