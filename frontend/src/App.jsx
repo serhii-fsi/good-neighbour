@@ -9,7 +9,7 @@ import LoginForm from "./components/LoginForm";
 import MapPage from "./pages/MapPage";
 import HelpRequest from "./pages/HelpRequest";
 import OwnHelpList from "./pages/OwnHelpList";
-import OwnHelpOffered from "./pages/OwnHelpOffered";
+import OwnOfferedHelp from "./pages/OwnOfferedHelp";
 import OwnProfile from "./pages/OwnProfile";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
         <Route path="/map" element={<MapPage />} />
         <Route path="/helpRequest" element={<HelpRequest />} />
         <Route path="/ownHelplist" element={<OwnHelpList />} />
-        <Route path="/ownHelpOffered" element={<OwnHelpOffered />} />
+        <Route path="/ownOfferedHelp" element={<OwnOfferedHelp />} />
         <Route path="/profile" element={<OwnProfile />} />
       </Routes>
       <NavBar />

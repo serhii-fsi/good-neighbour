@@ -1,11 +1,12 @@
 // function HelpCard({ request }) {
 //   return (
 //     <section>
-//       <h3>{request.request_title}</h3>
-//       <p>Description: {request.request_body}</p>
-//       <p>Date(s): {request.request_date}</p>
+//       <h3>{request.title}</h3>
+//       <p>Description: {request.description}</p>
 //       <p>Created at: {request.created_at}</p>
-//       <p>Location: {request.location}</p>
+//       <p>Date(s): {request.req_date}</p>
+//       <p>Location: {request.post_code}</p>
+//       <p>Status: {request.status}</p>
 //     </section>
 //   );
 // }

@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import Loading from "../presentations/Loading";
-import { getOwnHelpList } from "../api";
+import { getOfferedHelpList } from "../api";
 
-function OwnHelpList() {
-  const [ownHelpList, setOwnHelpList] = useState([]);
+function OwnOfferedHelp() {
+  const [offeredHelpList, setOfferedHelpList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const user_id = 1;
 
   useEffect(() => {
-    getOwnHelpList(user_id)
+    getOfferedHelpList(user_id)
       .then((response) => {
-        setOwnHelpList(response.data.requestsData);
+        setOfferedHelpList(response.data.requestsData);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -20,20 +20,19 @@ function OwnHelpList() {
   }, []);
 
   if (isLoading) {
-    return <Loading text={"your help requests"} />;
+    return <Loading text={"your offered helps"} />;
   }
   return (
     <>
-      <h2>Your Help Requests</h2>
+      <h2>Help You've Offered</h2>
       <p>
-        *Placeholder for ownhelplist. Waiting for endpoint to be available from
-        the backend.*
+        *Placeholder for offeredhelplist. Waiting for endpoint to be available
+        from the backend.*
       </p>
       {/* <ul>
-        {ownHelpList.map((request) => {
+        {offeredHelpList.map((request) => {
           return (
             <li key={request.request_id}>
-              Hello
               <HelpCard request={request} />
             </li>
           );
@@ -43,4 +42,4 @@ function OwnHelpList() {
   );
 }
 
-export default OwnHelpList;
+export default OwnOfferedHelp;
