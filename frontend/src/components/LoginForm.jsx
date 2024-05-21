@@ -1,15 +1,23 @@
-import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { useContext, useState } from "react";
+import { UserContext } from "../contexts/User";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
+
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   function handleLoginSubmit(event) {
+      // needs to handle logged in user context, can do this on Preferences instead of here:
       event.preventDefault();
+      setUser(email.split('@')[0]);
       setEmail("");
       setPassword("");
+      navigate('/helpListView')
+
   }
 
   function handleEmailChange(event) {
@@ -24,16 +32,15 @@ function LoginForm() {
   <form onSubmit={handleLoginSubmit}>
       <div>
           <label htmlFor="email">Email: </label>
-          <input id="email" placeholder="type your email" onChange={handleEmailChange} value={email}></input>
+          <input id="email" type="email" placeholder="type your email" onChange={handleEmailChange} value={email}></input>
       </div>
       <div>
           <label htmlFor="password">Password: </label>
           <input id="password" type="password" placeholder="type your password" onChange={handlePasswordChange} value={password}></input>
       </div>
       {/* logic to determine which path to take after login: */}
-      <Link to={`/preferences` || `/ownHelplist`}>
-        <button>Login</button>
-      </Link>
+      {/* <Link to={`/helpListView` || `/preferences`}> */}
+        <button type="submit">Login</button>
   </form>
   )
 
