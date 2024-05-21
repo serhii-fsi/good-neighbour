@@ -9,7 +9,7 @@
     "scripts": {
         "start": "npm run build && node ./server.js",
         "build": "rimraf ./dist && tsc",
-        "start:dev": "npx nodemon",
+        "start:dev": "NODE_ENV=test npx nodemon",
         "setup-dbs": "psql -f ./app/db/setup.sql",
         "seed-test": "NODE_ENV=test npm run seed",
         "seed-prod": "NODE_ENV=production npm run seed",
