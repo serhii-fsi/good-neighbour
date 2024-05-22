@@ -9,6 +9,8 @@ export interface Data {
 export interface User {
     first_name: string;
     last_name: string;
+    about?: string;
+    phone_number?: string;
     email: string;
     username: string;
     address: string;
