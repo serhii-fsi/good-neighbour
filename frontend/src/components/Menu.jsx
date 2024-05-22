@@ -1,19 +1,20 @@
 import { Link } from "react-router-dom";
 
-function NavBar() {
+function Menu() {
   const user_id = 1; // Currently hardcoding the user_id
   const ownHelpRequestsPath = `/helpListView/${user_id}`;
 
   return (
-    <footer>
+    <>
       <nav>
-        <Link to="/home">Homepage/Help Requests | </Link>
+        <Link to="/profile">Profile | </Link>
+        {/* Link to "Offer Help" */}
         <Link to="/ownOfferedHelp">My Help Offers | </Link>
         <Link to="requestHelp">Create Help Request | </Link>
         <Link to={ownHelpRequestsPath}>My Help Requests | </Link>
       </nav>
-    </footer>
+    </>
   );
 }
 
-export default NavBar;
+export default Menu;
