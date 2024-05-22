@@ -1,11 +1,11 @@
 import db from "../../db/connection"
 
-import {HelpRequest} from "../../db/seeds/data/types/data.types";
+import { HelpRequest } from "../../db/seeds/data/types/data.types";
 
 
 export const getAll = async (): Promise<HelpRequest[]> => {
     const {rows} = await db.query(
-        "SELECT id, user_id, type_id, title, description, created_at, req_date, post_code, status FROM help_requests"
+        "SELECT help_requests.id, title, author_id, help_type_id, help_requests.description, created_at, req_date, status, users.first_name, users.last_name, users.post_code, help_types.name FROM help_requests LEFT JOIN users on users.id = help_requests.author_id LEFT JOIN help_types on help_types.id = help_requests.help_type_id"
     )
     return rows
 }
