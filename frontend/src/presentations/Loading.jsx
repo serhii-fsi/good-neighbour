@@ -1,7 +1,7 @@
-function Loading({ page }) {
+function Loading({ text }) {
   return (
     <p>
-      <em>Loading {page}...</em>
+      <em>Loading {text}...</em>
     </p>
   );
 }

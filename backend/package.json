@@ -9,7 +9,7 @@
     "scripts": {
         "start": "npm run build && node ./server.js",
         "build": "rimraf ./dist && tsc",
-        "start:dev": "npx nodemon",
+        "start:dev": "NODE_ENV=test npx nodemon",
         "setup-dbs": "psql -f ./app/db/setup.sql",
         "seed-test": "NODE_ENV=test npm run seed",
         "seed-prod": "NODE_ENV=production npm run seed",
@@ -39,7 +39,7 @@
         "pg-format": "^1.0.4",
         "rimraf": "^5.0.7",
         "supertest": "^7.0.0",
-        "ts-jest": "^29.1.2",
+        "ts-jest": "^29.1.3",
         "ts-node": "^10.9.2",
         "typescript": "^5.4.5"
     },

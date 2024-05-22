@@ -99,9 +99,8 @@ function generateHelpRequests() {
         ]);
         const requestStatus = faker.helpers.arrayElement([
             "Completed",
-            "Accepted",
             "In progress",
-            "Declined",
+            "Closed",
         ]);
         helpRequests.push({
             user_id: userID,
@@ -150,7 +149,7 @@ let comments = generateComments();
 function generateHelpOffers() {
     let helpOffers = []
     for (let i = 1; i <= 10; i++) {
-    const helpRequestStatus = faker.helpers.arrayElement(["Accepted", "In progress", "Declined"]);
+    const helpRequestStatus = faker.helpers.arrayElement(["Accepted", "In review", "Declined"]);
     const userID = faker.number.int({ min: 1, max: 10 });
     const helpRequestID = faker.number.int({ min: 1, max: 10 });
     helpOffers.push({
