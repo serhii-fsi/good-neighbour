@@ -6,46 +6,46 @@ export interface Data {
     helpOffersData: HelpOffer[];
 }
 
+// { key?: string} ? - means key is optional
+
 export interface User {
+    username?: string;
+    email?: string;
+    avatar_url?: string;
+    age?: number;
     first_name: string;
     last_name: string;
-    about: string;
-    phone_number: string;
-    email: string;
-    username: string;
+    about?: string;
     address: string;
     post_code: string;
-    avatar_url: string;
-    age: number;
-    help_offers_count: number;
-    help_requests_count: number;
+    phone_number?: string;
+    additional_contacts?: string;
+    help_radius?: string;
+    help_offers_count?: number;
+    help_requests_count?: number;
 }
-
-export interface HelpType {
-    type: string;
-    description: string;
-}
-
 export interface HelpRequest {
-    user_id: number;
-    type_id: number;
     title: string;
+    author_id: number;
+    help_type_id: number;
     description: string;
     created_at: string;
     req_date: string;
-    post_code: string;
+    post_code?: string;
     status: string;
 }
-
-export interface Comment {
-    user_id: number;
-    help_request_id: number;
-    body_response: string;
-    created_at: string;
-}
-
 export interface HelpOffer {
-    user_id: number;
-    help_request_id: number;
+    helper_id: string | number;
+    help_request_id: string | number;
     status: string;
+}
+export interface Comment {
+    author_id: number;
+    help_request_id: number;
+    created_at: string;
+    description: string;
+}
+export interface HelpType {
+    name: string;
+    description?: string;
 }

@@ -42,80 +42,82 @@ const seed = async ({
     await createTables();
 
     const insertUsersStr = format(
-        "INSERT INTO users (first_name, last_name, about, phone_number, email, username, address, post_code, avatar_url, age, help_offered, help_requests) VALUES %L;",
+        "INSERT INTO users (username, email, avatar_url, age, first_name, last_name, about, address, post_code, phone_number, additional_contacts, help_radius) VALUES %L;",
         usersData.map(
             ({
+                username,
+                email,
+                avatar_url,
+                age,
                 first_name,
                 last_name,
                 about,
-                phone_number,
-                email,
-                username,
                 address,
                 post_code,
-                avatar_url,
-                age,
+                phone_number,
+                additional_contacts,
+                help_radius,
                 help_offers_count,
                 help_requests_count,
             }) => [
+                username,
+                email,
+                avatar_url,
+                age,
                 first_name,
                 last_name,
                 about,
-                phone_number,
-                email,
-                username,
                 address,
                 post_code,
-                avatar_url,
-                age,
-                help_offers_count,
-                help_requests_count,
+                phone_number,
+                additional_contacts,
+                help_radius,
             ]
         )
     );
 
-    const insertHelpTypeDataStr = format(
-        "INSERT INTO types (type_name, type_description) VALUES %L",
-        typesData.map(({ type, description }) => [type, description])
-    );
-
-    const insertRequestsDataStr = format(
-        "INSERT INTO help_requests (user_id, type_id, title, description, created_at, req_date, post_code, status) VALUES %L",
+    const insertHelpRequestsDataStr = format(
+        "INSERT INTO help_requests (title, author_id, help_type_id, description, created_at, req_date, status) VALUES %L",
         helpRequestsData.map(
-            ({ user_id, type_id, title, description, created_at, req_date, post_code, status }) => [
-                user_id,
-                type_id,
+            ({ title, author_id, help_type_id, description, created_at, req_date, status }) => [
                 title,
+                author_id,
+                help_type_id,
                 description,
                 created_at,
                 req_date,
-                post_code,
                 status,
             ]
         )
     );
 
-    const insertCommentsDataStr = format(
-        "INSERT INTO comments (user_id, help_request_id, created_at, description) VALUES %L",
-        commentsData.map(({ user_id, help_request_id, body_response, created_at }) => [
-            user_id,
-            help_request_id,
-            created_at,
-            body_response,
-        ])
-    );
-
     const insertHelpOffersDataStr = format(
-        "INSERT INTO help_offers (user_id, help_request_id, status) VALUES %L",
-        helpOffersData.map(({ user_id, help_request_id, status }) => [
-            user_id,
+        "INSERT INTO help_offers (helper_id, help_request_id, status) VALUES %L",
+        helpOffersData.map(({ helper_id, help_request_id, status }) => [
+            helper_id,
             help_request_id,
             status,
         ])
     );
+
+    const insertCommentsDataStr = format(
+        "INSERT INTO comments (author_id, help_request_id, created_at, description) VALUES %L",
+        commentsData.map(({ author_id, help_request_id, created_at, description }) => [
+            author_id,
+            help_request_id,
+            created_at,
+            description,
+        ])
+    );
+
+    const insertHelpTypeDataStr = format(
+        "INSERT INTO help_types (name, description) VALUES %L",
+        typesData.map(({ name, description }) => [name, description])
+    );
+
     await db.query(insertUsersStr);
     await db.query(insertHelpTypeDataStr);
-    await db.query(insertRequestsDataStr);
+    await db.query(insertHelpRequestsDataStr);
     await db.query(insertHelpOffersDataStr);
     await db.query(insertCommentsDataStr);
 };
