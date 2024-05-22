@@ -12,3 +12,29 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
         next(error);
     }
 };
+
+/**
+ * @swagger
+ * /api/users/:user_id:
+ *   patch:
+ *     summary: Update user
+ *     tags: [Users]
+ *     requestBody:
+ *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *     description: Update a user with corresponding id.
+ *     responses:
+ *       200:
+ *         description: Responds with an updated user by corresponding id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       400:
+ *         $ref: '#/components/responses/400'
+ *       404:
+ *         $ref: '#/components/responses/404'
+ */

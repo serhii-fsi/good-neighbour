@@ -14,7 +14,7 @@ afterAll(async () => {
 });
 
 describe("getUserById", () => {
-    test("200 - GET: Responds with an article with corresponding id", async () => {
+    test("200 - GET: Responds with a user with corresponding id", async () => {
         const {
             body: { user },
         } = await request(app).get("/api/users/1").expect(200);

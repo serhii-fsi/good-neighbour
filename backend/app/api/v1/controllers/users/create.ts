@@ -12,3 +12,27 @@ export const create = async (req: Request, res: Response, next: NextFunction) =>
         next(error);
     }
 };
+
+/**
+ * @swagger
+ * /api/users:
+ *   post:
+ *     summary: Create user
+ *     tags: [Users]
+ *     requestBody:
+ *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *     description: Creates a user
+ *     responses:
+ *       201:
+ *         description: Responds with a newly created user
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       400:
+ *         $ref: '#/components/responses/400'
+ */
