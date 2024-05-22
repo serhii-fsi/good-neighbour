@@ -8,7 +8,7 @@ import db from "../connection";
 
 const schemaFiles = [
     "users.sql",
-    "types.sql",
+    "help_types.sql",
     "help_requests.sql",
     "help_offers.sql",
     "comments.sql",
@@ -19,7 +19,7 @@ const createTables = async () => {
     DROP TABLE IF EXISTS comments;
     DROP TABLE IF EXISTS help_offers;
     DROP TABLE IF EXISTS help_requests;
-    DROP TABLE IF EXISTS types;
+    DROP TABLE IF EXISTS help_types;
     DROP TABLE IF EXISTS users;
 `);
 
