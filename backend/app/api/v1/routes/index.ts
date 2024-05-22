@@ -12,15 +12,15 @@ router.get("/", (req, res, next) => {
 // * Users
 router.get("/api/users", usersController.getAll);
 router.get("/api/users/:user_id", usersController.getById);
-router.delete("/api/users", usersController.remove);
-router.patch("/api/users", usersController.update);
+// router.delete("/api/users/:user_id", usersController.remove);
+router.patch("/api/users/:user_id", usersController.update);
 router.post("/api/users", usersController.create);
 
 // * Help requests
 router.get("/api/help-requests", helpRequestsController.getAll);
 router.get("/api/help-requests/:help_request_id", helpRequestsController.getById);
-router.delete("/api/help-requests", helpRequestsController.remove);
-router.patch("/api/help-requests", helpRequestsController.update);
+router.delete("/api/help-requests/:help_request_id", helpRequestsController.remove);
+router.patch("/api/help-requests/:help_request_id", helpRequestsController.update);
 router.post("/api/help-requests", helpRequestsController.create);
 
 // * Types

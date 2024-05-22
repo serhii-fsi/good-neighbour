@@ -21,6 +21,8 @@ export interface User {
     phone_number?: string;
     additional_contacts?: string;
     help_radius?: string | number;
+    longitude: string | number;
+    latitude: string | number;
     help_offers_count?: number;
     help_requests_count?: number;
 }

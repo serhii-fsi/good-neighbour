@@ -4,7 +4,7 @@ import { User } from "../../db/seeds/data/types/data.types";
 
 export const getById = async (id: string): Promise<User> => {
     const { rows } = await db.query(
-        "SELECT user_id, username, avatar_url, first_name, last_name, email, address, age, post_code, help_offered, help_requests FROM users WHERE user_id = $1",
+        "SELECT id, username, email, avatar_url, age, first_name, last_name, about, address, post_code, phone_number, additional_contacts, help_radius FROM users WHERE id = $1",
         [id]
     );
     return rows[0];

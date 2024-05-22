@@ -12,6 +12,8 @@ CREATE TABLE users (
     phone_number VARCHAR(24),
     additional_contacts VARCHAR(500),
     help_radius INT DEFAULT 1000 NOT NULL,
+    longitude DOUBLE PRECISION NOT NULL,
+    latitude DOUBLE PRECISION NOT NULL,
     help_offered INT DEFAULT 0,
     help_requests INT DEFAULT 0
 );
