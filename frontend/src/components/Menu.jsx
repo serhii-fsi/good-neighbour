@@ -8,10 +8,10 @@ function Menu() {
     <>
       <nav>
         <Link to="/profile">Profile | </Link>
-        {/* Link to "Offer Help" */}
+        <Link to="/home">Homepage/Offer Help | </Link>
         <Link to="/ownOfferedHelp">My Help Offers | </Link>
         <Link to="requestHelp">Create Help Request | </Link>
-        <Link to={ownHelpRequestsPath}>My Help Requests | </Link>
+        <Link to={ownHelpRequestsPath}>My Help Requests</Link>
       </nav>
     </>
   );

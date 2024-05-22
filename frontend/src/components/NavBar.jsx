@@ -7,10 +7,10 @@ function NavBar() {
   return (
     <footer>
       <nav>
-        <Link to="/home">Homepage/Help Requests | </Link>
+        <Link to="/home">Homepage/Offer Help | </Link>
         <Link to="/ownOfferedHelp">My Help Offers | </Link>
         <Link to="requestHelp">Create Help Request | </Link>
-        <Link to={ownHelpRequestsPath}>My Help Requests | </Link>
+        <Link to={ownHelpRequestsPath}>My Help Requests</Link>
       </nav>
     </footer>
   );
