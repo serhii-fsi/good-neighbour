@@ -20,7 +20,7 @@ export interface User {
     post_code: string;
     phone_number?: string;
     additional_contacts?: string;
-    help_radius?: string | number;
+    help_radius: string | number;
     longitude: string | number;
     latitude: string | number;
     help_offers_count?: number;
