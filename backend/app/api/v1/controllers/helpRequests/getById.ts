@@ -1,8 +1,12 @@
 import { Request, Response, NextFunction } from "express";
 
-export const getById = (req: Request, res: Response, next: NextFunction) => {
+import * as helpRequestsService from "../../../../services/helpRequests/getById"
+
+export const getById = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        // await requestsService.getById()
+const {help_request_id} = req.params;
+const helpRequest = await helpRequestsService.getById(help_request_id)
+res.status(200).send({helpRequest})
     } catch (error) {
         next(error);
     }
