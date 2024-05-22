@@ -1,10 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 
-// // import requestsService from ''
+import * as helpRequestsService from "../../../../services/helpRequests/getAll";
 
 export const getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        // await usersService.getAll();
+        const helpRequests = await helpRequestsService.getAll();
+        res.status(200).send({helpRequests})
     } catch (error) {
         next(error);
     }
