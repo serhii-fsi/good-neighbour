@@ -42,7 +42,7 @@ const seed = async ({
     await createTables();
 
     const insertUsersStr = format(
-        "INSERT INTO users (username, email, avatar_url, age, first_name, last_name, about, address, post_code, phone_number, additional_contacts, help_radius) VALUES %L;",
+        "INSERT INTO users (username, email, avatar_url, age, first_name, last_name, about, address, post_code, phone_number, additional_contacts, help_radius, longitude, latitude) VALUES %L;",
         usersData.map(
             ({
                 username,
@@ -57,6 +57,8 @@ const seed = async ({
                 phone_number,
                 additional_contacts,
                 help_radius,
+                longitude,
+                latitude,
                 help_offers_count,
                 help_requests_count,
             }) => [
@@ -72,6 +74,8 @@ const seed = async ({
                 phone_number,
                 additional_contacts,
                 help_radius,
+                longitude,
+                latitude,
             ]
         )
     );
