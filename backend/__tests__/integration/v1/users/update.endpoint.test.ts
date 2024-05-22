@@ -17,7 +17,7 @@ afterAll(async () => {
 
 describe("updateUser", () => {
     test("200 - PATCH: Responds with an updated email and phone_number user's fields by corresponding id", async () => {
-        const userBody = {
+        const userBody: Partial<User> = {
             email: "maxbmaapc@mail.ru",
             phone_number: "079170986789",
         };
