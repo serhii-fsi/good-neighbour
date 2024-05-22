@@ -14,6 +14,8 @@ function generateUsers() {
         const email = UniqueEnforcerEmail.enforce(() => {
             return faker.internet.email({ firstName, lastName, provider });
         });
+        const phoneNumber = fakerEN_GB.phone.number()
+        const about = faker.lorem.paragraph()
         const userName = faker.internet.userName({ firstName: firstName });
         const address = fakerEN_GB.location.streetAddress();
         const postCode = faker.helpers.arrayElement([
@@ -36,11 +38,13 @@ function generateUsers() {
             first_name: firstName,
             last_name: lastName,
             email: email,
+            phone_number: phoneNumber,
             username: userName,
             address: address,
             post_code: postCode,
             avatar_url: avatar,
             age: age,
+            about: about,
             help_offers_count: helpOfferedCount,
             help_requests_count: helprequestedCount,
         });
@@ -49,10 +53,10 @@ function generateUsers() {
 }
 
 let usersArr = generateUsers();
-// fs.writeFile("users.json", JSON.stringify(usersArr), (err) => {
-//     if (err) throw err;
-//     console.log("File saved!");
-// });
+fs.writeFile("users.json", JSON.stringify(usersArr), (err) => {
+    if (err) throw err;
+    console.log("File saved!");
+});
 
 function generateTypes() {
     const typeArr = ["Groceries", "Rides", "Cleaning", "Packages", "DIY"];
@@ -114,10 +118,10 @@ function generateHelpRequests() {
 }
 let helpRequests = generateHelpRequests();
 
-fs.writeFile("help-requests.json", JSON.stringify(helpRequests), (err) => {
-    if (err) throw err;
-    console.log("File saved!");
-});
+// fs.writeFile("help-requests.json", JSON.stringify(helpRequests), (err) => {
+//     if (err) throw err;
+//     console.log("File saved!");
+// });
 
 function generateComments() {
     let comments = [];
@@ -138,10 +142,10 @@ function generateComments() {
 }
 let comments = generateComments();
 
-fs.writeFile("comments.json", JSON.stringify(comments), (err) => {
-    if (err) throw err;
-    console.log("File saved!");
-});
+// fs.writeFile("comments.json", JSON.stringify(comments), (err) => {
+//     if (err) throw err;
+//     console.log("File saved!");
+// });
 
 function generateHelpOffers() {
     let helpOffers = []
