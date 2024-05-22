@@ -42,11 +42,13 @@ const seed = async ({
     await createTables();
 
     const insertUsersStr = format(
-        "INSERT INTO users (first_name, last_name, email, username, address, post_code, avatar_url, age, help_offered, help_requests) VALUES %L;",
+        "INSERT INTO users (first_name, last_name, about, phone_number, email, username, address, post_code, avatar_url, age, help_offered, help_requests) VALUES %L;",
         usersData.map(
             ({
                 first_name,
                 last_name,
+                about,
+                phone_number,
                 email,
                 username,
                 address,
@@ -58,6 +60,8 @@ const seed = async ({
             }) => [
                 first_name,
                 last_name,
+                about,
+                phone_number,
                 email,
                 username,
                 address,
