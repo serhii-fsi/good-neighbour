@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function Preferences() {
-
+  const { state } = useLocation();
+  console.log(state);
   // empty string initial states assumes first time login, must go to preferences screen if so.
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
