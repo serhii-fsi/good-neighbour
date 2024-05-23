@@ -7,7 +7,7 @@
         "test": "tests"
     },
     "scripts": {
-        "start": "npm run build && node ./server.js",
+        "start": "npm run build && node ./dist/server.js",
         "build": "rimraf ./dist && tsc",
         "start:dev": "NODE_ENV=test npx nodemon",
         "setup-dbs": "psql -f ./app/db/setup.sql",
