@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import { DatePicker, Space } from "antd";
-import { Tag } from "antd";
+import { DatePicker, Space, Menu, Tag } from "antd";
+import {
+  UnorderedListOutlined,
+  ShoppingOutlined,
+  CarOutlined,
+  ClearOutlined,
+  DropboxOutlined,
+  ToolOutlined,
+} from "@ant-design/icons";
 import HelpList from "../components/HelpList";
 import Loading from "../presentations/Loading";
 import getHelpRequests from "../api";
@@ -22,30 +28,64 @@ function HelpListView() {
   function handleFromDateChange(date, dateString) {
     setFromDate(dateString);
   }
-
   function handleEndDateChange(date, dateString) {
     setEndDate(dateString);
   }
 
-  const [typeParams, setTypeParams] = useSearchParams();
-  let typeQuery = typeParams.get("type");
+  const menuItems = [
+    {
+      key: "menuTitle",
+      label: "Filter by type of help",
+      icon: <UnorderedListOutlined />,
+      children: [
+        {
+          key: "shopping",
+          label: "Shopping",
+          icon: <ShoppingOutlined />,
+        },
+        {
+          key: "rides",
+          label: "Rides",
+          icon: <CarOutlined />,
+        },
+        {
+          key: "cleaning",
+          label: "Cleaning",
+          icon: <ClearOutlined />,
+        },
+        {
+          key: "packages",
+          label: "Packages",
+          icon: <DropboxOutlined />,
+        },
+        {
+          key: "diy",
+          label: "DIY",
+          icon: <ToolOutlined />,
+        },
+      ],
+    },
+  ];
 
-  function handleTypeChange(event) {
-    const newParams = new URLSearchParams(typeParams);
-    newParams.set("type", event.target.value);
-    setTypeParams(newParams);
-    typeQuery = newParams.get("type");
+  function handleAddClick(event) {
+    document.getElementById(`${event.key}`).style.visibility = "visible";
   }
 
-  function handleClose(event) {
-    // setEndDate(dateString);
-  }
+  const handleRemoveClick = (event) => {
+    document.getElementById(`${event.target.id}`).style.visibility = "hidden";
+  };
+
+  // typeQueries.push(event.key);
+  // typeQueries.push(event.target.id);
 
   useEffect(() => {
+    // const typeQueries = [];
+    // console.log(typeQueries, "typeQueries");
+
     let endpoint = `/api/help-requests?start=${fromDate}&end=${endDate}`;
-    if (typeQuery) {
-      endpoint += `?type=${typeQuery}`;
-    }
+    // if (typeQuery) {
+    //   endpoint += `?type=${typeQuery}`;
+    // }
     getHelpRequests(endpoint)
       .then((response) => {
         // console.log(response.data, "data 1");
@@ -56,7 +96,7 @@ function HelpListView() {
       .catch((err) => {
         console.log(err);
       });
-  }, [fromDate, endDate, typeQuery]);
+  }, [fromDate, endDate]);
 
   // const newHelpList = helpList.filter((helpRequest) => {
   //   return helpRequest.req_date > fromDate && helpRequest.req_date < endDate;
@@ -67,7 +107,6 @@ function HelpListView() {
   }
   return (
     <>
-      <p>Filter</p>
       <label htmlFor="from-date">From: </label>
       <Space id="from-date" direction="vertical">
         <DatePicker onChange={handleFromDateChange} />
@@ -79,25 +118,30 @@ function HelpListView() {
       </Space>
       <br />
       <br />
-      <label htmlFor="types">Filter requests by type: </label>
-      <select name="type-options" id="types" onChange={handleTypeChange}>
-        <option value="">All Help Requests</option>
-        <Tag closeIcon onClose={handleClose}>
-          <option value="shopping">Shopping</option>
-        </Tag>
-        <Tag closeIcon onClose={handleClose}>
-          <option value="rides">Rides</option>
-        </Tag>
-        <Tag closeIcon onClose={handleClose}>
-          <option value="cleaning">Cleaning</option>
-        </Tag>
-        <Tag closeIcon onClose={handleClose}>
-          <option value="packages">Packages</option>
-        </Tag>
-        <Tag closeIcon onClose={handleClose}>
-          <option value="diy">DIY</option>
-        </Tag>
-      </select>
+
+      <Tag id="shopping" closeIcon onClick={handleRemoveClick}>
+        Shopping
+      </Tag>
+      <Tag id="rides" closeIcon onClick={handleRemoveClick}>
+        Rides
+      </Tag>
+      <Tag id="cleaning" closeIcon onClick={handleRemoveClick}>
+        Cleaning
+      </Tag>
+      <Tag id="packages" closeIcon onClick={handleRemoveClick}>
+        Packages
+      </Tag>
+      <Tag id="diy" closeIcon onClick={handleRemoveClick}>
+        DIY
+      </Tag>
+
+      <Menu
+        id="typeFilter"
+        items={menuItems}
+        mode="horizontal"
+        onClick={handleAddClick}
+      />
+
       <HelpList helpList={helpList} />
     </>
   );

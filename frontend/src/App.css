@@ -12,3 +12,23 @@
 /* #navbar {
   
 } */
+
+#shopping {
+  visibility: hidden;
+}
+
+#rides {
+  visibility: hidden;
+}
+
+#cleaning {
+  visibility: hidden;
+}
+
+#packages {
+  visibility: hidden;
+}
+
+#diy {
+  visibility: hidden;
+}
