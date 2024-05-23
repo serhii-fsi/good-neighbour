@@ -1,11 +1,11 @@
-import errors from "./errors.json";
+import { errors } from "./errors";
 
 interface ErrorObj {
     statusCode: number;
     message: string;
 }
 
-class AppError extends Error {
+export class AppError extends Error {
     private errorObj: ErrorObj;
 
     constructor(errorObj: ErrorObj, message: string) {
@@ -22,5 +22,3 @@ class AppError extends Error {
         return this.errorObj;
     }
 }
-
-export default AppError;
