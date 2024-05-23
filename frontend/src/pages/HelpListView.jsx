@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { DatePicker, Space } from "antd";
+import { Tag } from "antd";
 import HelpList from "../components/HelpList";
 import Loading from "../presentations/Loading";
 import getHelpRequests from "../api";
@@ -34,6 +35,10 @@ function HelpListView() {
     newParams.set("type", event.target.value);
     setTypeParams(newParams);
     typeQuery = newParams.get("type");
+  }
+
+  function handleClose(event) {
+    // setEndDate(dateString);
   }
 
   useEffect(() => {
@@ -77,11 +82,21 @@ function HelpListView() {
       <label htmlFor="types">Filter requests by type: </label>
       <select name="type-options" id="types" onChange={handleTypeChange}>
         <option value="">All Help Requests</option>
-        <option value="transport">Transport</option>
-        <option value="household">Household</option>
-        <option value="garden">Garden</option>
-        <option value="vehicle">Vehicle</option>
-        <option value="community">Community</option>
+        <Tag closeIcon onClose={handleClose}>
+          <option value="shopping">Shopping</option>
+        </Tag>
+        <Tag closeIcon onClose={handleClose}>
+          <option value="rides">Rides</option>
+        </Tag>
+        <Tag closeIcon onClose={handleClose}>
+          <option value="cleaning">Cleaning</option>
+        </Tag>
+        <Tag closeIcon onClose={handleClose}>
+          <option value="packages">Packages</option>
+        </Tag>
+        <Tag closeIcon onClose={handleClose}>
+          <option value="diy">DIY</option>
+        </Tag>
       </select>
       <HelpList helpList={helpList} />
     </>
