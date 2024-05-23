@@ -25,8 +25,8 @@ describe("GET /api/help-requests/:help_request_id", () => {
             help_type_id: 5,
             description:
                 "Temptatio demonstro acidus tredecim decerno hic antea veniam. Illum comedo sordeo uterque quod quae sortitus denuncio aperte curto. Adipiscor officia illo cuius agnosco spoliatio autus.",
-            created_at: "2024-05-21T19:53:54.468Z",
-            req_date: "2024-05-23T08:39:43.347Z",
+            created_at: expect.any(String),
+            req_date: expect.any(String),
             status: "active",
             first_name: "Makenna",
             last_name: "Wuckert",
@@ -35,5 +35,23 @@ describe("GET /api/help-requests/:help_request_id", () => {
             latitude: 51.54144,
             longitude: 0.07218,
         });
+    });
+
+    test("404 - GET: Responds with appropriate error when nonexistent help_request_id provided", async () => {
+        const {
+            body: {
+                error: { message },
+            },
+        } = await request(app).get("/api/help-requests/15").expect(404);
+        expect(message).toBe("Help request was not found");
+    });
+
+    test("404 - GET: Responds with appropriate error when invalid help_request_id provided", async () => {
+        const {
+            body: {
+                error: { message },
+            },
+        } = await request(app).get("/api/help-requests/fgrg").expect(400);
+        expect(message).toBe("Invalid input provided");
     });
 });

@@ -5,19 +5,18 @@ import * as helpRequestsService from "../../../../services/helpRequests/getAll";
 export const getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const helpRequests = await helpRequestsService.getAll();
-        res.status(200).send({helpRequests})
+        res.status(200).send({ helpRequests });
     } catch (error) {
         next(error);
     }
 };
-
 
 /**
  * @swagger
  * /api/help-requests:
  *   get:
  *     summary: Get all help-requests
- *     tags: [HelpRequest]
+ *     tags: [Help Requests]
  *     description: Retrieve a list of all help requests.
  *     responses:
  *       200:
@@ -34,12 +33,10 @@ export const getAll = async (req: Request, res: Response, next: NextFunction) =>
  * @swagger
  * components:
  *   responses:
- *     400:
- *       description: Bad request
- *       contents: 'application/json'
- *     404:
- *       description: The help-request was not found
- *       contents: 'application/json'
+ *     help-requests:
+ *       404:
+ *         description: The help request was not found
+ *         contents: 'application/json'
  *   schemas:
  *     HelpRequest:
  *       type: object

@@ -19,23 +19,21 @@ export const create = async (req: Request, res: Response, next: NextFunction) =>
  * /api/help-requests:
  *   post:
  *     summary: Creates a help request
- *     tags: [HelpRequest]
+ *     tags: [Help Requests]
  *     requestBody:
  *         required: true
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/HelpRequest'
- *     description: Creates a help request
+ *     description: Create a help request
  *     responses:
  *       201:
  *         description: Responds with a newly created help request
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/help-request'
+ *               $ref: '#/components/schemas/HelpRequest'
  *       400:
  *         $ref: '#/components/responses/400'
  */
-
-

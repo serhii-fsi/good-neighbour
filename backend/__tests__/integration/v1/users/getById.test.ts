@@ -5,8 +5,6 @@ import db from "../../../../app/db/connection";
 import testData from "../../../../app/db/seeds/data/test";
 import seed from "../../../../app/db/seeds/seed";
 
-import { User } from "../../../../app/db/seeds/data/types/data.types";
-
 beforeEach(async () => {
     await seed(testData);
 });
@@ -34,5 +32,23 @@ describe("getUserById", () => {
             additional_contacts: expect.any(String),
             help_radius: 551,
         });
+    });
+
+    test("404 - GET: Responds with appropriate error when nonexistent user_id provided", async () => {
+        const {
+            body: {
+                error: { message },
+            },
+        } = await request(app).get("/api/users/15").expect(404);
+        expect(message).toBe("User was not found");
+    });
+
+    test("404 - GET: Responds with appropriate error when invalid user_id provided", async () => {
+        const {
+            body: {
+                error: { message },
+            },
+        } = await request(app).get("/api/users/fgrg").expect(400);
+        expect(message).toBe("Invalid input provided");
     });
 });

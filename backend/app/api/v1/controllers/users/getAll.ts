@@ -34,7 +34,7 @@ export const getAll = async (req: Request, res: Response, next: NextFunction) =>
  * components:
  *   responses:
  *     400:
- *       description: Bad request
+ *       description: Invalid input provided
  *       contents: 'application/json'
  *     404:
  *       description: The user was not found
