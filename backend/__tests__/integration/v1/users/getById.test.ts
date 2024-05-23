@@ -5,6 +5,8 @@ import db from "../../../../app/db/connection";
 import testData from "../../../../app/db/seeds/data/test";
 import seed from "../../../../app/db/seeds/seed";
 
+import { User } from "../../../../app/db/seeds/data/types/data.types";
+
 beforeEach(async () => {
     await seed(testData);
 });

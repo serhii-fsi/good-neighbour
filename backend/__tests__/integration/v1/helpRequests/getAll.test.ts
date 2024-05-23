@@ -32,7 +32,7 @@ describe("HelpRequests Array Endpoint", () => {
             expect(request).toHaveProperty("name");
             expect(request).toHaveProperty("longitude");
             expect(request).toHaveProperty("latitude");
-
         });
     });
 })
+

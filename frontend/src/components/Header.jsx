@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../contexts/User";
-import Menu from "./Menu";
+import DropdownMenu from "./Menu";
 
 function Header() {
   const { user } = useContext(UserContext);
@@ -8,7 +8,7 @@ function Header() {
   return (
     <>
       <h1>Good Neighbour {user}</h1>
-      <Menu />
+      <DropdownMenu />
     </>
   );
 }
