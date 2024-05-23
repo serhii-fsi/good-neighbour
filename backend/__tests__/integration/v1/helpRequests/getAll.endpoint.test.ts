@@ -30,6 +30,9 @@ describe("HelpRequests Array Endpoint", () => {
             expect(request).toHaveProperty("last_name");
             expect(request).toHaveProperty("post_code");
             expect(request).toHaveProperty("name");
+            expect(request).toHaveProperty("longitude");
+            expect(request).toHaveProperty("latitude");
+
         });
     });
 })

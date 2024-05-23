@@ -6,6 +6,7 @@ function generateUsers() {
     let users = [];
 
     const UniqueEnforcerEmail = new UniqueEnforcer();
+    const UniqueEnforcerPostcode = new UniqueEnforcer()
 
     for (let i = 1; i <= 10; i++) {
         const firstName = faker.person.firstName();
@@ -20,7 +21,8 @@ function generateUsers() {
 
         const userName = faker.internet.userName({ firstName: firstName });
         const address = fakerEN_GB.location.streetAddress();
-        const postCode = faker.helpers.arrayElement([
+        const postCode = UniqueEnforcerPostcode.enforce(() => {
+            return faker.helpers.arrayElement([
             "CV8 2SW",
             "CV8 2TB",
             "CV8 2TD",
@@ -32,6 +34,7 @@ function generateUsers() {
             "CV32 6EQ",
             "CV32 6ES",
         ]);
+    })
         const age = faker.number.int({ min: 18, max: 95 });
         const avatar = faker.image.avatar();
         const helpRadius = faker.number.int({ min: 500, max: 1000 });
@@ -75,10 +78,10 @@ function generateTypes() {
 }
 let types = generateTypes();
 
-fs.writeFile("types.json", JSON.stringify(types), (err) => {
-    if (err) throw err;
-    console.log("File saved!");
-});
+// fs.writeFile("types.json", JSON.stringify(types), (err) => {
+//     if (err) throw err;
+//     console.log("File saved!");
+// });
 
 function generateHelpRequests() {
     let helpRequests = [];
@@ -90,18 +93,6 @@ function generateHelpRequests() {
         const title = faker.lorem.word({ length: { min: 2, max: 5 } });
         const createdAt = faker.date.recent();
         const dateHelpNeeded = faker.date.soon();
-        const location = faker.helpers.arrayElement([
-            "CV8 2SW",
-            "CV8 2TB",
-            "CV8 2TD",
-            "CV8 2TE",
-            "CV8 2NZ",
-            "CV32 6DL",
-            "CV32 6EF",
-            "CV32 6EJ",
-            "CV32 6EQ",
-            "CV32 6ES",
-        ]);
         const requestStatus = faker.helpers.arrayElement([
             "completed",
             "active",
@@ -122,10 +113,10 @@ function generateHelpRequests() {
 }
 let helpRequests = generateHelpRequests();
 
-fs.writeFile("help-requests.json", JSON.stringify(helpRequests), (err) => {
-    if (err) throw err;
-    console.log("File saved!");
-});
+// fs.writeFile("help-requests.json", JSON.stringify(helpRequests), (err) => {
+//     if (err) throw err;
+//     console.log("File saved!");
+// });
 
 function generateComments() {
     let comments = [];
@@ -146,10 +137,10 @@ function generateComments() {
 }
 let comments = generateComments();
 
-fs.writeFile("comments.json", JSON.stringify(comments), (err) => {
-    if (err) throw err;
-    console.log("File saved!");
-});
+// fs.writeFile("comments.json", JSON.stringify(comments), (err) => {
+//     if (err) throw err;
+//     console.log("File saved!");
+// });
 
 function generateHelpOffers() {
     let helpOffers = []
@@ -168,7 +159,7 @@ return helpOffers
 
 let helpOffers = generateHelpOffers()
 
-fs.writeFile("help-offers.json", JSON.stringify(helpOffers), (err) => {
-    if (err) throw err;
-    console.log("File saved!");
-});
+// fs.writeFile("help-offers.json", JSON.stringify(helpOffers), (err) => {
+//     if (err) throw err;
+//     console.log("File saved!");
+// });

@@ -33,6 +33,8 @@ describe("GET /api/help-requests/:help_request_id", () => {
             last_name: "Wuckert",
             post_code: expect.any(String),
             name: "DIY",
+            latitude: 51.5203,
+            longitude: -0.0976,
         });
     });
 });
