@@ -11,3 +11,21 @@ export const getById = async (req: Request, res: Response, next: NextFunction) =
         next(error);
     }
 };
+
+/**
+ * @swagger
+ * /api/help-requests/:help_request_id:
+ *   get:
+ *     summary: Get help request by help_id
+ *     tags: [HelpRequest]
+ *     description: Retrieve a help request with the corresponding id.
+ *     responses:
+ *       200:
+ *         description: Responds with a help request with the corresponding id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HelpRequest'
+ *       404:
+ *         $ref: '#/components/responses/404'
+ */
