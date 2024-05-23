@@ -3,7 +3,7 @@ const router = express.Router();
 
 import * as usersController from "../controllers/users";
 import * as helpRequestsController from "../controllers/helpRequests";
-import * as typesController from "../controllers/types";
+import * as typesController from "../controllers/helpTypes";
 
 router.get("/", (req, res, next) => {
     res.status(200).send({ message: "welcome to the Good Neighbour API" });
@@ -24,6 +24,6 @@ router.patch("/api/help-requests/:help_request_id", helpRequestsController.updat
 router.post("/api/help-requests", helpRequestsController.create);
 
 // * Types
-router.get("/api/types", typesController.getAll);
+router.get("/api/help-types", typesController.getAll);
 
 export default router;
