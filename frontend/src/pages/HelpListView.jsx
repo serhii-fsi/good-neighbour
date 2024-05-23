@@ -9,19 +9,29 @@ function HelpListView() {
   const [helpList, setHelpList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // const [dateParams, setDateParams] = useSearchParams();
-  // let dateQuery = dateParams.get("date");
+  const today = new Date();
+  const day = today.getDate();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const newMonth = String(month).padStart(2, "0");
+
+  const [fromDate, setFromDate] = useState(`${year}-${newMonth}-${day}`);
+  const [endDate, setEndDate] = useState(`${year + 1}-${newMonth}-${day}`);
+
+  console.log(fromDate, "fromDate");
+  console.log(endDate, "endDate");
+
   const [typeParams, setTypeParams] = useSearchParams();
   let typeQuery = typeParams.get("type");
 
   function handleFromDateChange(date, dateString) {
-    console.log("date:", date, "dateString:", dateString);
-    fromDate = dateString;
+    console.log("dateString:", dateString);
+    setFromDate(dateString);
   }
 
   function handleEndDateChange(date, dateString) {
-    console.log("date:", date, "dateString:", dateString);
-    endDate = dateString;
+    console.log("dateString:", dateString);
+    setEndDate(dateString);
   }
 
   function handleTypeChange(event) {
@@ -32,27 +42,22 @@ function HelpListView() {
   }
 
   useEffect(() => {
-    let endpoint = "/api/help-requests";
-    // if (dateQuery) {
-    //   endpoint += `?date=${dateQuery}`;
-    // } else
+    let endpoint = `/api/help-requests?start=${fromDate}&end=${endDate}`;
     if (typeQuery) {
       endpoint += `?type=${typeQuery}`;
     }
+    console.log(endpoint, "endpoint");
     getHelpRequests(endpoint)
       .then((response) => {
         // console.log(response.data, "data 1");
-        console.log(response.data.helpRequestsData, "data 2");
+        // console.log(response.data.helpRequestsData, "data 2");
         setHelpList(response.data.helpRequestsData);
         setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [
-    // dateQuery,
-    typeQuery,
-  ]);
+  }, [fromDate, endDate, typeQuery]);
 
   // const newHelpList = helpList.filter((helpRequest) => {
   //   return helpRequest.req_date > fromDate && helpRequest.req_date < endDate;

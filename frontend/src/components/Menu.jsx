@@ -36,7 +36,7 @@ function DropdownMenu() {
     console.log(event, "event");
   }
 
-  return <Menu />;
+  return <>{/* <Menu /> */}</>;
 }
 
 export default DropdownMenu;
