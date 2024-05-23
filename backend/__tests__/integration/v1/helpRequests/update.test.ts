@@ -15,8 +15,8 @@ afterAll(async () => {
     await db.end();
 });
 
-describe("updateUser", () => {
-    test("200 - PATCH: Responds with an updated email and phone_number user's fields by corresponding id", async () => {
+describe("updateHelpRequest", () => {
+    test("200 - PATCH: Responds with an updated help request title, type_id, description and req_date fields by corresponding id", async () => {
         const helpRequestBody: Partial<HelpRequest> = {
             title: "A pint of milk please",
             help_type_id: 2,
