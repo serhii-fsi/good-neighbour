@@ -18,21 +18,16 @@ function HelpListView() {
   const [fromDate, setFromDate] = useState(`${year}-${newMonth}-${day}`);
   const [endDate, setEndDate] = useState(`${year + 1}-${newMonth}-${day}`);
 
-  console.log(fromDate, "fromDate");
-  console.log(endDate, "endDate");
-
-  const [typeParams, setTypeParams] = useSearchParams();
-  let typeQuery = typeParams.get("type");
-
   function handleFromDateChange(date, dateString) {
-    console.log("dateString:", dateString);
     setFromDate(dateString);
   }
 
   function handleEndDateChange(date, dateString) {
-    console.log("dateString:", dateString);
     setEndDate(dateString);
   }
+
+  const [typeParams, setTypeParams] = useSearchParams();
+  let typeQuery = typeParams.get("type");
 
   function handleTypeChange(event) {
     const newParams = new URLSearchParams(typeParams);
@@ -46,7 +41,6 @@ function HelpListView() {
     if (typeQuery) {
       endpoint += `?type=${typeQuery}`;
     }
-    console.log(endpoint, "endpoint");
     getHelpRequests(endpoint)
       .then((response) => {
         // console.log(response.data, "data 1");
