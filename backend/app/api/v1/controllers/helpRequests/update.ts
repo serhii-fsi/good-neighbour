@@ -1,13 +1,16 @@
 import { Request, Response, NextFunction } from "express";
 
-import * as helpRequestsServices from "../../../../services/helpRequests"
+import * as helpRequestsServices from "../../../../services/helpRequests";
 
 export const update = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const {help_request_id} = req.params
-        const helpRequestBody = req.body
-        const updatedHelpRequest = await helpRequestsServices.update(help_request_id, helpRequestBody)
-        res.status(200).send({updatedHelpRequest})
+        const { help_request_id } = req.params;
+        const helpRequestBody = req.body;
+        const updatedHelpRequest = await helpRequestsServices.update(
+            help_request_id,
+            helpRequestBody
+        );
+        res.status(200).send({ updatedHelpRequest });
     } catch (error) {
         next(error);
     }
@@ -18,7 +21,7 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
  * /api/help-requests/:help-request_id:
  *   patch:
  *     summary: Updates a help request based on help_request_id
- *     tags: [HelpRequest]
+ *     tags: [Help Requests]
  *     requestBody:
  *         required: true
  *         content:
@@ -36,5 +39,5 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
  *       400:
  *         $ref: '#/components/responses/400'
  *       404:
- *         $ref: '#/components/responses/404'
+ *         $ref: '#/components/responses/help-requests/404'
  */

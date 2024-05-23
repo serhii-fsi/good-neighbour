@@ -23,7 +23,7 @@ export const getById = async (req: Request, res: Response, next: NextFunction) =
  * /api/help-requests/:help_request_id:
  *   get:
  *     summary: Get help request by help_id
- *     tags: [HelpRequest]
+ *     tags: [Help Requests]
  *     description: Retrieve a help request with the corresponding id.
  *     responses:
  *       200:
@@ -32,6 +32,8 @@ export const getById = async (req: Request, res: Response, next: NextFunction) =
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/HelpRequest'
+ *       400:
+ *         $ref: '#/components/responses/400'
  *       404:
- *         $ref: '#/components/responses/404'
+ *         $ref: '#/components/responses/help-requests/404'
  */

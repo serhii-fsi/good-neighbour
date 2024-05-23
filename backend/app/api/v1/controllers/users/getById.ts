@@ -31,6 +31,8 @@ export const getById = async (req: Request, res: Response, next: NextFunction) =
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
+ *       400:
+ *         $ref: '#/components/responses/400'
  *       404:
  *         $ref: '#/components/responses/404'
  */
