@@ -1,22 +1,25 @@
-interface Error {
+import errors from "./errors.json";
+
+interface ErrorObj {
     statusCode: number;
     message: string;
 }
 
 class AppError extends Error {
-    private errorKey: Error;
+    private errorObj: ErrorObj;
 
-    constructor(errorKey: any, message: string) {
+    constructor(errorObj: ErrorObj, message: string) {
         super(message);
         this.message = message;
+        this.errorObj = errorObj;
     }
-
-    // setMessage(message: string) {
-    //     this.message = message;
-    // }
 
     getMessage() {
         return this.message;
+    }
+
+    getErrorObj() {
+        return this.errorObj;
     }
 }
 

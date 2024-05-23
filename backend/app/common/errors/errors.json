@@ -1,0 +1,10 @@
+{
+    "VALIDATION_ERROR": {
+        "statusCode": 400,
+        "message": "Some message here"
+    },
+    "REPOSITORY_ERROR": {
+        "statusCode": 500,
+        "message": "Some message here"
+    }
+}
