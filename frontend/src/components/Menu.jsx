@@ -60,7 +60,12 @@ function DropdownMenu() {
 
   return (
     <>
-      <Menu items={menuItems} mode="horizontal" onClick={handleClick} />
+      <Menu
+        id="dropdownMenu"
+        items={menuItems}
+        mode="horizontal"
+        onClick={handleClick}
+      />
     </>
   );
 }
