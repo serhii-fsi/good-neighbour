@@ -6,7 +6,6 @@ import testData from "../../../../app/db/seeds/data/test";
 import seed from "../../../../app/db/seeds/seed";
 
 import { User } from "../../../../app/db/seeds/data/types/data.types";
-
 beforeEach(async () => {
     await seed(testData);
 });
@@ -34,6 +33,8 @@ describe("GET /api/help-requests/:help_request_id", () => {
             last_name: "Wuckert",
             post_code: expect.any(String),
             name: "DIY",
+            latitude: 51.5203,
+            longitude: -0.0976,
         });
     });
 });
