@@ -16,7 +16,7 @@ function DropdownMenu() {
 
   const menuItems = [
     {
-      key: "parent",
+      key: "menuParent",
       label: "Menu",
       icon: <MenuOutlined />,
       children: [
