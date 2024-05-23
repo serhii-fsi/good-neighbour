@@ -1,47 +1,97 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../contexts/User";
 import { useNavigate } from "react-router-dom";
 
+import { Button, Checkbox, Form, Input } from 'antd';
+
+
+
 function LoginForm() {
+
+  const onFinish = (values) => {
+    setUser(values.email.split('@')[0]);
+    navigate('/helpListView');
+  };
+  const onFinishFailed = (errorInfo) => {
+    // handles failed submit
+    console.log('Failed:', errorInfo);
+  };
 
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  function handleLoginSubmit(event) {
-      // needs to handle logged in user context, can do this on Preferences instead of here:
-      event.preventDefault();
-      setUser(email.split('@')[0]);
-      setEmail("");
-      setPassword("");
-      navigate('/helpListView')
-
-  }
-
-  function handleEmailChange(event) {
-      setEmail(event.target.value)
-  }
-
-  function handlePasswordChange(event) {
-      setPassword(event.target.value)
-  }
-
   return (
-  <form onSubmit={handleLoginSubmit}>
-      <div>
-          <label htmlFor="email">Email: </label>
-          <input id="email" type="email" placeholder="type your email" onChange={handleEmailChange} value={email}></input>
-      </div>
-      <div>
-          <label htmlFor="password">Password: </label>
-          <input id="password" type="password" placeholder="type your password" onChange={handlePasswordChange} value={password}></input>
-      </div>
-      {/* logic to determine which path to take after login: */}
-      {/* <Link to={`/helpListView` || `/preferences`}> */}
-        <button type="submit">Login</button>
-  </form>
+    <>
+
+    <Form
+    name="basic"
+    labelCol={{
+      span: 8,
+    }}
+    wrapperCol={{
+      span: 16,
+    }}
+    style={{
+      maxWidth: 600,
+    }}
+    initialValues={{
+      remember: true,
+    }}
+    onFinish={onFinish}
+    onFinishFailed={onFinishFailed}
+    autoComplete="off"
+  >
+    <Form.Item
+      label="Email"
+      name="email"
+      rules={[
+        {
+          required: true,
+          type: "email",
+          message: 'Please input your email!',
+        },
+      ]}
+    >
+      <Input />
+    </Form.Item>
+
+    <Form.Item
+      label="Password"
+      name="password"
+      rules={[
+        {
+          required: true,
+          message: 'Please input your password!',
+        },
+      ]}
+    >
+      <Input.Password />
+    </Form.Item>
+
+    <Form.Item
+      name="remember"
+      valuePropName="checked"
+      wrapperCol={{
+        offset: 8,
+        span: 16,
+      }}
+    >
+      <Checkbox>Remember me</Checkbox>
+    </Form.Item>
+
+    <Form.Item
+      wrapperCol={{
+        offset: 8,
+        span: 16,
+      }}
+    >
+      <Button type="primary" htmlType="submit">
+        Submit
+      </Button>
+    </Form.Item>
+  </Form>
+  
+  </>
   )
 
 }

@@ -19,9 +19,6 @@ function SignupLogin() {
             <Button type="primary" onClick={handleLoginClick}>Login</Button>
             <Button onClick={handleSignupClick}>Signup</Button>
         </Flex>
-        {/* <Link to="/login">
-    <button type="button" className="block">Log in</button>
-    </Link> */}
     </>
     )
 }
