@@ -1,11 +1,11 @@
 import request from "supertest";
-import app from "../../../../app";
-import db from "../../../../db/connection";
+import app from "../../../../app/app";
+import db from "../../../../app/db/connection";
 
-import testData from "../../../../db/seeds/data/test";
-import seed from "../../../../db/seeds/seed";
+import testData from "../../../../app/db/seeds/data/test";
+import seed from "../../../../app/db/seeds/seed";
 
-import { HelpRequest } from "../../../../db/seeds/data/types/data.types";
+import { HelpRequest } from "../../../../app/db/seeds/data/types/data.types";
 
 beforeEach(async () => {
     await seed(testData);
