@@ -1,9 +1,9 @@
 import request from "supertest";
-import app from "../../../../app/app";
-import db from "../../../../app/db/connection";
+import app from "../../../../app";
+import db from "../../../../db/connection";
 
-import testData from "../../../../app/db/seeds/data/test";
-import seed from "../../../../app/db/seeds/seed";
+import testData from "../../../../db/seeds/data/test";
+import seed from "../../../../db/seeds/seed";
 
 beforeEach(async () => {
     await seed(testData);
