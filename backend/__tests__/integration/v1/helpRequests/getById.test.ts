@@ -5,7 +5,6 @@ import db from "../../../../app/db/connection";
 import testData from "../../../../app/db/seeds/data/test";
 import seed from "../../../../app/db/seeds/seed";
 
-import { User } from "../../../../app/db/seeds/data/types/data.types";
 beforeEach(async () => {
     await seed(testData);
 });
@@ -27,14 +26,14 @@ describe("GET /api/help-requests/:help_request_id", () => {
             description:
                 "Temptatio demonstro acidus tredecim decerno hic antea veniam. Illum comedo sordeo uterque quod quae sortitus denuncio aperte curto. Adipiscor officia illo cuius agnosco spoliatio autus.",
             created_at: "2024-05-21T19:53:54.468Z",
-            req_date: "2024-05-22T23:00:00.000Z",
+            req_date: "2024-05-23T08:39:43.347Z",
             status: "active",
             first_name: "Makenna",
             last_name: "Wuckert",
             post_code: expect.any(String),
             name: "DIY",
-            latitude: 51.5203,
-            longitude: -0.0976,
+            latitude: 51.54144,
+            longitude: 0.07218,
         });
     });
 });
