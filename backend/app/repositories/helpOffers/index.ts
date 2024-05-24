@@ -2,3 +2,4 @@
 // export { getById } from "./getById";
 export { create } from "./create";
 // export {update} from "./update"
+export { getByRequestId } from "./getByRequestId";
