@@ -17,14 +17,13 @@ function HelpListView() {
   const [helpList, setHelpList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const today = new Date();
-  const day = today.getDate();
-  const month = today.getMonth() + 1;
-  const year = today.getFullYear();
-  const newMonth = String(month).padStart(2, "0");
-
-  const [fromDate, setFromDate] = useState(`${year}-${newMonth}-${day}`);
-  const [endDate, setEndDate] = useState(`${year + 1}-${newMonth}-${day}`);
+  const [fromDate, setFromDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [shoppingQuery, setShoppingQuery] = useState("");
+  const [ridesQuery, setRidesQuery] = useState("");
+  const [cleaningQuery, setCleaningQuery] = useState("");
+  const [packagesQuery, setPackagesQuery] = useState("");
+  const [diyQuery, setDiyQuery] = useState("");
 
   const menuItems = [
     {
@@ -64,12 +63,6 @@ function HelpListView() {
   const allTags = menuItems[0].children.map((child) => {
     return child.key;
   });
-
-  const [shoppingQuery, setShoppingQuery] = useState("");
-  const [ridesQuery, setRidesQuery] = useState("");
-  const [cleaningQuery, setCleaningQuery] = useState("");
-  const [packagesQuery, setPackagesQuery] = useState("");
-  const [diyQuery, setDiyQuery] = useState("");
 
   function handleAddClick(event) {
     document.getElementById(event.key).style.visibility = "visible";
@@ -118,9 +111,16 @@ function HelpListView() {
   ];
 
   useEffect(() => {
-    let endpoint = `/api/help-requests?start=${fromDate}&end=${endDate}`;
-    console.log(endpoint, "endpoint");
-
+    let endpoint = "/api/help-requests";
+    // ?start=${fromDate}&end=${endDate}
+    // console.log(endpoint, "endpoint");
+    if (fromDate.length && endDate.length) {
+      endpoint += `?start=${fromDate}&${endDate}`;
+    } else if (fromDate.length) {
+      endpoint += `?start=${fromDate}`;
+    } else if (endDate.length) {
+      endpoint += `?end=${endDate}`;
+    }
     const typeQueries = [
       shoppingQuery,
       ridesQuery,
@@ -128,11 +128,10 @@ function HelpListView() {
       packagesQuery,
       diyQuery,
     ];
-    const anyQueries = typeQueries.some((type) => {
+    const areTypeQueries = typeQueries.some((type) => {
       return type.length;
     });
-
-    if (anyQueries) {
+    if (areTypeQueries) {
       endpoint += `&types=${shoppingQuery}`;
       for (let i = 1; i < typeQueries.length; i++) {
         if (typeQueries[i].length) {
@@ -144,9 +143,10 @@ function HelpListView() {
 
     getHelpRequests(endpoint)
       .then((response) => {
-        // console.log(response.data, "data 1");
-        // console.log(response.data.helpRequestsData, "data 2");
+        console.log(response.data, "data 1");
+        console.log(response.data.helpRequestsData, "data 2");
         setHelpList(response.data.helpRequestsData);
+        console.log(helpList, "helpList");
         setIsLoading(false);
       })
       .catch((err) => {
