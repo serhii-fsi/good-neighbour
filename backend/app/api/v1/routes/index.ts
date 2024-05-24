@@ -3,6 +3,7 @@ const router = express.Router();
 
 import * as usersController from "../controllers/users";
 import * as helpRequestsController from "../controllers/helpRequests";
+import * as helpOffersController from "../controllers/helpOffers";
 import * as typesController from "../controllers/helpTypes";
 
 router.get("/", (req, res, next) => {
@@ -22,6 +23,9 @@ router.get("/api/help-requests/:help_request_id", helpRequestsController.getById
 router.delete("/api/help-requests/:help_request_id", helpRequestsController.remove);
 router.patch("/api/help-requests/:help_request_id", helpRequestsController.update);
 router.post("/api/help-requests", helpRequestsController.create);
+
+// * Help Offers
+router.post("/api/users/:user_id/help-offers", helpOffersController.create);
 
 // * Types
 router.get("/api/help-types", typesController.getAll);
