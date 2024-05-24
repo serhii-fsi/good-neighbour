@@ -124,13 +124,13 @@ function HelpListView() {
 
     if (anyQueries) {
       endpoint += `&types=${shoppingQuery}`;
-      for (let i = 1; i < typeQueries.length - 1; i++) {
+      for (let i = 1; i < typeQueries.length; i++) {
         if (typeQueries[i].length) {
           endpoint += `&${typeQueries[i]}`;
         }
       }
     }
-    console.log(endpoint, "endpoint 2");
+    console.log(endpoint, "endpoint2");
 
     getHelpRequests(endpoint)
       .then((response) => {
