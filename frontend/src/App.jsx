@@ -26,7 +26,6 @@ function App() {
     <UserProvider>
       <Header />
       <Routes>
-        <Route path="/" element={<SignupLogin />} />
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/preferences" element={<Preferences />} />
