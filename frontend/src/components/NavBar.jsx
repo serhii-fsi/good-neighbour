@@ -20,13 +20,13 @@ function NavBar() {
     },
     {
       key: 2,
-      label: <Link to="requestHelp"></Link>,
-      icon: <PlusCircleOutlined />,
+      label: <Link to="/ownOfferedHelp"></Link>,
+      icon: <ToTopOutlined />,
     },
     {
       key: 3,
-      label: <Link to="/ownOfferedHelp"></Link>,
-      icon: <ToTopOutlined />,
+      label: <Link to="requestHelp"></Link>,
+      icon: <PlusCircleOutlined />,
     },
     {
       key: 4,
