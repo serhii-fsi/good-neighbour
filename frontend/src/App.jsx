@@ -23,25 +23,25 @@ import UserProvider from "./contexts/User";
 function App() {
   return (
     <>
-    <UserProvider>
-      <Header />
-      <Routes>
-        <Route path="/signup" element={<SignUpForm />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/preferences" element={<Preferences />} />
-        <Route path="/profile" element={<OwnProfile />} />
+      <UserProvider>
+        <Header />
+        <Routes>
+          <Route path="/signup" element={<SignUpForm />} />
+          <Route path="/" element={<LoginForm />} />
+          <Route path="/preferences" element={<Preferences />} />
+          <Route path="/profile" element={<OwnProfile />} />
 
-        <Route path="/user/:user_id" element={<UserProfile />} />
-        <Route path="/home" element={<Homepage />} />
-        <Route path="/helpListView" element={<HelpListView />} />
-        <Route path="/map" element={<MapPage />} />
-        <Route path="/helpListView/:help_request_id" element={<HelpView />} />
-        <Route path="/helpListView/:user_id" element={<OwnHelpList />} />
-        <Route path="/ownOfferedHelp" element={<OwnOfferedHelp />} />
-        <Route path="/requestHelp" element={<RequestHelp />} />
-      </Routes>
-      <NavBar />
-    </UserProvider>
+          <Route path="/user/:user_id" element={<UserProfile />} />
+          <Route path="/home" element={<Homepage />} />
+          <Route path="/helpListView" element={<HelpListView />} />
+          <Route path="/map" element={<MapPage />} />
+          <Route path="/helpListView/:help_request_id" element={<HelpView />} />
+          <Route path="/helpListView/:user_id" element={<OwnHelpList />} />
+          <Route path="/ownOfferedHelp" element={<OwnOfferedHelp />} />
+          <Route path="/requestHelp" element={<RequestHelp />} />
+        </Routes>
+        <NavBar />
+      </UserProvider>
     </>
   );
 }
