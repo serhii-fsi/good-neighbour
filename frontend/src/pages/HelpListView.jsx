@@ -161,6 +161,7 @@ function HelpListView() {
   }
   return (
     <>
+      <br />
       <label htmlFor="from-date">From: </label>
       <Space id="from-date" direction="vertical">
         <DatePicker onChange={handleFromDateChange} />
