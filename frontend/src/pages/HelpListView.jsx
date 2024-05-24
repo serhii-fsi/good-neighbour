@@ -67,25 +67,71 @@ function HelpListView() {
     },
   ];
 
+  const allTags = menuItems[0].children.map((child) => {
+    return child.key;
+  });
+
+  const [shoppingQuery, setShoppingQuery] = useState("");
+  const [ridesQuery, setRidesQuery] = useState("");
+  const [cleaningQuery, setCleaningQuery] = useState("");
+  const [packagesQuery, setPackagesQuery] = useState("");
+  const [diyQuery, setDiyQuery] = useState("");
+
   function handleAddClick(event) {
-    document.getElementById(`${event.key}`).style.visibility = "visible";
+    document.getElementById(event.key).style.visibility = "visible";
+    if (event.key === allTags[0]) {
+      setShoppingQuery(event.key);
+    } else if (event.key === allTags[1]) {
+      setRidesQuery(event.key);
+    } else if (event.key === allTags[2]) {
+      setCleaningQuery(event.key);
+    } else if (event.key === allTags[3]) {
+      setPackagesQuery(event.key);
+    } else if (event.key === allTags[4]) {
+      setDiyQuery(event.key);
+    }
   }
 
   const handleRemoveClick = (event) => {
-    document.getElementById(`${event.target.id}`).style.visibility = "hidden";
+    document.getElementById(event.target.id).style.visibility = "hidden";
+    if (event.target.id === allTags[0]) {
+      setShoppingQuery("");
+    } else if (event.target.id === allTags[1]) {
+      setRidesQuery("");
+    } else if (event.target.id === allTags[2]) {
+      setCleaningQuery("");
+    } else if (event.target.id === allTags[3]) {
+      setPackagesQuery("");
+    } else if (event.target.id === allTags[4]) {
+      setDiyQuery("");
+    }
   };
 
-  // typeQueries.push(event.key);
-  // typeQueries.push(event.target.id);
-
   useEffect(() => {
-    // const typeQueries = [];
-    // console.log(typeQueries, "typeQueries");
-
     let endpoint = `/api/help-requests?start=${fromDate}&end=${endDate}`;
-    // if (typeQuery) {
-    //   endpoint += `?type=${typeQuery}`;
-    // }
+    console.log(endpoint, "endpoint");
+
+    const typeQueries = [
+      shoppingQuery,
+      ridesQuery,
+      cleaningQuery,
+      packagesQuery,
+      diyQuery,
+    ];
+    const anyQueries = typeQueries.some((type) => {
+      return type.length;
+    });
+
+    if (anyQueries) {
+      endpoint += `&types=${shoppingQuery}`;
+      for (let i = 1; i < typeQueries.length; i++) {
+        if (typeQueries[i].length) {
+          endpoint += `&${typeQueries[i]}`;
+        }
+      }
+    }
+    console.log(endpoint, "endpoint2");
+
     getHelpRequests(endpoint)
       .then((response) => {
         // console.log(response.data, "data 1");
@@ -96,7 +142,15 @@ function HelpListView() {
       .catch((err) => {
         console.log(err);
       });
-  }, [fromDate, endDate]);
+  }, [
+    fromDate,
+    endDate,
+    shoppingQuery,
+    ridesQuery,
+    cleaningQuery,
+    packagesQuery,
+    diyQuery,
+  ]);
 
   // const newHelpList = helpList.filter((helpRequest) => {
   //   return helpRequest.req_date > fromDate && helpRequest.req_date < endDate;
@@ -107,6 +161,7 @@ function HelpListView() {
   }
   return (
     <>
+      <br />
       <label htmlFor="from-date">From: </label>
       <Space id="from-date" direction="vertical">
         <DatePicker onChange={handleFromDateChange} />
@@ -119,19 +174,19 @@ function HelpListView() {
       <br />
       <br />
 
-      <Tag id="shopping" closeIcon onClick={handleRemoveClick}>
+      <Tag id="shopping" onClick={handleRemoveClick}>
         Shopping
       </Tag>
-      <Tag id="rides" closeIcon onClick={handleRemoveClick}>
+      <Tag id="rides" onClick={handleRemoveClick}>
         Rides
       </Tag>
-      <Tag id="cleaning" closeIcon onClick={handleRemoveClick}>
+      <Tag id="cleaning" onClick={handleRemoveClick}>
         Cleaning
       </Tag>
-      <Tag id="packages" closeIcon onClick={handleRemoveClick}>
+      <Tag id="packages" onClick={handleRemoveClick}>
         Packages
       </Tag>
-      <Tag id="diy" closeIcon onClick={handleRemoveClick}>
+      <Tag id="diy" onClick={handleRemoveClick}>
         DIY
       </Tag>
 
