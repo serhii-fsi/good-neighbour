@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { DatePicker, Space, Menu, Tag } from "antd";
+import { Collapse } from "antd";
 import {
   UnorderedListOutlined,
   ShoppingOutlined,
@@ -8,6 +8,7 @@ import {
   DropboxOutlined,
   ToolOutlined,
 } from "@ant-design/icons";
+import HelpListFilters from "../components/HelpListFilters";
 import HelpList from "../components/HelpList";
 import Loading from "../presentations/Loading";
 import getHelpRequests from "../api";
@@ -25,17 +26,10 @@ function HelpListView() {
   const [fromDate, setFromDate] = useState(`${year}-${newMonth}-${day}`);
   const [endDate, setEndDate] = useState(`${year + 1}-${newMonth}-${day}`);
 
-  function handleFromDateChange(date, dateString) {
-    setFromDate(dateString);
-  }
-  function handleEndDateChange(date, dateString) {
-    setEndDate(dateString);
-  }
-
   const menuItems = [
     {
       key: "menuTitle",
-      label: "Filter by type of help",
+      label: "Filter help requests by type",
       icon: <UnorderedListOutlined />,
       children: [
         {
@@ -107,6 +101,22 @@ function HelpListView() {
     }
   };
 
+  const collapsedItems = [
+    {
+      key: "filters",
+      label: "Filters",
+      children: (
+        <HelpListFilters
+          setFromDate={setFromDate}
+          setEndDate={setEndDate}
+          menuItems={menuItems}
+          handleAddClick={handleAddClick}
+          handleRemoveClick={handleRemoveClick}
+        />
+      ),
+    },
+  ];
+
   useEffect(() => {
     let endpoint = `/api/help-requests?start=${fromDate}&end=${endDate}`;
     console.log(endpoint, "endpoint");
@@ -162,41 +172,7 @@ function HelpListView() {
   return (
     <>
       <br />
-      <label htmlFor="from-date">From: </label>
-      <Space id="from-date" direction="vertical">
-        <DatePicker onChange={handleFromDateChange} />
-      </Space>
-      <br />
-      <label htmlFor="end-date">To: </label>
-      <Space id="end-date" direction="vertical">
-        <DatePicker onChange={handleEndDateChange} />
-      </Space>
-      <br />
-      <br />
-
-      <Tag id="shopping" onClick={handleRemoveClick}>
-        Shopping
-      </Tag>
-      <Tag id="rides" onClick={handleRemoveClick}>
-        Rides
-      </Tag>
-      <Tag id="cleaning" onClick={handleRemoveClick}>
-        Cleaning
-      </Tag>
-      <Tag id="packages" onClick={handleRemoveClick}>
-        Packages
-      </Tag>
-      <Tag id="diy" onClick={handleRemoveClick}>
-        DIY
-      </Tag>
-
-      <Menu
-        id="typeFilter"
-        items={menuItems}
-        mode="horizontal"
-        onClick={handleAddClick}
-      />
-
+      <Collapse items={collapsedItems} />
       <HelpList helpList={helpList} />
     </>
   );
