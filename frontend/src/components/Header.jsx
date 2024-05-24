@@ -7,17 +7,17 @@ function Header() {
   const { user } = useContext(UserContext);
 
   if (user) {return (
-  <>
-    <h1>Good Neighbour {user}</h1>
-    <DropdownMenu />
-  </>
-  )}
-  else {return (
-  <>
-    <h1>Good Neighbour</h1>
-    <SignupLogin />
-  </>
-  )}
-}
+    <>
+      <h1>Good Neighbour {user}</h1>
+      <DropdownMenu />
+    </>
+    )}
+    else {return (
+    <>
+      <h1>Good Neighbour</h1>
+      <SignupLogin />
+    </>
+    )}
+  }
 
 export default Header;
