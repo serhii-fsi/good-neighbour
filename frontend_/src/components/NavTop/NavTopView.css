@@ -1,0 +1,10 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1rem;
+    height: 56px;
+}
+
+header h5 {
+    width: 8%;
+}

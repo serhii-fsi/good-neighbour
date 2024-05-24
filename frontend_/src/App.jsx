@@ -16,10 +16,12 @@ import UserProfilePage from "./pages/UserProfilePage";
 import Page404 from "./pages/Page404";
 
 import config from "./config.json";
+import NavTop from "./components/NavTop/NavTop";
 const { routes } = config;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
+        <NavTop />
         <Routes>
             <Route path={routes.offerHelpRootPage.path} element={<Page404 />} />
 
