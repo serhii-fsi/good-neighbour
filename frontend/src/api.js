@@ -26,7 +26,7 @@ export function getUsers() {
   return axios.get("/api/users");
 }
 
-export function getUserProfile(user_id) {
+export function getProfile(user_id) {
   return axios.get(`/api/users/${user_id}`);
 }
 

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Menu } from "antd";
 import {
   HomeOutlined,
-  SearchOutlined,
   PlusCircleOutlined,
   ToTopOutlined,
   VerticalAlignBottomOutlined,
@@ -15,22 +14,22 @@ function NavBar() {
   const menuItems = [
     {
       key: 1,
-      label: <Link to="/home"></Link>,
+      label: <Link id="navlink1" to="/home"></Link>,
       icon: <HomeOutlined />,
     },
     {
       key: 2,
-      label: <Link to="/ownOfferedHelp"></Link>,
+      label: <Link id="navlink2" to="/ownOfferedHelp"></Link>,
       icon: <ToTopOutlined />,
     },
     {
       key: 3,
-      label: <Link to="requestHelp"></Link>,
+      label: <Link id="navlink3" to="requestHelp"></Link>,
       icon: <PlusCircleOutlined />,
     },
     {
       key: 4,
-      label: <Link to={ownHelpRequestsPath}></Link>,
+      label: <Link id="navlink4" to={ownHelpRequestsPath}></Link>,
       icon: <VerticalAlignBottomOutlined />,
     },
   ];
