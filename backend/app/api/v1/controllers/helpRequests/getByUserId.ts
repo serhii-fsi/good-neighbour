@@ -11,3 +11,23 @@ export const getByUserId = async (req: Request, res: Response, next: NextFunctio
         next(error);
     }
 };
+
+/**
+ * @swagger
+ * /api/users/:user_id/help-requests:
+ *   get:
+ *     summary: Gets help requests associated with a user_id
+ *     tags: [Help Requests]
+ *     description: Retrieves an array of help requests with the corresponding id.
+ *     responses:
+ *       200:
+ *         description: Responds with an array of help requests with the corresponding id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/HelpRequest'
+ *       400:
+ *         $ref: '#/components/responses/400'
+ *       404:
+ *         $ref: '#/components/responses/help-requests/404'
+ */
