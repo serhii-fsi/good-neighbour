@@ -43,7 +43,7 @@ describe("getUserById", () => {
         expect(message).toBe("User was not found");
     });
 
-    test("404 - GET: Responds with appropriate error when invalid user_id provided", async () => {
+    test("400 - GET: Responds with appropriate error when invalid user_id provided", async () => {
         const {
             body: {
                 error: { message },
