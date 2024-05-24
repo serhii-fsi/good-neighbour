@@ -1,0 +1,8 @@
+[*]
+indent_style = space
+
+[*.{js,ts,json,jsx}]
+indent_size = 4
+
+[*.{html,htm}]
+indent_size = 4
