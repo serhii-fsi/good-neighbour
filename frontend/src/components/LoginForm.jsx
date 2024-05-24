@@ -1,49 +1,77 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../contexts/User";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
+import { Button, Checkbox, Form, Input } from 'antd';
+
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
 function LoginForm() {
 
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
-  
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  function handleLoginSubmit(event) {
-      // needs to handle logged in user context, can do this on Preferences instead of here:
-      event.preventDefault();
-      setUser(email.split('@')[0]);
-      setEmail("");
-      setPassword("");
-      navigate('/helpListView')
-
-  }
-
-  function handleEmailChange(event) {
-      setEmail(event.target.value)
-  }
-
-  function handlePasswordChange(event) {
-      setPassword(event.target.value)
-  }
+  const onFinish = (values) => {
+    setUser(values.username);
+    navigate('/helpListView');
+  };
 
   return (
-  <form onSubmit={handleLoginSubmit}>
-      <div>
-          <label htmlFor="email">Email: </label>
-          <input id="email" type="email" placeholder="type your email" onChange={handleEmailChange} value={email}></input>
-      </div>
-      <div>
-          <label htmlFor="password">Password: </label>
-          <input id="password" type="password" placeholder="type your password" onChange={handlePasswordChange} value={password}></input>
-      </div>
-      {/* logic to determine which path to take after login: */}
-      {/* <Link to={`/helpListView` || `/preferences`}> */}
-        <button type="submit">Login</button>
-  </form>
-  )
+    <Form
+      name="normal_login"
+      className="login-form"
+      initialValues={{
+        remember: true,
+      }}
+      style={{
+        maxWidth: 600,
+      }}
+      onFinish={onFinish}
+    >
+      <Form.Item
+        name="username"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your Username!',
+          },
+        ]}
+      >
+        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+      </Form.Item>
+      <Form.Item
+        name="password"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your Password!',
+          },
+        ]}
+      >
+        <Input
+          prefix={<LockOutlined className="site-form-item-icon" />}
+          type="password"
+          placeholder="Password"
+        />
+      </Form.Item>
+      <Form.Item>
+        <Form.Item name="remember" valuePropName="checked" noStyle>
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
 
-}
+        <a className="login-form-forgot" href="">
+          Forgot password
+        </a>
+      </Form.Item>
+
+      <Form.Item>
+        <Button type="primary" htmlType="submit" className="login-form-button">
+          Log in
+        </Button>
+        <br/>Or <Link to="/signup">register now!</Link>
+      </Form.Item>
+    </Form>
+  );
+};
 
 export default LoginForm;
