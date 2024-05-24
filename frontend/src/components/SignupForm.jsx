@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate, Link } from 'react-router-dom'
 import { UserContext } from "../contexts/User";
-import { Alert, Form, Input, Typography, Button } from 'antd';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Alert, Form, Input, Button } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 function SignupForm() {
 
@@ -44,7 +44,7 @@ function SignupForm() {
           },
         ]}
         >
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" maxLength={24}/>
 
       </Form.Item>
         
@@ -53,13 +53,14 @@ function SignupForm() {
         <Form.Item
           label="Password"
           name="password"
+          hasFeedback
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input />
+          <Input placeholder="Must contain... something"/>
         </Form.Item>
   
         {/* Field */}
@@ -67,6 +68,7 @@ function SignupForm() {
           label="Confirm Password"
           name="password2"
           dependencies={['password']}
+          hasFeedback
           rules={[
             {
               required: true,
@@ -81,7 +83,7 @@ function SignupForm() {
             }),
           ]}
         >
-          <Input />
+          <Input placeholder="Passwords must match"/>
         </Form.Item>
 
         <Form.Item>
@@ -90,18 +92,7 @@ function SignupForm() {
         </Button>
         <br/>Have an account? <Link to="/login">Login now!</Link>
         </Form.Item>
-  
-        {/* Render Props */}
-        {/* <Form.Item noStyle dependencies={['password2']}>
-          {() => (
-            <Typography>
-              <p>
-                Only Update when <code>password2</code> updated:
-              </p>
-              <pre>{JSON.stringify(form.getFieldsValue(), null, 2)}</pre>
-            </Typography>
-          )}
-        </Form.Item> */}
+
       </Form>
     );
 }
