@@ -6,10 +6,10 @@ function Header() {
   const { user } = useContext(UserContext);
 
   return (
-    <>
+    <header>
       <h1>Good Neighbour {user}</h1>
       <DropdownMenu />
-    </>
+    </header>
   );
 }
 
