@@ -1,0 +1,23 @@
+{
+    "appUrl": {
+        "v1": "https://our-backend-url/api/"
+    },
+    "routes": {
+        "offerHelpRootPage": { "path": "/", "params": [] },
+        "offerHelpPage": { "path": "/offer-help", "params": [] },
+        "helpRequestCreatePage": { "path": "/help-request/create", "params": [] },
+        "helpRequestEditPage": {
+            "path": "/help-request/:help_request_id/edit",
+            "params": [":help_request_id"]
+        },
+        "helpRequestPage": {
+            "path": "/help-request/:help_request_id",
+            "params": [":help_request_id"]
+        },
+        "myHelpOffersPage": { "path": "/my-help-offers", "params": [] },
+        "myHelpRequestsPage": { "path": "/my-help-requests", "params": [] },
+        "userProfileCreatePage": { "path": "/user-profile/create", "params": [] },
+        "userProfileEditPage": { "path": "/user-profile/:user_id/edit", "params": [":user_id"] },
+        "userProfilePage": { "path": "/user-profile/:user_id", "params": [":user_id"] }
+    }
+}
