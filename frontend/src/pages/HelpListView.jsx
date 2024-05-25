@@ -143,7 +143,7 @@ function HelpListView() {
 
     getHelpRequests(endpoint)
       .then((response) => {
-        console.log(response.data, "data 1");
+        console.log(response, "data 1");
         console.log(response.data.helpRequestsData, "data 2");
         setHelpList(response.data.helpRequestsData);
         console.log(helpList, "helpList");
