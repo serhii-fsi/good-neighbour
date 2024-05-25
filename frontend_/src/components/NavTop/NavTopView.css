@@ -1,4 +1,4 @@
-header {
+.NavTopView__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -6,6 +6,6 @@ header {
     height: 56px;
 }
 
-header h5 {
+.NavTopView__header h5 {
     width: 8%;
 }

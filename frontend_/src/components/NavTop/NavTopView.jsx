@@ -4,7 +4,7 @@ import "./NavTopView.css";
 
 const NavTopView = ({ title, logo }) => {
     return (
-        <header>
+        <header className="NavTopView__header">
             <h5>{logo}</h5>
             <h4>{title}</h4>
             <Menu />
