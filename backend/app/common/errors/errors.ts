@@ -15,4 +15,8 @@ export const errors = {
         statusCode: 404,
         message: "Help request was not found",
     },
+    HELP_OFFER_NOT_FOUND: {
+        statusCode: 404,
+        message: "Help offer was not found",
+    },
 };

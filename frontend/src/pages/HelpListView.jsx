@@ -111,7 +111,7 @@ function HelpListView() {
   ];
 
   useEffect(() => {
-    let endpoint = "/api/help-requests";
+    let endpoint = `/api/help-requests`;
     // ?start=${fromDate}&end=${endDate}
     // console.log(endpoint, "endpoint");
     if (fromDate.length && endDate.length) {

@@ -13,14 +13,10 @@ export const update = async (user_id: string, helpOfferBody:any): Promise<HelpOf
         )
         return rows[0]
     }
-console.log(values)
-
     const query = `UPDATE help_offers SET status =$1 WHERE helper_id = $2 AND help_request_id=$3 RETURNING helper_id, help_request_id, status`
 
     const {rows} = await db.query(query, values)
-    console.log(rows)
     return rows[0]
 
 }
 
-// UPDATE help_offers SET status = $1 " WHERE helper_id = $1, [1,2,3] 

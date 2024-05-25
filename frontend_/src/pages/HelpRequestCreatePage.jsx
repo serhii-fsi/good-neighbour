@@ -1,3 +1,9 @@
+import NavTop from "../components/NavTop/NavTop";
+
 export default function HelpRequestCreatePage() {
-    return <></>;
+    return (
+        <>
+            <NavTop title={"Create Help Request"} isRootComponent={false} />
+        </>
+    );
 }
