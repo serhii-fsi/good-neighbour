@@ -1,3 +1,9 @@
+import NavTop from "../components/NavTop/NavTop";
+
 export default function MyHelpRequestsPage() {
-    return <></>;
+    return (
+        <>
+            <NavTop title={"My Help Requests"} />
+        </>
+    );
 }
