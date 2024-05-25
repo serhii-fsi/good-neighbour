@@ -1,7 +1,13 @@
 import NavTopView from "./NavTopView";
 
-const NavTop = () => {
-    return <NavTopView title={"Offer Help"} logo={"Good Neighbour"} />;
+/**
+ *
+ * @param {object} props
+ * @param {string} props.title
+ * @param {string} props.logo
+ */
+const NavTop = (props) => {
+    return <NavTopView {...props} />;
 };
 
 export default NavTop;
