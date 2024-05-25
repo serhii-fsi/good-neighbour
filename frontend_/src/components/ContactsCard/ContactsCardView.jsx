@@ -1,3 +1,3 @@
-export default function ContactsCardView({ article }) {
+export default function ContactsCardView({ prop }) {
     return <></>;
 }
