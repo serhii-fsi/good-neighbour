@@ -6,6 +6,11 @@
     height: 56px;
 }
 
-.NavTopView__header h5 {
+.NavTopView__header h1 {
     width: 8%;
+    font-size: 0.8rem;
+}
+
+.NavTopView__header h2 {
+    font-size: 1rem;
 }
