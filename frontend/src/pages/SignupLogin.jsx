@@ -1,26 +1,31 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Flex } from "antd";
 
 function SignupLogin() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  function handleLoginClick() {
+    navigate("/");
+  }
 
-    function handleLoginClick() {
-        navigate('/login');
-    }
+  function handleSignupClick() {
+    navigate("/signup");
+  }
 
-    function handleSignupClick() {
-        navigate('/signup');
-    }
-
-    return (
+  return (
     <>
-        <Flex gap="small" style={{ justifyContent: "center", alignItems: "center" }} wrap>
-            <Button type="primary" onClick={handleLoginClick}>Login</Button>
-            <Button onClick={handleSignupClick}>Signup</Button>
-        </Flex>
+      <Flex
+        gap="small"
+        style={{ justifyContent: "center", alignItems: "center" }}
+        wrap
+      >
+        <Button type="primary" onClick={handleLoginClick}>
+          Login
+        </Button>
+        <Button onClick={handleSignupClick}>Signup</Button>
+      </Flex>
     </>
-    )
+  );
 }
 
 export default SignupLogin;

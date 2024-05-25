@@ -1,6 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
@@ -15,25 +14,36 @@ import UserProfileEditPage from "./pages/UserProfileEditPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import Page404 from "./pages/Page404";
 
+import { AuthContext } from "./context/auth-context";
+import { useAuth } from "./hooks/useAuth";
+
 import config from "./config.json";
-const { routes } = config;
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-    <BrowserRouter>
-        <Routes>
-            <Route path={routes.offerHelpRootPage.path} element={<Page404 />} />
+function App() {
+    const { routes } = config;
+    const { isLoggedIn, user, login, logout } = useAuth();
 
-            <Route path={routes.offerHelpPage.path} element={<OfferHelpPage />} />
-            <Route path={routes.helpRequestCreatePage.path} element={<HelpRequestCreatePage />} />
-            <Route path={routes.helpRequestEditPage.path} element={<HelpRequestEditPage />} />
-            <Route path={routes.helpRequestPage.path} element={<HelpRequestPage />} />
-            <Route path={routes.myHelpOffersPage.path} element={<MyHelpOffersPage />} />
-            <Route path={routes.myHelpRequestsPage.path} element={<MyHelpRequestsPage />} />
-            <Route path={routes.signUpPage.path} element={<SignUpPage />} />
-            <Route path={routes.userProfileEditPage.path} element={<UserProfileEditPage />} />
-            <Route path={routes.userProfilePage.path} element={<UserProfilePage />} />
+    return (
+        <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
+            <Routes>
+                <Route path={routes.offerHelpRootPage.path} element={<Page404 />} />
+                <Route path={routes.offerHelpPage.path} element={<OfferHelpPage />} />
+                <Route
+                    path={routes.helpRequestCreatePage.path}
+                    element={<HelpRequestCreatePage />}
+                />
+                <Route path={routes.helpRequestEditPage.path} element={<HelpRequestEditPage />} />
+                <Route path={routes.helpRequestPage.path} element={<HelpRequestPage />} />
+                <Route path={routes.myHelpOffersPage.path} element={<MyHelpOffersPage />} />
+                <Route path={routes.myHelpRequestsPage.path} element={<MyHelpRequestsPage />} />
+                <Route path={routes.signUpPage.path} element={<SignUpPage />} />
+                <Route path={routes.userProfileEditPage.path} element={<UserProfileEditPage />} />
+                <Route path={routes.userProfilePage.path} element={<UserProfilePage />} />
 
-            <Route path={"*"} element={<Page404 />} />
-        </Routes>
-    </BrowserRouter>
-);
+                <Route path={"*"} element={<Page404 />} />
+            </Routes>
+        </AuthContext.Provider>
+    );
+}
+
+export default App;
