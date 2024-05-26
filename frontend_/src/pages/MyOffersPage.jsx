@@ -1,3 +1,11 @@
 export default function MyOffersPage() {
-    return <></>;
+    return (
+        <>
+            {/* <CardsListView listWithDividers={listWithDividers}>
+                <RequestCard>
+                    <OfferStatus />
+                </RequestCard>
+            </CardsListView> */}
+        </>
+    );
 }
