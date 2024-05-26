@@ -1,4 +1,5 @@
 import { DatePicker, Form, Input, Select, TimePicker, Switch } from "antd";
+import dayjs from "dayjs";
 
 import SmartButton from "../SmartButton/SmartButton";
 
@@ -40,7 +41,7 @@ const HelpRequestFormView = ({ helpRequestForm, handleFormChange, handleSubmit }
                     name="date"
                     rules={[{ required: true, message: "Please select the date!" }]}
                 >
-                    <DatePicker value={helpRequestForm.date} />
+                    <DatePicker value={helpRequestForm.date} minDate={dayjs()} />
                 </Form.Item>
                 <Form.Item valuePropName="checked">
                     <TimePicker style={{ marginRight: "1rem" }} disabled />
