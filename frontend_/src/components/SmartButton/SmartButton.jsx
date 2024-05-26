@@ -7,6 +7,7 @@ import SmartButtonView from "./SmartButtonView";
  * @param {boolean} props.isBlocked
  * @param {boolean} props.isLoading
  * @param {string} props.type primary|default|link|text
+ * @param {string} props.htmlType button|submit|reset
  * @param {boolean} props.isDanger
  * @param {function} props.onClick
  * @param {array} props.children
