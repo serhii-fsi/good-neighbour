@@ -1,7 +1,5 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-
-import MenuView from "./MenuView";
-import config from "../../config.json";
 
 import {
     UserOutlined,
@@ -11,12 +9,21 @@ import {
     VerticalAlignBottomOutlined,
 } from "@ant-design/icons";
 
+import { AuthContext } from "../../context/auth-context";
+import MenuView from "./MenuView";
+import config from "../../config.json";
+
 const Menu = () => {
     const { routes } = config;
+    const { user } = useContext(AuthContext);
     const items = [
         {
             key: 1,
-            label: <Link to={routes.userProfilePage.path}>User Name</Link>,
+            label: (
+                <Link to={routes.userProfilePage.path}>
+                    {user.username ? user.username : "Profile"}
+                </Link>
+            ),
             icon: <UserOutlined />,
         },
         {
