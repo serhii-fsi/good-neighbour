@@ -17,8 +17,10 @@ const HelpRequestForm = () => {
     };
 
     const handleSubmit = () => {
-        // Validation required
-        console.log("Form has been submitted: ", helpRequestForm);
+        const isFormValid = Object.values(helpRequestForm).every((input) => !!input);
+        if (isFormValid) {
+            console.log("Form has been submitted: ", helpRequestForm);
+        }
     };
 
     return (

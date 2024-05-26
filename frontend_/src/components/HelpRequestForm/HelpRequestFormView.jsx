@@ -55,7 +55,10 @@ const HelpRequestFormView = ({ helpRequestForm, handleFormChange, handleSubmit }
                         <Select.Option value="diy">DIY</Select.Option>
                     </Select>
                 </Form.Item>
-                <Form.Item name="description">
+                <Form.Item
+                    name="description"
+                    rules={[{ required: true, message: "Please provide description!" }]}
+                >
                     <Input.TextArea
                         placeholder="Description"
                         autoSize={{ minRows: 5, maxRows: 10 }}
