@@ -16,19 +16,19 @@ export default function Page404() {
                 <Link to={getRoute(routes.offerHelpPage)}>offerHelpPage</Link>
             </li>
             <li style={{ padding: "10px" }}>
-                <Link to={getRoute(routes.helpRequestCreatePage)}>helpRequestCreatePage</Link>
+                <Link to={getRoute(routes.requestCreatePage)}>requestCreatePage</Link>
             </li>
             <li style={{ padding: "10px" }}>
-                <Link to={getRoute(routes.helpRequestEditPage, 1)}>helpRequestEditPage</Link>
+                <Link to={getRoute(routes.requestEditPage, 1)}>requestEditPage</Link>
             </li>
             <li style={{ padding: "10px" }}>
-                <Link to={getRoute(routes.helpRequestPage, 1)}>helpRequestPage</Link>
+                <Link to={getRoute(routes.requestPage, 1)}>requestPage</Link>
             </li>
             <li style={{ padding: "10px" }}>
-                <Link to={getRoute(routes.myHelpOffersPage)}>myHelpOffersPage</Link>
+                <Link to={getRoute(routes.myOffersPage)}>myOffersPage</Link>
             </li>
             <li style={{ padding: "10px" }}>
-                <Link to={getRoute(routes.myHelpRequestsPage)}>myHelpRequestsPage</Link>
+                <Link to={getRoute(routes.myRequestsPage)}>myRequestsPage</Link>
             </li>
             <li style={{ padding: "10px" }}>
                 <Link to={getRoute(routes.signUpPage)}>signUpPage</Link>
