@@ -3,6 +3,7 @@ import db from "../../db/connection";
 import { HelpOffer } from "../../db/seeds/data/types/data.types";
 
 export const getByRequestId = async (help_request_id: number): Promise<HelpOffer[]> => {
+    // Sql query is subject to change
     const { rows } = await db.query(
         `SELECT
             users.id AS user_id,
@@ -23,7 +24,8 @@ export const getByRequestId = async (help_request_id: number): Promise<HelpOffer
         ON
             help_requests.id = help_offers.help_request_id
         WHERE
-            help_requests.id = $1`, [help_request_id]
+            help_requests.id = $1`,
+        [help_request_id]
     );
     return rows;
-}
+};
