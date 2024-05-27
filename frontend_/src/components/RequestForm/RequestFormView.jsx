@@ -65,13 +65,11 @@ const RequestFormView = ({ requestForm, handleFormChange, handleSubmit }) => {
                         autoSize={{ minRows: 5, maxRows: 10 }}
                     />
                 </Form.Item>
-                <div className="RequestFormView__buttonContainer">
-                    <Form.Item>
-                        <SmartButton htmlType="submit" onClick={handleSubmit}>
-                            Submit
-                        </SmartButton>
-                    </Form.Item>
-                </div>
+                <Form.Item className="smartButton__container">
+                    <SmartButton htmlType="submit" onClick={handleSubmit}>
+                        Submit
+                    </SmartButton>
+                </Form.Item>
             </Form>
         </div>
     );
