@@ -126,15 +126,15 @@ export default function MyOffersPage() {
                         postCode={card.requester.post_code}
                         reqDate={card.request.reqDate}
                         description={card.request.description}
-                        helpType={card.request.help_type}
+                        helpType={helpTypesLookup[card.request.help_type_id]}
                     >
                         <OfferStatus
                             requestStatus={card.request.status}
                             myOfferStatus={card.my_offer.status}
+                            otherHelperId={card.other_helper.id}
                             otherHelperName={
                                 card.other_helper.first_name + " " + card.other_helper.last_name
                             }
-                            otherHelperId={card.other_helper.id}
                             otherHelperOfferStatus={card.other_helper_offer.status}
                         />
                     </RequestCard>
