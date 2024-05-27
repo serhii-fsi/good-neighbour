@@ -19,10 +19,11 @@ const UserProfileView = ({ fields, username, handleClick }) => {
             <Descriptions
                 title={<div style={{ textAlign: "center" }}>{username}</div>}
                 layout="vertical"
+                column={1}
             >
                 {fields &&
                     fields.map((field) => (
-                        <Descriptions.Item key={field.key} label={field.label} span={field.span}>
+                        <Descriptions.Item key={field.key} label={field.label} span={1}>
                             {field.children}
                         </Descriptions.Item>
                     ))}
