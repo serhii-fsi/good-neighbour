@@ -27,7 +27,7 @@ router.get("/api/users/:user_id/help-requests", helpRequestsController.getByUser
 
 // * Help Offers
 router.post("/api/users/:user_id/help-offers", helpOffersController.create);
-router.get("/api/help-offers/:help_request_id", helpOffersController.getByRequestId)
+router.get("/api/help-requests/:help_request_id/help-offers", helpOffersController.getByRequestId)
 
 // * Types
 router.get("/api/help-types", typesController.getAll);
