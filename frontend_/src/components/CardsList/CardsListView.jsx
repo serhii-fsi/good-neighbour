@@ -8,7 +8,7 @@ import "./CardsListView.css";
  */
 export default function CardsListView(props) {
     return (
-        <Flex className={"CardsListView__container"} gap="middle" vertical align="center">
+        <Flex className={"CardsListView__container"} gap="30px" vertical align="center">
             {props.listWithDividers.map((item, index) => {
                 return item.isDivider ? (
                     <Divider key={item.date} plain>
