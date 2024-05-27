@@ -4,8 +4,9 @@ import { HelpOffer } from "../../db/seeds/data/types/data.types";
 
 export const update = async (user_id: string, helpOfferBody:any): Promise<HelpOffer> => {
     const {help_request_id, status} = helpOfferBody
+    const userIdNum: number =+user_id
 
-    const values = [status, user_id, help_request_id]
+    const values = [status, userIdNum, help_request_id]
 
     if(values.length ===0){
         const {rows} = await db.query(
