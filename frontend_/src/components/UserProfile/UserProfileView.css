@@ -1,0 +1,11 @@
+.UserProfileView__container {
+    padding: 2rem;
+}
+
+.UserProfileView__slider span {
+    display: block !important;
+}
+
+.UserProfileView__button {
+    text-align: end;
+}

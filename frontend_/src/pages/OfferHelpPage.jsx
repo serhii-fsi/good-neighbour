@@ -1,3 +1,9 @@
+import NavTop from "../components/NavTop/NavTop";
+
 export default function OfferHelpPage() {
-    return <div>OfferHelpPage</div>;
+    return (
+        <>
+            <NavTop title={"Offer Help"} logo={"Good Neighbour"} />
+        </>
+    );
 }

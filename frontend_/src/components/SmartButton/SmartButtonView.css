@@ -1,0 +1,4 @@
+/* BEM Naming Convention */
+/* <SomeTag className={"SmartButtonView__class-name"}></SomeTag> */
+.SmartButtonView__class-name {
+}

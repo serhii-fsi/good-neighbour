@@ -5,19 +5,19 @@
     "routes": {
         "offerHelpRootPage": { "path": "/", "params": [] },
         "offerHelpPage": { "path": "/offer-help", "params": [] },
-        "helpRequestCreatePage": { "path": "/help-request/create", "params": [] },
-        "helpRequestEditPage": {
+        "requestCreatePage": { "path": "/help-request/create", "params": [] },
+        "requestEditPage": {
             "path": "/help-request/:help_request_id/edit",
             "params": [":help_request_id"]
         },
-        "helpRequestPage": {
+        "requestPage": {
             "path": "/help-request/:help_request_id",
             "params": [":help_request_id"]
         },
-        "myHelpOffersPage": { "path": "/my-help-offers", "params": [] },
-        "myHelpRequestsPage": { "path": "/my-help-requests", "params": [] },
-        "userProfileCreatePage": { "path": "/user-profile/create", "params": [] },
-        "userProfileEditPage": { "path": "/user-profile/:user_id/edit", "params": [":user_id"] },
+        "myOffersPage": { "path": "/my-help-offers", "params": [] },
+        "myRequestsPage": { "path": "/my-help-requests", "params": [] },
+        "signUpPage": { "path": "/sign-up", "params": [] },
+        "userProfileEditPage": { "path": "/user-profile/edit", "params": [] },
         "userProfilePage": { "path": "/user-profile/:user_id", "params": [":user_id"] }
     }
 }
