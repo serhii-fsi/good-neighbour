@@ -5,12 +5,20 @@ import { DatePicker, Flex, Space, Select } from "antd";
 
 import FilterFormView from "./FilterFormView";
 
-const FilterForm = () => {
+/**
+ *
+ * @param {array} props.helpTypes
+ * @returns
+ */
+
+const FilterForm = (props) => {
     const [filterFieldsData, setFilterFieldData] = useState({
         dateFrom: null,
         toDate: null,
         selectedHelpTypes: null,
     });
+
+    // Render helpTypes to the structure provided below
     const selectOptions = [
         {
             label: "DIY",
