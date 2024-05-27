@@ -1,14 +1,9 @@
 import { useState } from "react";
-import dayjs from "dayjs";
-
-import { DatePicker, Flex, Space, Select } from "antd";
 
 import FilterFormView from "./FilterFormView";
 
 /**
- *
  * @param {array} props.helpTypes
- * @returns
  */
 
 const FilterForm = (props) => {
@@ -18,21 +13,9 @@ const FilterForm = (props) => {
         selectedHelpTypes: null,
     });
 
-    // Render helpTypes to the structure provided below
-    const selectOptions = [
-        {
-            label: "DIY",
-            value: "diy",
-        },
-        {
-            label: "Shopping",
-            value: "shopping",
-        },
-        {
-            label: "Cleaning",
-            value: "cleaning",
-        },
-    ];
+    const selectOptions = props.helpTypes.map(({ name }) => {
+        return { label: name, value: name };
+    });
 
     const handleDateFromChange = (date, fromDateString) => {
         setFilterFieldData((prev) => {
@@ -52,39 +35,15 @@ const FilterForm = (props) => {
         });
     };
 
-    const filterFields = {
-        key: "1",
-        label: "Filter",
-        children: (
-            <Flex gap="middle" vertical>
-                <Flex justify="space-between">
-                    <DatePicker placeholder="From Date" onChange={handleDateFromChange} />
-                    <DatePicker
-                        placeholder="To Date"
-                        minDate={
-                            filterFieldsData.dateFrom &&
-                            dayjs(filterFieldsData.dateFrom, "YYYY-MM-DD")
-                        }
-                        onChange={handleToDateChange}
-                    />
-                </Flex>
-                <Space.Compact>
-                    <Select
-                        allowClear
-                        mode="multiple"
-                        placeholder="Please select help type"
-                        style={{ width: "100%" }}
-                        options={selectOptions}
-                        onChange={handleTypeChange}
-                    ></Select>
-                </Space.Compact>
-            </Flex>
-        ),
-    };
-
     return (
         <>
-            <FilterFormView filterFields={filterFields} />
+            <FilterFormView
+                filterFieldsData={filterFieldsData}
+                selectOptions={selectOptions}
+                handleDateFromChange={handleDateFromChange}
+                handleToDateChange={handleToDateChange}
+                handleTypeChange={handleTypeChange}
+            />
         </>
     );
 };
