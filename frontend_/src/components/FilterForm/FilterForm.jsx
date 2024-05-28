@@ -13,7 +13,7 @@ const FilterForm = (props) => {
         selectedHelpTypes: null,
     });
 
-    const selectOptions = props.helpTypes.map(({ name }) => {
+    const selectOptions = props.helpTypes?.map(({ name }) => {
         return { label: name, value: name };
     });
 

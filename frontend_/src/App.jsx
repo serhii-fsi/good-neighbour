@@ -14,8 +14,10 @@ import UserProfileEditPage from "./pages/UserProfileEditPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import Page404 from "./pages/Page404";
 
-import { AuthContext } from "./context/auth-context";
 import { useAuth } from "./hooks/useAuth";
+
+import { AuthContext } from "./context/auth-context";
+import { HelpTypesProvider } from "./context/help-types";
 
 import config from "./config.json";
 
@@ -25,20 +27,25 @@ function App() {
 
     return (
         <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
-            <Routes>
-                <Route path={routes.offerHelpRootPage.path} element={<Page404 />} />
-                <Route path={routes.offerHelpPage.path} element={<OfferHelpPage />} />
-                <Route path={routes.requestCreatePage.path} element={<RequestCreatePage />} />
-                <Route path={routes.requestEditPage.path} element={<RequestEditPage />} />
-                <Route path={routes.requestPage.path} element={<RequestPage />} />
-                <Route path={routes.myOffersPage.path} element={<MyOffersPage />} />
-                <Route path={routes.myRequestsPage.path} element={<MyRequestsPage />} />
-                <Route path={routes.signUpPage.path} element={<SignUpPage />} />
-                <Route path={routes.userProfileEditPage.path} element={<UserProfileEditPage />} />
-                <Route path={routes.userProfilePage.path} element={<UserProfilePage />} />
+            <HelpTypesProvider>
+                <Routes>
+                    <Route path={routes.offerHelpRootPage.path} element={<Page404 />} />
+                    <Route path={routes.offerHelpPage.path} element={<OfferHelpPage />} />
+                    <Route path={routes.requestCreatePage.path} element={<RequestCreatePage />} />
+                    <Route path={routes.requestEditPage.path} element={<RequestEditPage />} />
+                    <Route path={routes.requestPage.path} element={<RequestPage />} />
+                    <Route path={routes.myOffersPage.path} element={<MyOffersPage />} />
+                    <Route path={routes.myRequestsPage.path} element={<MyRequestsPage />} />
+                    <Route path={routes.signUpPage.path} element={<SignUpPage />} />
+                    <Route
+                        path={routes.userProfileEditPage.path}
+                        element={<UserProfileEditPage />}
+                    />
+                    <Route path={routes.userProfilePage.path} element={<UserProfilePage />} />
 
-                <Route path={"*"} element={<Page404 />} />
-            </Routes>
+                    <Route path={"*"} element={<Page404 />} />
+                </Routes>
+            </HelpTypesProvider>
         </AuthContext.Provider>
     );
 }

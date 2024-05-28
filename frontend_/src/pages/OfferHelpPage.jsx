@@ -1,17 +1,13 @@
+import { useContext } from "react";
+import { HelpTypesContext } from "../context/help-types";
+
 import NavTop from "../components/NavTop/NavTop";
 import FilterForm from "../components/FilterForm/FilterForm";
 import CardsList from "../components/CardsList/CardsList";
 import RequestCard from "../components/RequestCard/RequestCard";
 
 export default function OfferHelpPage() {
-    // Fetch data GET "/api/help-types"
-    // Put in the HelpTypesContext???
-    const helpTypes = [
-        { name: "Shopping" },
-        { name: "Cleaning" },
-        { name: "Cooking" },
-        { name: "DIY" },
-    ];
+    const { helpTypes } = useContext(HelpTypesContext);
 
     // Fetch data GET "/api/help-requests" by default
     // Fetch data GET "/api/help-requests?from=2024-04-27&to=2024-05-27&helpTypes=helpTypes[]" ?? with queries
