@@ -83,7 +83,7 @@ const UserProfileFormView = ({ userProfileData, handleFormChange, handleSubmit }
                         }}
                     />
                 </Form.Item>
-                <Form.Item className="smartButton__container">
+                <Form.Item className="UserProfileFormView__btnContainer">
                     <SmartButton htmlType="submit" onClick={handleSubmit}>
                         Submit
                     </SmartButton>
