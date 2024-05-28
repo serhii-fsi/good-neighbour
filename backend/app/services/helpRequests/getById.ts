@@ -10,5 +10,5 @@ export const getById = async (id: number) => {
             `No help request was found with id: ${id}`
         );
     }
-    return helpRequest;
+    return { request: helpRequest };
 };
