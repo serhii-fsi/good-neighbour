@@ -2,6 +2,7 @@ import { useContext } from "react";
 
 import NavTop from "../components/NavTop/NavTop";
 import UserProfile from "../components/UserProfile/UserProfile";
+import NavBottom from "../components/NavBottom/NavBottom";
 
 import { AuthContext } from "../context/auth-context";
 
@@ -11,6 +12,7 @@ export default function UserProfilePage() {
         <>
             <NavTop title={"My Profile"} isRootComponent={false} />
             <UserProfile user={user} />
+            <NavBottom />
         </>
     );
 }
