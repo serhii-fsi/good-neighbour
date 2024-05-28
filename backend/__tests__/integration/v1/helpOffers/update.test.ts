@@ -23,7 +23,7 @@ describe("update HelpOffer", () => {
         };
         const {
             body: { updatedHelpOffer },
-        } = await request(app).patch("/api/users/1/help-offers").send(helpOfferBody).expect(200);
+        } = await request(app).patch("/api/users/10/help-offers").send(helpOfferBody).expect(200);
         expect(updatedHelpOffer).toMatchObject({
             helper_id: 10,
             help_request_id: 2,

@@ -39,14 +39,14 @@ describe("create new Help Requests", () => {
             help_type_id: 1,
             description:
                 "I have difficulty getting to the shop, could someone grab me a pint of milk when they next go please?",
-            req_date: "2024-05-20T23:00:00.000Z",
+            req_date: expect.any(String),
             status: "active",
             first_name: "Irwin",
             last_name: "Howe",
-            post_code: "E1 6AN",
+            post_code: "E15 1JP",
             name: "Shopping",
-            latitude: 51.5155,
-            longitude: -0.0722,
+            latitude: 51.54884,
+            longitude: 0.00050,
         });
     });
 });

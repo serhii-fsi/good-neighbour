@@ -1,7 +1,5 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-
-import MenuView from "./MenuView";
-import config from "../../config.json";
 
 import {
     UserOutlined,
@@ -11,12 +9,21 @@ import {
     VerticalAlignBottomOutlined,
 } from "@ant-design/icons";
 
+import { AuthContext } from "../../context/auth-context";
+import MenuView from "./MenuView";
+import config from "../../config.json";
+
 const Menu = () => {
     const { routes } = config;
+    const { user } = useContext(AuthContext);
     const items = [
         {
             key: 1,
-            label: <Link to={routes.userProfilePage.path}>User Name</Link>,
+            label: (
+                <Link to={routes.userProfilePage.path}>
+                    {user.username ? user.username : "Profile"}
+                </Link>
+            ),
             icon: <UserOutlined />,
         },
         {
@@ -26,17 +33,17 @@ const Menu = () => {
         },
         {
             key: 3,
-            label: <Link to={routes.myHelpOffersPage.path}>My Help Offers</Link>,
+            label: <Link to={routes.myOffersPage.path}>My Help Offers</Link>,
             icon: <ToTopOutlined />,
         },
         {
             key: 4,
-            label: <Link to={routes.helpRequestCreatePage.path}>Create Help Request</Link>,
+            label: <Link to={routes.requestCreatePage.path}>Create Help Request</Link>,
             icon: <PlusCircleOutlined />,
         },
         {
             key: 5,
-            label: <Link to={routes.myHelpRequestsPage.path}>My Help Requests</Link>,
+            label: <Link to={routes.myRequestsPage.path}>My Help Requests</Link>,
             icon: <VerticalAlignBottomOutlined />,
         },
     ];

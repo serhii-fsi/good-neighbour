@@ -1,21 +1,20 @@
 // import HelpCard from "./HelpCard";
-
+import contactCardsView from "./ContactsCard/ContactsCardView";
 function HelpList({ helpList }) {
-  console.log(helpList, "helpList 2");
   return (
-    // <p>
-    //   *Placeholder for helplist. Waiting for endpoint to be available from the
-    //   backend.*
-    // </p>
-    <ul>
-      {helpList.map((request) => {
-        return (
-          <li key={request.help_request_id}>
-            {<HelpCard request={request} />}
-          </li>
-        );
-      })}
-    </ul>
+    <contactCardsView>
+      <p>
+        *Placeholder for helplist. Waiting for endpoint to be available from the
+        backend.*
+      </p>
+    </contactCardsView>
+    // <ul>
+    //   {helpList.map((request) => {
+    //     return (
+    //       <li key={request.help_request_id}>{<HelpCard request={request} />}</li>
+    //     );
+    //   })}
+    // </ul>
   );
 }
 

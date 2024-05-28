@@ -4,6 +4,7 @@
     justify-content: space-between;
     padding: 0 1rem;
     height: 56px;
+    border-bottom: 1px solid var(--grey);
 }
 
 .NavTopView__header h1 {

@@ -23,9 +23,10 @@ router.get("/api/help-requests/:help_request_id", helpRequestsController.getById
 router.delete("/api/help-requests/:help_request_id", helpRequestsController.remove);
 router.patch("/api/help-requests/:help_request_id", helpRequestsController.update);
 router.post("/api/help-requests", helpRequestsController.create);
-router.get("/api/users/:user_id/help-requests", helpRequestsController.getByUserId)
+router.get("/api/users/:user_id/help-requests", helpRequestsController.getByUserId);
 
 // * Help Offers
+router.get("/api/help-requests/:help_request_id/help-offers", helpOffersController.getByRequestId);
 router.post("/api/users/:user_id/help-offers", helpOffersController.create);
 router.patch("/api/users/:user_id/help-offers", helpOffersController.update);
 
