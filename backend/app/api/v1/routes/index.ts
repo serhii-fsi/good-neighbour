@@ -20,10 +20,10 @@ router.post("/api/users", usersController.create);
 // * Help requests
 router.get("/api/help-requests", helpRequestsController.getAll);
 router.get("/api/help-requests/:help_request_id", helpRequestsController.getById);
+router.get("/api/users/:user_id/help-requests", helpRequestsController.getByUserId);
+router.post("/api/help-requests", helpRequestsController.create);
 router.delete("/api/help-requests/:help_request_id", helpRequestsController.remove);
 router.patch("/api/help-requests/:help_request_id", helpRequestsController.update);
-router.post("/api/help-requests", helpRequestsController.create);
-router.get("/api/users/:user_id/help-requests", helpRequestsController.getByUserId);
 
 // * Help Offers
 router.get("/api/help-requests/:help_request_id/help-offers", helpOffersController.getByRequestId);

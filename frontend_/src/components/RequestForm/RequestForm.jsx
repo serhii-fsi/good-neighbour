@@ -2,30 +2,40 @@ import { useState } from "react";
 
 import RequestFormView from "./RequestFormView";
 
-const RequestForm = () => {
-    const [requestForm, setRequestForm] = useState({
+/**
+ * @param {function} props.createHelpRequest
+ */
+
+const RequestForm = (props) => {
+    const [requestFormData, setRequestFormData] = useState({
         title: null,
-        date: null,
-        time: null,
-        allDay: true,
-        helpType: null,
+        req_date: null,
+        help_type: null,
         description: "",
     });
 
     const handleFormChange = (changedValues, allValues) => {
-        setRequestForm(allValues);
+        const { title, req_date, description, help_type } = allValues;
+        setRequestFormData(() => {
+            return {
+                title: title,
+                req_date: req_date?.$d.toISOString(),
+                description: description,
+                help_type: help_type,
+            };
+        });
     };
 
     const handleSubmit = () => {
-        const isFormValid = Object.values(requestForm).every((input) => !!input);
+        const isFormValid = Object.values(requestFormData).every((input) => !!input);
         if (isFormValid) {
-            console.log("Form has been submitted: ", requestForm);
+            props.createHelpRequest(requestFormData);
         }
     };
 
     return (
         <RequestFormView
-            requestForm={requestForm}
+            requestFormData={requestFormData}
             handleFormChange={handleFormChange}
             handleSubmit={handleSubmit}
         />
