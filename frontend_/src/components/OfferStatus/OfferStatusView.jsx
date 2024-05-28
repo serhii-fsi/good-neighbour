@@ -1,25 +1,17 @@
 /**
  * @param {object} props
- * @param {string} props.requestStatus active|completed|closed
- * @param {string} props.myOfferStatus active|accepted|declined
- * @param {number|null} props.otherHelperId
- * @param {string|null} props.otherHelperName
- * @param {string|null} props.otherHelperOfferStatus active|accepted|declined
+ * @param {string|null} props.greenText
+ * @param {string|null} props.grayText
+ * @param {string|null} props.linkText
+ * @param {string|null} props.linkPath
  */
 export default function OfferStatusView(props) {
     return (
         <>
-            requestStatus: {props.requestStatus} <br />
-            myOfferStatus: {props.myOfferStatus} <br />
-            {props.otherHelperOfferStatus === "accepted" ? (
-                <>
-                    otherHelperName: {props.otherHelperName} <br />
-                    otherHelperId: {props.otherHelperId} <br />
-                    otherHelperOfferStatus: {props.otherHelperOfferStatus} <br />
-                </>
-            ) : (
-                ""
-            )}
+            greenText: {props.greenText} <br />
+            grayText: {props.grayText} <br />
+            linkText: {props.linkText} <br />
+            linkPath: {props.linkPath} <br />
         </>
     );
 }
