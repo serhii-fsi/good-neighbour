@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import useAxios from "../hooks/useAxios";
+import { useAxios } from "../hooks/useAxios";
 
 export const HelpTypesContext = createContext([]);
 
@@ -12,7 +12,7 @@ export const HelpTypesProvider = ({ children }) => {
             const helpTypes = await sendRequest(`${import.meta.env.VITE_API_URL}/api/help-types`);
             setHelpTypes(helpTypes);
         } catch (error) {
-            console.log(`Erros while fetching types: ${error.message}`);
+            console.log(`Error while fetching types: ${error.message}`);
         }
     };
 

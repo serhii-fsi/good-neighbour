@@ -1,4 +1,6 @@
 import { useContext } from "react";
+import { useSearchParams } from "react-router-dom";
+
 import { HelpTypesContext } from "../context/help-types";
 
 import NavTop from "../components/NavTop/NavTop";
@@ -8,9 +10,10 @@ import RequestCard from "../components/RequestCard/RequestCard";
 
 export default function OfferHelpPage() {
     const { helpTypes } = useContext(HelpTypesContext);
+    const [searchParams, setSearchParams] = useSearchParams();
 
     // Fetch data GET "/api/help-requests" by default
-    // Fetch data GET "/api/help-requests?from=2024-04-27&to=2024-05-27&helpTypes=helpTypes[]" ?? with queries
+    // Fetch data GET "/api/help-requests" ?? with queries
     const helpRequestsCards = [
         // Normalised
         {
@@ -35,7 +38,7 @@ export default function OfferHelpPage() {
     return (
         <>
             <NavTop title={"Offer Help"} logo={"Good Neighbour"} />
-            <FilterForm helpTypes={helpTypes} />
+            <FilterForm helpTypes={helpTypes} setSearchParams={setSearchParams} />
             <CardsList>
                 {helpRequestsCards.map((card) => (
                     <RequestCard
