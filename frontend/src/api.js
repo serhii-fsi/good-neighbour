@@ -3,7 +3,7 @@ import axios from "axios";
 // GET:
 
 export default function getHelpRequests(endpoint) {
-  return axios.get(endpoint);
+  return axios.get(`${endpoint}`);
 }
 
 export function getOwnHelpList(user_id) {
