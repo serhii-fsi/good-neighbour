@@ -1,29 +1,23 @@
 import db from "../../db/connection";
 import { HelpRequest } from "../../db/seeds/data/types/data.types";
 
-export const create = async (helpRequestBody: HelpRequest): Promise<HelpRequest> => {
-    const { title, author_id, help_type_id, description, req_date, status, created_at } =
-        helpRequestBody;
+export const create = async (author_id: number, helpRequestBody: any): Promise<HelpRequest> => {
+    const { title, help_type, description, req_date } = helpRequestBody;
 
-    const values = [
-        title,
-        author_id,
-        help_type_id,
-        description,
-        req_date,
-        status,
-        created_at
-    ]
+    // Extra query to get type name soon will be deleted
+    const helpTypeName = await db.query(
+        `SELECT id, name FROM help_types
+        WHERE help_types.name= $1`,
+        [help_type]
+    );
 
-    const query = `INSERT INTO help_requests (title, author_id, help_type_id, description, req_date, status, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id, title, author_id, help_type_id, description, req_date, status, created_at`;
+    const help_type_id = helpTypeName.rows[0].id;
 
-    const viewQuery = `SELECT help_requests.id, title, author_id, help_type_id, help_requests.description, created_at, req_date, status, users.first_name, users.last_name, users.postcode, help_types.name, users.longitude, users.latitude FROM help_requests LEFT JOIN users on users.id = help_requests.author_id LEFT JOIN help_types on help_types.id = help_requests.help_type_id WHERE help_requests.id = $1`
+    const values = [title, author_id, help_type_id, description, req_date];
 
-    const {rows} = await db.query(query, values)
-    const id = await [rows[0].id]
-    const viewRows = await db.query(viewQuery, id)
-    return viewRows.rows[0]
+    const query = `INSERT INTO help_requests (title, author_id, help_type_id, description, req_date) VALUES ($1, $2, $3, $4, $5) RETURNING id, title, author_id, help_type_id, description, req_date,  created_at, status;`;
+
+    const { rows } = await db.query(query, values);
+
+    return rows[0];
 };
-
-
-

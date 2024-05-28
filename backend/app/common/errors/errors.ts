@@ -1,4 +1,8 @@
 export const errors = {
+    AUTHORISATION_ERROR: {
+        statusCode: 401,
+        message: "User is not authorised",
+    },
     VALIDATION_ERROR: {
         statusCode: 400,
         message: "Invalid input provided",
