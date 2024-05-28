@@ -2,17 +2,18 @@ import { useContext } from "react";
 import { UserContext } from "../contexts/User";
 import { useNavigate, Link } from "react-router-dom";
 
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input } from 'antd';
 
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
 function LoginForm() {
+
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const onFinish = (values) => {
     setUser(values.username);
-    navigate("/home");
+    navigate('/helpListView');
   };
 
   return (
@@ -32,21 +33,18 @@ function LoginForm() {
         rules={[
           {
             required: true,
-            message: "Please input your Username!",
+            message: 'Please input your Username!',
           },
         ]}
       >
-        <Input
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Username"
-        />
+        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
       </Form.Item>
       <Form.Item
         name="password"
         rules={[
           {
             required: true,
-            message: "Please input your Password!",
+            message: 'Please input your Password!',
           },
         ]}
       >
@@ -70,11 +68,10 @@ function LoginForm() {
         <Button type="primary" htmlType="submit" className="login-form-button">
           Log in
         </Button>
-        <br />
-        Or <Link to="/signup">register now!</Link>
+        <br/>Or <Link to="/signup">register now!</Link>
       </Form.Item>
     </Form>
   );
-}
+};
 
 export default LoginForm;
