@@ -1,7 +1,10 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useContext } from "react";
 import axios from "axios";
 
+import { AuthContext } from "../context/auth-context";
+
 export const useAxios = () => {
+    const { user } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -14,6 +17,7 @@ export const useAxios = () => {
                 method,
                 headers: {
                     "Content-Type": "application/json",
+                    "X-User-ID": user?.id,
                     ...headers,
                 },
                 data: body ? JSON.stringify(body) : null,
