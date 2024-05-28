@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 
 export const useAuth = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [user, setUser] = useState({ username: "Irwin Howe", current_user_id: 1 });
+    const [user, setUser] = useState({ username: "Irwin Howe", id: 1 });
 
     const login = useCallback((user) => {
         const userJSON = JSON.stringify(user);
