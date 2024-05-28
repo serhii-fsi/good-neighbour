@@ -59,7 +59,7 @@ export const getAll = async (req: Request, res: Response, next: NextFunction) =>
  *           type: string
  *         address:
  *           type: string
- *         post_code:
+ *         postcode:
  *           type: string
  *         phone_number:
  *           type: string

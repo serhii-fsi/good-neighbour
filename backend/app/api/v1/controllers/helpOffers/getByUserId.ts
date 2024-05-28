@@ -1,7 +1,19 @@
 import { Request, Response, NextFunction } from "express";
 
-export const getByUserId = (req: Request, res: Response, next: NextFunction) => {
+import { AppError } from "../../../../common/errors/AppError";
+import { errors } from "../../../../common/errors/errors";
+import * as usersService from "../../../../services/users";
+import * as helpOffersService from "../../../../services/helpOffers/getByUserId";
+
+export const getByUserId = async (req: Request, res: Response, next: NextFunction) => {
+    const user_id = Number(req.params.user_id);
     try {
+        if (isNaN(user_id)) {
+            throw new AppError(errors.VALIDATION_ERROR, "Invalid user id provided");
+        }
+        await usersService.getById(user_id);
+        const userHelpOffers = await helpOffersService.getByUserId(user_id);
+        res.status(200).send({ userHelpOffers });
     } catch (error) {
         next(error);
     }

@@ -3,7 +3,7 @@ import { User } from "../../db/seeds/data/types/data.types";
 
 export const create = async (userBody: User): Promise<User> => {
     //  Mandatory fields
-    const { first_name, last_name, address, post_code, longitude, latitude, help_radius } =
+    const { first_name, last_name, address, postcode, longitude, latitude, help_radius } =
         userBody;
 
     // Optional fields
@@ -14,13 +14,13 @@ export const create = async (userBody: User): Promise<User> => {
         !first_name ||
         !last_name ||
         !address ||
-        !post_code ||
+        !postcode ||
         !longitude ||
         !latitude ||
         !help_radius
     ) {
         throw new Error(
-            "Mandatory fields (first_name, last_name, address, post_code, longitude, latitude) are required."
+            "Mandatory fields (first_name, last_name, address, postcode, longitude, latitude) are required."
         );
     }
 
@@ -33,7 +33,7 @@ export const create = async (userBody: User): Promise<User> => {
         last_name,
         about,
         address,
-        post_code,
+        postcode,
         phone_number,
         additional_contacts,
         help_radius,
@@ -43,9 +43,9 @@ export const create = async (userBody: User): Promise<User> => {
 
     const query = `
     INSERT INTO users 
-    (username, email, avatar_url, age, first_name, last_name, about, address, post_code, phone_number, additional_contacts, help_radius, longitude, latitude)
+    (username, email, avatar_url, age, first_name, last_name, about, address, postcode, phone_number, additional_contacts, help_radius, longitude, latitude)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
-    RETURNING id, username, email, avatar_url, age, first_name, last_name, about, address, post_code, phone_number, additional_contacts, help_radius, longitude, latitude;
+    RETURNING id, username, email, avatar_url, age, first_name, last_name, about, address, postcode, phone_number, additional_contacts, help_radius, longitude, latitude;
   `;
 
     const { rows } = await db.query(query, values);

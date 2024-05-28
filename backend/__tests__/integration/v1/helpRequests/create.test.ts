@@ -43,7 +43,7 @@ describe("create new Help Requests", () => {
             status: "active",
             first_name: "Irwin",
             last_name: "Howe",
-            post_code: "E15 1JP",
+            postcode: "E15 1JP",
             name: "Shopping",
             latitude: 51.54884,
             longitude: 0.00050,

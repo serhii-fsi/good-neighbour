@@ -27,7 +27,7 @@ export default function MyOffersPage() {
                 id: 5,
                 first_name: "Sarah",
                 last_name: "Johnson",
-                post_code: "SW1A 1AA",
+                postcode: "SW1A 1AA",
             },
             offers: [
                 // I can receive only my offer with any status
@@ -67,7 +67,7 @@ export default function MyOffersPage() {
                 id: 6,
                 first_name: "James",
                 last_name: "Dou",
-                post_code: "L1 4JF",
+                postcode: "L1 4JF",
             },
             offers: [
                 {
@@ -96,7 +96,7 @@ export default function MyOffersPage() {
                 id: 7,
                 first_name: "James",
                 last_name: "Dou",
-                post_code: "L1 4JF",
+                postcode: "L1 4JF",
             },
             offers: [
                 {
@@ -122,7 +122,7 @@ export default function MyOffersPage() {
                         key={card.request.id}
                         title={card.request.title}
                         name={card.requester.first_name + " " + card.requester.last_name}
-                        postCode={card.requester.post_code}
+                        postCode={card.requester.postcode}
                         reqDate={card.request.reqDate}
                         description={card.request.description}
                         helpType={card.request.help_type}

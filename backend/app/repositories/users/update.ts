@@ -6,7 +6,7 @@ export const update = async (id: string, updateBody: any): Promise<User> => {
         email,
         about,
         address,
-        post_code,
+        postcode,
         phone_number,
         additional_contacts,
         help_radius = 0,
@@ -24,8 +24,8 @@ export const update = async (id: string, updateBody: any): Promise<User> => {
     if (address) {
         setClause.push(`address = $${values.push(address)}`);
     }
-    if (post_code) {
-        setClause.push(`post_code = $${values.push(post_code)}`);
+    if (postcode) {
+        setClause.push(`postcode = $${values.push(postcode)}`);
     }
     if (phone_number) {
         setClause.push(`phone_number = $${values.push(phone_number)}`);
@@ -39,7 +39,7 @@ export const update = async (id: string, updateBody: any): Promise<User> => {
 
     if (setClause.length === 0) {
         const { rows } = await db.query(
-            "SELECT id, username, email, avatar_url, age, first_name, last_name, about, address, post_code, phone_number, additional_contacts, help_radius FROM users WHERE id = $1",
+            "SELECT id, username, email, avatar_url, age, first_name, last_name, about, address, postcode, phone_number, additional_contacts, help_radius FROM users WHERE id = $1",
             [id]
         );
         return rows[0];
@@ -49,7 +49,7 @@ export const update = async (id: string, updateBody: any): Promise<User> => {
     UPDATE users
     SET ${setClause.join(", ")}
     WHERE id = $${values.length + 1}
-    RETURNING id, username, email, avatar_url, age, first_name, last_name, about, address, post_code, phone_number, additional_contacts, help_radius;
+    RETURNING id, username, email, avatar_url, age, first_name, last_name, about, address, postcode, phone_number, additional_contacts, help_radius;
   `;
 
     values.push(id);

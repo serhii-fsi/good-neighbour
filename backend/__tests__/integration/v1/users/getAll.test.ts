@@ -29,7 +29,7 @@ describe("getAllUsers", () => {
             expect(user).toHaveProperty("about");
             expect(user).toHaveProperty("phone_number");
             expect(user).toHaveProperty("address");
-            expect(user).toHaveProperty("post_code");
+            expect(user).toHaveProperty("postcode");
             expect(user).toHaveProperty("avatar_url");
             expect(user).toHaveProperty("age");
             expect(user).toHaveProperty("help_radius");

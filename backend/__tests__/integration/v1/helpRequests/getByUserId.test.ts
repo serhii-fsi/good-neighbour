@@ -28,7 +28,7 @@ describe("GETS all help requests associated with a user", () => {
             expect(request).toHaveProperty("created_at");
             expect(request).toHaveProperty("first_name");
             expect(request).toHaveProperty("last_name");
-            expect(request).toHaveProperty("post_code");
+            expect(request).toHaveProperty("postcode");
             expect(request).toHaveProperty("name");
             expect(request).toHaveProperty("longitude");
             expect(request).toHaveProperty("latitude");
