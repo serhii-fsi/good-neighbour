@@ -1,10 +1,17 @@
+import { useNavigate } from "react-router-dom";
+
 import { useAxios } from "../hooks/useAxios";
 
 import NavTop from "../components/NavTop/NavTop";
 import RequestForm from "../components/RequestForm/RequestForm";
 
+import config from "../config.json";
+import getRoute from "../utils/getRoute";
+
 export default function RequestCreatePage() {
-    const { isLoading, sendRequest } = useAxios();
+    const { isLoading, sendRequest, contextHolder } = useAxios();
+    const { routes } = config;
+    const navigate = useNavigate();
 
     const createHelpRequest = async (body) => {
         try {
@@ -15,12 +22,13 @@ export default function RequestCreatePage() {
             );
 
             if (!isLoading && newHelpRequest) {
-                console.log("Successfully created help request: ", newHelpRequest);
+                navigate(getRoute(routes.requestPage, newHelpRequest.id));
             }
         } catch (error) {}
     };
     return (
         <>
+            {contextHolder}
             <NavTop title={"Create Help Request"} isRootComponent={false} />
             <RequestForm createHelpRequest={createHelpRequest} />
         </>
