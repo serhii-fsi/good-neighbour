@@ -30,7 +30,7 @@ describe("GET /api/help-requests/:help_request_id", () => {
             status: "active",
             first_name: "Makenna",
             last_name: "Wuckert",
-            post_code: expect.any(String),
+            postcode: expect.any(String),
             name: "DIY",
             latitude: 51.54144,
             longitude: 0.07218,

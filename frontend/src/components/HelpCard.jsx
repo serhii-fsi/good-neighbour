@@ -10,7 +10,7 @@ function HelpCard({ request }) {
       <p>Description: {request.description}</p>
       <p>Created at: {request.created_at}</p>
       <p>Date(s): {request.req_date}</p>
-      <p>Location: {request.post_code}</p> <p>Status: {request.status}</p>
+      <p>Location: {request.postcode}</p> <p>Status: {request.status}</p>
       <Link to={path}>View Help Request</Link>*/}
     </section>
   );

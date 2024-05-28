@@ -27,7 +27,7 @@ describe("createUser", () => {
             last_name: "Doe",
             about: "Censura basium carcer. Delicate alius aperiam color virga cruentus traho. Correptius vesper supplanto voluptatum.",
             address: "120 College Place",
-            post_code: "NW1 0DJ",
+            postcode: "NW1 0DJ",
             phone_number: "079170986789",
             additional_contacts:
                 "basium carcer. Delicate alius aperiam color virga cruentus traho. Correptius vesper supplanto voluptatum.",
@@ -51,7 +51,7 @@ describe("createUser", () => {
             last_name: "Doe",
             about: "Censura basium carcer. Delicate alius aperiam color virga cruentus traho. Correptius vesper supplanto voluptatum.",
             address: "120 College Place",
-            post_code: "NW1 0DJ",
+            postcode: "NW1 0DJ",
             phone_number: "079170986789",
             additional_contacts:
                 "basium carcer. Delicate alius aperiam color virga cruentus traho. Correptius vesper supplanto voluptatum.",
