@@ -1,6 +1,6 @@
 import * as helpRequestsRepo from "../../repositories/helpRequests/getByUserId";
 
-export const getByUserId = async (user_id:string) => {
+export const getByUserId = async (user_id:number) => {
     const {requestsRows, offers} = await helpRequestsRepo.getByUserId(user_id)
     const userHelpRequests: any = []
 
@@ -38,5 +38,6 @@ export const getByUserId = async (user_id:string) => {
         })
         
     })
+
     return  userHelpRequests
 }

@@ -42,28 +42,28 @@ describe("GET - /api/users/:user_id/help-offers", () => {
         });
     });
 
-    // test("404 - GET: Responds with appropriate error when nonexistent help_request_id provided", async () => {
-    //     const {
-    //         body: {
-    //             error: { message },
-    //         },
-    //     } = await request(app).get("/api/help-requests/15/help-offers").expect(404);
-    //     expect(message).toBe("Help request was not found");
-    // });
+    test("404 - GET: Responds with appropriate error when nonexistent help_request_id provided", async () => {
+        const {
+            body: {
+                error: { message },
+            },
+        } = await request(app).get("/api/help-requests/15/help-offers").expect(404);
+        expect(message).toBe("Help request was not found");
+    });
 
-    // test("404 - GET: Responds with appropriate error when invalid help_request_id provided", async () => {
-    //     const {
-    //         body: {
-    //             error: { message },
-    //         },
-    //     } = await request(app).get("/api/help-requests/gfrf/help-offers").expect(400);
-    //     expect(message).toBe("Invalid input provided");
-    // });
+    test("404 - GET: Responds with appropriate error when invalid help_request_id provided", async () => {
+        const {
+            body: {
+                error: { message },
+            },
+        } = await request(app).get("/api/help-requests/gfrf/help-offers").expect(400);
+        expect(message).toBe("Invalid input provided");
+    });
 
-    // test("200 - GET: Responds with an empty array when help_request_id provided has no help offers associated with it", async () => {
-    //     const {
-    //         body: { helpOffers }
-    //     } = await request(app).get("/api/help-requests/3/help-offers").expect(200);
-    //     expect(helpOffers).toEqual([]);
-    // });
+    test("200 - GET: Responds with an empty array when help_request_id provided has no help offers associated with it", async () => {
+        const {
+            body: { helpOffers }
+        } = await request(app).get("/api/help-requests/3/help-offers").expect(200);
+        expect(helpOffers).toEqual([]);
+    });
 })

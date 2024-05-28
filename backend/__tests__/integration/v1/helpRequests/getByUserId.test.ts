@@ -39,4 +39,29 @@ describe("GETS all help requests associated with a user", () => {
             });
         })
     })
+
+    test("404 - GET: Responds with appropriate error when nonexistent help_request_id provided", async () => {
+        const {
+            body: {
+                error: { message },
+            },
+        } = await request(app).get("/api/users/100/help-requests").expect(404);
+        expect(message).toBe("User was not found");
+    });
+
+    test("404 - GET: Responds with appropriate error when invalid help_request_id provided", async () => {
+        const {
+            body: {
+                error: { message },
+            },
+        } = await request(app).get("/api/users/ght/help-requests").expect(400);
+        expect(message).toBe("Invalid input provided");
+    });
+
+    test("200 - GET: Responds with an empty array when help_request_id provided has no help offers associated with it", async () => {
+        const {
+            body: { userHelpRequests }
+        } = await request(app).get("/api/users/3/help-requests").expect(200);
+        expect(userHelpRequests).toEqual([]);
+    });
 })
