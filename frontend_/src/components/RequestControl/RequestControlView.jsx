@@ -1,3 +1,5 @@
+import SmartButton from "../SmartButton/SmartButton";
+
 /**
  * @param {object} props
  * @param {boolean} props.isCloseButton
@@ -10,10 +12,21 @@
 export default function RequestControlView(props) {
     return (
         <>
-            RequestControl: <br />
-            {props.isCloseButton ? "[CloseButton]" : ""} <br />
-            {props.isEditButton ? "[EditButton]" : ""} <br />
-            {props.isCompletedButton ? "[CompletedButton]" : ""} <br />
+            {props.isCloseButton ? (
+                <SmartButton onClick={props.onClose} type="default">
+                    Close
+                </SmartButton>
+            ) : null}
+            {props.isEditButton ? (
+                <SmartButton onClick={props.onEdit} type="default">
+                    Edit
+                </SmartButton>
+            ) : null}
+            {props.isCompletedButton ? (
+                <SmartButton onClick={props.onCompleted} type="primary">
+                    Completed
+                </SmartButton>
+            ) : null}
         </>
     );
 }
