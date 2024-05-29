@@ -38,17 +38,13 @@ function App() {
                 <Route path={routes.userProfileEditPage.path} element={<UserProfileEditPage />} />
                 <Route path={routes.userProfilePage.path} element={<UserProfilePage />} />
                 <Route path="*" element={<Navigate to={routes.offerHelpPage} />} />
-                <Route path={"*"} element={<Page404 />} />
             </>
         );
     } else {
         currentRoutes = (
             <>
-                <Route path={routes.offerHelpRootPage.path} element={<Page404 />} />
                 <Route path={routes.signUpPage.path} element={<SignUpPage />} />
                 <Route path={routes.loginPage.path} element={<LoginPage />} />
-                <Route path="*" element={<Navigate to={routes.loginPage.path} />} />
-                <Route path={"*"} element={<Page404 />} />
             </>
         );
     }
@@ -56,7 +52,10 @@ function App() {
     return (
         <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
             <HelpTypesProvider>
-                <Routes>{currentRoutes}</Routes>
+                <Routes>
+                    <Route path={routes.offerHelpRootPage.path} element={<Page404 />} />
+                    {currentRoutes}
+                </Routes>
             </HelpTypesProvider>
         </AuthContext.Provider>
     );
