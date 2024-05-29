@@ -25,7 +25,7 @@ function App() {
     const { isLoggedIn, user, login, logout } = useAuth();
 
     let currentRoutes;
-    console.log(user);
+
     if (isLoggedIn) {
         currentRoutes = (
             <>
