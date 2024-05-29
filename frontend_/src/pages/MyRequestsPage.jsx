@@ -197,6 +197,7 @@ export default function MyRequestsPage() {
                 {myRequestsCardObjects.map((card) => (
                     <RequestCard
                         key={card.request.id}
+                        requestId={card.request.id}
                         title={card.request.title}
                         reqDate={card.request.reqDate}
                         description={card.request.description}
