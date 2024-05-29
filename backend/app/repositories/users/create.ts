@@ -3,8 +3,12 @@ import { User } from "../../db/seeds/data/types/data.types";
 
 export const create = async (userBody: User): Promise<User> => {
     //  Mandatory fields
-    const { first_name, last_name, address, postcode, longitude, latitude, help_radius } =
-        userBody;
+    const { first_name, last_name, address, postcode } = userBody;
+
+    // Hard coded logic
+    const help_radius = (Number(userBody.help_radius) * 1609).toFixed(0);
+    const longitude = 51.43456;
+    const latitude = 0.43456;
 
     // Optional fields
     const { username, email, avatar_url, age, about, phone_number, additional_contacts } = userBody;
