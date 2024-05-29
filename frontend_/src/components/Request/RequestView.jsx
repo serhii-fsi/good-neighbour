@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import { Space, Card, Tag } from "antd";
 
+import dayjs from "dayjs";
 import getRoute from "../../utils/getRoute";
 
 import config from "../../config.json";
+import "./RequestView.css";
 
 /**
  * @param {object} props
@@ -17,16 +20,18 @@ import config from "../../config.json";
  */
 export default function RequestView(props) {
     const { routes } = config;
+    const formattedDate = dayjs(props.reqDate).format("DD.MM.YYYY");
 
     return (
-        <>
-            <p>title: {props.title}</p>
-            <p>authorId (for user profile link): {props.authorId}</p>
-            <p>name: {props.name}</p>
-            <p>postCode: {props.postCode}</p>
-            <p>reqDate: {props.reqDate}</p>
-            <p>description: {props.description}</p>
-            <p>helpType: {props.helpType}</p>
-        </>
+        <Card className="RequestView__container">
+            <h1>{props.title}</h1>
+            <Space style={{ height: "15px" }} className="RequestView__subheader">
+                <Link to={getRoute(routes.userProfilePage, props.authorId)}>{props.name}</Link>
+                <p style={{ margin: "5px 0" }}>{props.postCode}</p>
+            </Space>
+            <p style={{ margin: "5px 0" }}>On {formattedDate} All Day</p>
+            <p style={{ margin: "10px 0" }}>{props.description}</p>
+            <Tag style={{ padding: "2px 10px" }}>{props.helpType}</Tag>
+        </Card>
     );
 }
