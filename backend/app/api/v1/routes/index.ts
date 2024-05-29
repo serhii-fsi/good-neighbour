@@ -30,6 +30,7 @@ router.get("/api/help-requests/:help_request_id/help-offers", helpOffersControll
 router.post("/api/users/:user_id/help-offers", helpOffersController.create);
 router.patch("/api/users/:user_id/help-offers", helpOffersController.update);
 router.get("/api/users/:user_id/help-offers", helpOffersController.getByUserId);
+router.delete("/api/help-requests/:help_request_id/help-offers", helpOffersController.remove);
 
 // * Types
 router.get("/api/help-types", typesController.getAll);
