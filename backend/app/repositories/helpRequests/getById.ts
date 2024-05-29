@@ -1,12 +1,65 @@
 import db from "../../db/connection";
 
-import { HelpRequest } from "../../db/seeds/data/types/data.types";
+export const getById = async (id: number): Promise<any> => {
 
-export const getById = async (id: number): Promise<HelpRequest> => {
-    const { rows } = await db.query(
-        "SELECT help_requests.id, title, author_id, help_type_id, help_requests.description, created_at, req_date, status, users.first_name, users.last_name, users.post_code, help_types.name, users.latitude, users.longitude FROM help_requests LEFT JOIN users on users.id = help_requests.author_id LEFT JOIN help_types on help_types.id = help_requests.help_type_id WHERE help_requests.id = $1",
+    const helpRequestOffers = await db.query(
+        `SELECT
+            users.id AS user_id,
+            users.first_name,
+            users.last_name,
+            users.address,
+            users.postcode,
+            users.phone_number,
+            users.additional_contacts,
+            help_offers.status,
+            help_offers.helper_id,
+            help_offers.help_request_id
+
+        FROM
+            help_offers
+        LEFT JOIN
+            users
+        ON
+            help_offers.helper_id = users.id
+        WHERE 
+            help_offers.help_request_id = 10` ,
+
+        []
+    );
+    const helpRequestOffersRows = helpRequestOffers.rows;
+
+    const helpRequest = await db.query(
+        `SELECT
+        users.id,
+        users.first_name,
+        users.last_name,
+        users.postcode,
+        help_requests.author_id,
+        help_requests.id AS help_request_id,
+        help_requests.title,
+        help_requests.description,
+        help_requests.created_at,
+        help_requests.req_date,
+        help_requests.status,
+        help_requests.help_type_id,
+        help_types.name
+
+        FROM
+            help_requests
+        LEFT JOIN
+            users
+        ON
+            users.id = help_requests.author_id
+        LEFT JOIN
+            help_types
+        ON
+            help_types.id = help_requests.help_type_id
+        WHERE 
+            help_requests.id = $1` ,
+
         [id]
     );
+    const request = helpRequest.rows;
 
-    return rows[0];
+    return { request, helpRequestOffersRows };
 };

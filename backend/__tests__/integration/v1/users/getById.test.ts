@@ -27,7 +27,7 @@ describe("getUserById", () => {
             first_name: "Irwin",
             last_name: "Howe",
             about: expect.any(String),
-            post_code: expect.any(String),
+            postcode: expect.any(String),
             phone_number: "01281 97323",
             additional_contacts: expect.any(String),
             help_radius: 551,

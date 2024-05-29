@@ -61,7 +61,7 @@ export const getAll = async (req: Request, res: Response, next: NextFunction) =>
  *           type: string
  *         status:
  *           type: string
- *         post_code:
+ *         postcode:
  *           type: string
  *         name:
  *           type: integer

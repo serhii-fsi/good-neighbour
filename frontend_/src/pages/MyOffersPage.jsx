@@ -3,7 +3,7 @@ import objectsArrayToLookupObj from "../utils/objectsArrayToLookupObj";
 import NavTop from "../components/NavTop/NavTop";
 import CardsList from "../components/CardsList/CardsList";
 import RequestCard from "../components/RequestCard/RequestCard";
-import OfferStatus from "../components/OfferStatus/OfferStatus";
+import Status from "../components/Status/Status";
 
 export default function MyOffersPage() {
     // Read from the AuthContext
@@ -83,7 +83,7 @@ export default function MyOffersPage() {
         },
         {
             request: {
-                id: 5,
+                id: 9,
                 title: "Garden Maintenance Volunteer",
                 help_type: "Shopping",
                 description:
@@ -91,6 +91,64 @@ export default function MyOffersPage() {
                 created_at: "2024-10-07T14:48:00.000Z",
                 req_date: "2024-10-12T00:00:00.000Z",
                 status: "active",
+            },
+            requester: {
+                id: 7,
+                first_name: "James",
+                last_name: "Dou",
+                post_code: "L1 4JF",
+            },
+            offers: [
+                {
+                    // My offer
+                    status: "accepted",
+                    helper: {
+                        id: 2, // My id
+                        first_name: "My First Name",
+                        last_name: "My Last Name",
+                    },
+                },
+            ],
+        },
+        {
+            request: {
+                id: 5,
+                title: "Garden Maintenance Volunteer",
+                help_type: "Shopping",
+                description:
+                    "Hey there! I'm James, and I could use some help with maintaining my garden. I have a large garden that needs regular weeding, planting, and general upkeep. If you enjoy gardening and can offer a few hours over the weekend, I would really appreciate your assistance.",
+                created_at: "2024-10-07T14:48:00.000Z",
+                req_date: "2024-10-12T00:00:00.000Z",
+                status: "closed",
+            },
+            requester: {
+                id: 7,
+                first_name: "James",
+                last_name: "Dou",
+                post_code: "L1 4JF",
+            },
+            offers: [
+                {
+                    // My offer
+                    status: "accepted",
+                    helper: {
+                        id: 2, // My id
+                        first_name: "My First Name",
+                        last_name: "My Last Name",
+                    },
+                },
+            ],
+        },
+        {
+            request: {
+                id: 8,
+                title: "Garden Maintenance Volunteer",
+                help_type: "Shopping",
+                description:
+                    "Hey there! I'm James, and I could use some help with maintaining my garden. I have a large garden that needs regular weeding, planting, and general upkeep. If you enjoy gardening and can offer a few hours over the weekend, I would really appreciate your assistance.",
+                created_at: "2024-10-07T14:48:00.000Z",
+                req_date: "2024-10-12T00:00:00.000Z",
+                status: "completed",
             },
             requester: {
                 id: 7,
@@ -122,13 +180,14 @@ export default function MyOffersPage() {
                         key={card.request.id}
                         title={card.request.title}
                         name={card.requester.first_name + " " + card.requester.last_name}
-                        postCode={card.requester.post_code}
+                        postCode={card.requester.postcode}
                         reqDate={card.request.reqDate}
                         description={card.request.description}
                         helpType={card.request.help_type}
                     >
-                        <OfferStatus
-                            currentUserId={myId}
+                        <Status
+                            isHelper={true}
+                            authUserId={myId}
                             requestStatus={card.request.status}
                             requestOffers={card.offers}
                         />

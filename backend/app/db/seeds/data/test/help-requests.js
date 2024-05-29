@@ -26,7 +26,7 @@ const helpRequestsData =
         "description": "Caelum consequuntur cupiditas clarus absconditus vinco sol. Surgo vallum eveniet sub. Aveho velut adversus caveo addo comitatus volubilis stella thema.",
         "created_at": "2024-05-22T09:31:54.596Z",
         "req_date": "2024-05-23T10:27:31.575Z",
-        "status": "agreed"
+        "status": "active"
     },
     {
         "title": "vir",
@@ -35,7 +35,7 @@ const helpRequestsData =
         "description": "Iusto earum cenaculum audeo amo. Corroboro depraedor comprehendo creator utpote. Qui doloribus ambulo angelus numquam adamo ex vinco cotidie.",
         "created_at": "2024-05-22T05:41:01.374Z",
         "req_date": "2024-05-23T04:13:54.380Z",
-        "status": "agreed"
+        "status": "active"
     },
     {
         "title": "vado",
@@ -44,7 +44,7 @@ const helpRequestsData =
         "description": "Occaecati curiositas degusto calculus. Vorax complectus inventore distinctio esse victoria bellicus. Confero ipsa vulgivagus doloremque tantillus sortitus cena auctor.",
         "created_at": "2024-05-21T12:28:19.301Z",
         "req_date": "2024-05-23T05:55:21.036Z",
-        "status": "agreed"
+        "status": "active"
     },
     {
         "title": "vir",
@@ -71,7 +71,7 @@ const helpRequestsData =
         "description": "Deprecator tracto adimpleo velut ocer accusantium accusantium ventus cubo deinde. Delinquo usitas tabgo talio vomica somnus absque accedo depono tersus. Vesper spiculum coruscus damno commemoro tyrannus quibusdam degusto sto tot.",
         "created_at": "2024-05-22T11:08:12.794Z",
         "req_date": "2024-05-22T15:07:44.507Z",
-        "status": "agreed"
+        "status": "active"
     },
     {
         "title": "summa",
@@ -80,7 +80,7 @@ const helpRequestsData =
         "description": "Quod vinculum solitudo corpus vita distinctio brevis strenuus. Benevolentia beatae acidus truculenter conitor canonicus quisquam amplexus varius. Cetera ambitus denuncio voro vir testimonium cohaero celebrer.",
         "created_at": "2024-05-21T13:51:10.801Z",
         "req_date": "2024-05-22T18:58:29.188Z",
-        "status": "agreed"
+        "status": "active"
     },
     {
         "title": "sit",
@@ -89,7 +89,7 @@ const helpRequestsData =
         "description": "Tenax sol vester ea. Defetiscor vestigium vulgivagus nesciunt stabilis canto depulso peccatus adsidue dolorum. Sunt veritas adipiscor utique cupiditas.",
         "created_at": "2024-05-21T16:21:47.306Z",
         "req_date": "2024-05-23T05:19:07.552Z",
-        "status": "agreed"
+        "status": "active"
     }
 ]
 
