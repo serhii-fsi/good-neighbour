@@ -4,8 +4,12 @@ import { AuthContext } from "../context/auth-context";
 import NavTop from "../components/NavTop/NavTop";
 import Request from "../components/Request/Request";
 import Status from "../components/Status/Status";
+import OfferStatus from "../components/Status/OfferStatus";
 import OfferControl from "../components/OfferControl/OfferControl";
 import ContactCard from "../components/ContactCard/ContactCard";
+import RequestOffersList from "../components/RequestOffersList/RequestOffersList";
+import RequestControl from "../components/RequestControl/RequestControl";
+import RequestOfferControl from "../components/RequestOfferControl/RequestOfferControl";
 
 export default function RequestPage() {
     const { user } = useContext(AuthContext); // user.id === 1
@@ -16,7 +20,7 @@ export default function RequestPage() {
         request: {
             id: 3,
             title: "Help Needed for Grocery Shopping",
-            author_id: 9,
+            author_id: 1,
             help_type: "Shopping",
             description:
                 "Hi! I'm Sarah, and I need assistance with grocery shopping once a week. Due to a recent injury, I am unable to carry heavy items. If you have a couple of hours to spare on a Monday or Thursday morning, your help would be greatly appreciated!",
@@ -25,7 +29,7 @@ export default function RequestPage() {
             status: "active",
         },
         requester: {
-            id: 5,
+            id: 1,
             first_name: "Sarah",
             last_name: "Johnson",
             postcode: "SW1A 1AA",
@@ -34,6 +38,7 @@ export default function RequestPage() {
             // I can receive all offers for my request
             {
                 status: "accepted",
+                // status: "active",
                 helper: {
                     id: 9,
                     first_name: "David",
@@ -101,8 +106,8 @@ export default function RequestPage() {
             // and other offer only with "accepted" status
             {
                 // Other helper's offer
-                // status: "accepted",
-                status: "active",
+                status: "accepted",
+                // status: "active",
                 helper: {
                     id: 9,
                     first_name: "David",
@@ -123,6 +128,7 @@ export default function RequestPage() {
     };
 
     const requestData = requestDataForHelper;
+    // const requestData = requestDataForRequester;
 
     const isHelper = user.id !== requestData.request.author_id;
     const isRequester = !isHelper;
@@ -130,6 +136,9 @@ export default function RequestPage() {
     let content;
 
     if (isHelper) {
+        const offerControlOnOfferHelp = () => {};
+        const offerControlOnWithdrawHelp = () => {};
+
         content = (
             <>
                 <Request
@@ -151,9 +160,7 @@ export default function RequestPage() {
                     postcode={requestData.requester.postcode}
                     phoneNumber={requestData.requester.phone_number}
                     additionalContacts={requestData.requester.additional_contacts}
-                >
-                    [Button]
-                </ContactCard>
+                />
                 <Status
                     isHelper={true}
                     authUserId={user.id}
@@ -164,12 +171,18 @@ export default function RequestPage() {
                     authUserId={user.id}
                     requestStatus={requestData.request.status}
                     requestOffers={requestData.offers}
+                    onOfferHelp={offerControlOnOfferHelp}
+                    onWithdrawHelp={offerControlOnWithdrawHelp}
                 />
             </>
         );
     }
 
     if (isRequester) {
+        const requestControlOnClose = () => {};
+        const requestControlOnEdit = () => {};
+        const requestControlOnCompleted = () => {};
+
         content = (
             <>
                 <Request
@@ -188,6 +201,49 @@ export default function RequestPage() {
                     requestStatus={requestData.request.status}
                     requestOffers={requestData.offers}
                 />
+                <RequestControl
+                    authUserId={user.id}
+                    requestStatus={requestData.request.status}
+                    requestOffers={requestData.offers}
+                    onClose={requestControlOnClose}
+                    onEdit={requestControlOnEdit}
+                    onCompleted={requestControlOnCompleted}
+                />
+                <RequestOffersList>
+                    {requestData.offers
+                        .filter((offer) => offer.status !== "declined")
+                        .map((offer) => {
+                            return (
+                                <ContactCard
+                                    key={offer.helper.id}
+                                    userId={offer.helper.id}
+                                    fullName={
+                                        offer.helper.first_name + " " + offer.helper.last_name
+                                    }
+                                    address={offer.helper.address}
+                                    postcode={offer.helper.postcode}
+                                    phoneNumber={offer.helper.phone_number}
+                                    additionalContacts={offer.helper.additional_contacts}
+                                >
+                                    <OfferStatus offerStatus={offer.status} />
+
+                                    <RequestOfferControl
+                                        offerStatus={offer.status}
+                                        requestOffers={requestData.offers}
+                                        onDecline={() => {
+                                            /* Code */
+                                        }}
+                                        onAccept={() => {
+                                            /* Code */
+                                        }}
+                                        onCancel={() => {
+                                            /* Code */
+                                        }}
+                                    />
+                                </ContactCard>
+                            );
+                        })}
+                </RequestOffersList>
             </>
         );
     }
