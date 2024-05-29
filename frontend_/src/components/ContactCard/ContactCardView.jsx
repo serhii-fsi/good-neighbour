@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 
-import { Card } from "antd";
+import { Card, Space, Descriptions } from "antd";
 
 import config from "../../config.json";
 import getRoute from "../../utils/getRoute";
+
+import "./ContactCardView.css";
 
 /**
  * @param {object} props
@@ -19,15 +21,27 @@ export default function ContactCardView(props) {
     const { routes } = config;
 
     return (
-        <Card
-            title={props.fullName}
-            extra={<Link to={getRoute(routes.userProfilePage, props.userId)}>Profile</Link>}
-        >
-            <p>{props.address}</p>
-            <p>{props.postcode}</p>
-            <p>{props.phoneNumber}</p>
-            <p>{props.additionalContacts}</p>
-            {props.children ? <p>{props.children}</p> : null}
-        </Card>
+        <>
+            <Space direction="vertical" className="ContactCardView__container">
+                <Card
+                    style={{ width: "90vw" }}
+                    title={
+                        <Link to={getRoute(routes.userProfilePage, props.userId)}>
+                            {props.fullName}
+                        </Link>
+                    }
+                >
+                    <Descriptions>
+                        <Descriptions.Item label="Address">{props.address}</Descriptions.Item>
+                        <Descriptions.Item label="Postcode">{props.postcode}</Descriptions.Item>
+                        <Descriptions.Item label="Phone">{props.phoneNumber}</Descriptions.Item>
+                        <Descriptions.Item label="Additional">
+                            {props.additionalContacts}
+                        </Descriptions.Item>
+                    </Descriptions>
+                    {props.children ? <p>{props.children}</p> : null}
+                </Card>
+            </Space>
+        </>
     );
 }

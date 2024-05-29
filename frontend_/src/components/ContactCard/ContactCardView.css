@@ -1,0 +1,13 @@
+.ContactCardView__container a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.ContactCardView__container {
+    width: 100vw;
+    align-items: center;
+}
+
+.ContactCardView__container td {
+    padding-bottom: 0 !important;
+}
