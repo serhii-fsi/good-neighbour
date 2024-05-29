@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import { Card } from "antd";
 
-import config from "../..//config.json";
+import config from "../../config.json";
 import getRoute from "../../utils/getRoute";
 
 import "./RequestCardView.css";

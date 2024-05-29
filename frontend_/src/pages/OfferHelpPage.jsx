@@ -37,19 +37,20 @@ export default function OfferHelpPage() {
             <NavTop title={"Offer Help"} logo={"Good Neighbour"} />
             <FilterForm helpTypes={helpTypes} setSearchParams={setSearchParams} />
             <CardsList>
-                {helpRequestsCards &&
-                    helpRequestsCards.map((card) => (
-                        <RequestCard
-                            key={card.request.id}
-                            requestId={card.request.id}
-                            title={card.request.title}
-                            name={card.requester.first_name + " " + card.requester.last_name}
-                            postCode={card.requester.postcode}
-                            reqDate={card.request.reqDate}
-                            description={card.request.description}
-                            helpType={card.request.help_type}
-                        ></RequestCard>
-                    ))}
+                {helpRequestsCards?.length > 0
+                    ? helpRequestsCards.map((card) => (
+                          <RequestCard
+                              key={card.request.id}
+                              requestId={card.request.id}
+                              title={card.request.title}
+                              name={card.requester.first_name + " " + card.requester.last_name}
+                              postCode={card.requester.postcode}
+                              reqDate={card.request.reqDate}
+                              description={card.request.description}
+                              helpType={card.request.help_type}
+                          ></RequestCard>
+                      ))
+                    : []}
             </CardsList>
         </>
     );

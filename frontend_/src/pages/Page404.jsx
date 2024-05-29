@@ -39,6 +39,9 @@ export default function Page404() {
             <li style={{ padding: "10px" }}>
                 <Link to={getRoute(routes.userProfilePage, 3)}>userProfilePage</Link>
             </li>
+            <li style={{ padding: "10px" }}>
+                <Link to={getRoute(routes.loginPage)}>loginPage</Link>
+            </li>
         </ul>
     );
 }

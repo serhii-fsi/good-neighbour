@@ -1,12 +1,12 @@
 import UserProfileView from "./UserProfileView";
 
 /**
- *
  * @param {object} props.user
+ * @param {function} props.logout
  * @returns
  */
 
-const UserProfile = ({ user }) => {
+const UserProfile = (props) => {
     // Fields will be changed by the dynamic data
     const fields = [
         {
@@ -42,7 +42,14 @@ const UserProfile = ({ user }) => {
         console.log("User profile edit btn clicked");
     };
 
-    return <UserProfileView fields={fields} username={user.username} handleClick={handleClick} />;
+    return (
+        <UserProfileView
+            fields={fields}
+            user={props.user}
+            handleClick={handleClick}
+            logout={props.logout}
+        />
+    );
 };
 
 export default UserProfile;

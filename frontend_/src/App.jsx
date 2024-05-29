@@ -10,6 +10,7 @@ import RequestPage from "./pages/RequestPage";
 import MyOffersPage from "./pages/MyOffersPage";
 import MyRequestsPage from "./pages/MyRequestsPage";
 import SignUpPage from "./pages/SignUpPage";
+import LoginPage from "./pages/LoginPage";
 import UserProfileEditPage from "./pages/UserProfileEditPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import Page404 from "./pages/Page404";
@@ -37,6 +38,7 @@ function App() {
                     <Route path={routes.myOffersPage.path} element={<MyOffersPage />} />
                     <Route path={routes.myRequestsPage.path} element={<MyRequestsPage />} />
                     <Route path={routes.signUpPage.path} element={<SignUpPage />} />
+                    <Route path={routes.loginPage.path} element={<LoginPage />} />
                     <Route
                         path={routes.userProfileEditPage.path}
                         element={<UserProfileEditPage />}

@@ -21,7 +21,7 @@ const Menu = () => {
             key: 1,
             label: (
                 <Link to={routes.userProfilePage.path}>
-                    {user.username ? user.username : "Profile"}
+                    {user.username ? `${user.first_name}  ${user.last_name}` : "Profile"}
                 </Link>
             ),
             icon: <UserOutlined />,

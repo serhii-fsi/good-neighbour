@@ -38,6 +38,7 @@ export default function MyOffersPage() {
                 {helpOfferCards.map((card) => (
                     <RequestCard
                         key={card.request.id}
+                        requestId={card.request.id}
                         title={card.request.title}
                         name={card.requester.first_name + " " + card.requester.last_name}
                         postCode={card.requester.postcode}
