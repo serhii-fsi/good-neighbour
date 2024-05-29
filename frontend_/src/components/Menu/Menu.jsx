@@ -16,12 +16,13 @@ import config from "../../config.json";
 const Menu = () => {
     const { routes } = config;
     const { user } = useContext(AuthContext);
+
     const items = [
         {
             key: 1,
             label: (
                 <Link to={routes.userProfilePage.path}>
-                    {user.username ? `${user.first_name}  ${user.last_name}` : "Profile"}
+                    {user ? `${user.first_name}  ${user.last_name}` : "Profile"}
                 </Link>
             ),
             icon: <UserOutlined />,
