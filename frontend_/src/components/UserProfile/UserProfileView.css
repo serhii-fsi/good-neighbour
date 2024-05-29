@@ -7,5 +7,6 @@
 }
 
 .UserProfileView__button {
-    text-align: end;
+    display: flex;
+    justify-content: space-between;
 }

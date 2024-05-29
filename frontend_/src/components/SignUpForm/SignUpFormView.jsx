@@ -13,7 +13,7 @@ const SignUpFormView = ({ userProfileData, handleFormChange, handleSubmit }) => 
             <h2>SIGN UP</h2>
             <Form
                 layout="vertical"
-                size="large"
+                size="middle"
                 initialValues={userProfileData}
                 onValuesChange={handleFormChange}
                 labelCol={{
@@ -23,6 +23,13 @@ const SignUpFormView = ({ userProfileData, handleFormChange, handleSubmit }) => 
                     span: 14,
                 }}
             >
+                <Form.Item
+                    label="Username"
+                    name="username"
+                    rules={[{ required: true, message: "Please provide username" }]}
+                >
+                    <Input placeholder="Enter your first name" />
+                </Form.Item>
                 <Form.Item
                     label="First Name"
                     name="first_name"
@@ -36,6 +43,47 @@ const SignUpFormView = ({ userProfileData, handleFormChange, handleSubmit }) => 
                     rules={[{ required: true, message: "Please provide last name" }]}
                 >
                     <Input placeholder="Enter your last name" />
+                </Form.Item>
+                <Form.Item
+                    label="Password"
+                    name="password"
+                    hasFeedback
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please provide password",
+                        },
+                    ]}
+                >
+                    <Input
+                        minLength={8}
+                        type="password"
+                        placeholder="Must contain at least 8 characters"
+                    />
+                </Form.Item>
+                <Form.Item
+                    label="Confirm Password"
+                    name="password2"
+                    dependencies={["password"]}
+                    hasFeedback
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please confirm password",
+                        },
+                        ({ getFieldValue }) => ({
+                            validator(_, value) {
+                                if (!value || getFieldValue("password") === value) {
+                                    return Promise.resolve();
+                                }
+                                return Promise.reject(
+                                    new Error("The new password does not match!")
+                                );
+                            },
+                        }),
+                    ]}
+                >
+                    <Input minLength={8} type="password" placeholder="Passwords must match" />
                 </Form.Item>
                 <Form.Item
                     label="Description"

@@ -6,11 +6,11 @@ import UserProfile from "../components/UserProfile/UserProfile";
 import { AuthContext } from "../context/auth-context";
 
 export default function UserProfilePage() {
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     return (
         <>
             <NavTop title={"My Profile"} isRootComponent={false} />
-            <UserProfile user={user} />
+            <UserProfile user={user} logout={logout} />
         </>
     );
 }

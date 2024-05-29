@@ -2,7 +2,13 @@ import { useState } from "react";
 
 import SignUpFormView from "./SignUpFormView";
 
-const SignUpForm = () => {
+/**
+ *
+ * @param {function} props.createUser
+ * @returns
+ */
+
+const SignUpForm = (props) => {
     const [userProfileData, setUserProfileData] = useState({
         username: null,
         email: null,
@@ -23,11 +29,11 @@ const SignUpForm = () => {
     };
 
     const handleSubmit = () => {
-        const { first_name, last_name, about, address, postcode } = userProfileData;
-        const requiredFields = [first_name, last_name, about, address, postcode];
+        const { first_name, last_name, about, address, postcode, username } = userProfileData;
+        const requiredFields = [first_name, last_name, about, address, postcode, username];
 
         if (requiredFields.every((field) => !!field)) {
-            console.log("User data has been submitted" + userProfileData);
+            props.createUser(userProfileData);
         }
     };
     return (
