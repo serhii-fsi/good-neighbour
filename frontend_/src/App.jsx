@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
-
 import OfferHelpPage from "./pages/OfferHelpPage";
 import RequestCreatePage from "./pages/RequestCreatePage";
 import RequestEditPage from "./pages/RequestEditPage";
@@ -16,7 +15,6 @@ import UserProfilePage from "./pages/UserProfilePage";
 import Page404 from "./pages/Page404";
 
 import { useAuth } from "./hooks/useAuth";
-
 import { AuthContext } from "./context/auth-context";
 import { HelpTypesProvider } from "./context/help-types";
 
