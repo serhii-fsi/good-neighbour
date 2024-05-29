@@ -3,7 +3,6 @@ import NavBottomView from "./NavBottomView";
 
 const NavLink = ({ to, children, matchExact = false, matchPattern }) => {
     const location = useLocation();
-    // const matchPattern = "/help-request/:help_request_id";
     const isActive = matchExact
         ? location.pathname === to
         : matchPattern

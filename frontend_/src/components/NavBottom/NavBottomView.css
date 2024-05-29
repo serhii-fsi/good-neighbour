@@ -1,12 +1,3 @@
-/* footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between, center;
-    align-items: center;
-} */
-
 .NavBottomView__footer {
     position: fixed;
     bottom: 0;
