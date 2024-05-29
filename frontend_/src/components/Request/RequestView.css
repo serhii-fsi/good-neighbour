@@ -1,3 +1,6 @@
+.RequestView__container {
+    border-bottom: none;
+}
 .RequestView__container a {
     text-decoration: underline;
 }
