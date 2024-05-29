@@ -1,0 +1,7 @@
+.SignUpFormView__container {
+    padding: 2rem;
+}
+
+.SignUpFormView__container .UserProfileFormView__btnContainer {
+    text-align: center;
+}
