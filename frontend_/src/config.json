@@ -17,6 +17,7 @@
         "myOffersPage": { "path": "/my-help-offers", "params": [] },
         "myRequestsPage": { "path": "/my-help-requests", "params": [] },
         "signUpPage": { "path": "/sign-up", "params": [] },
+        "loginPage": { "path": "/login", "params": [] },
         "userProfileEditPage": { "path": "/user-profile/edit", "params": [] },
         "userProfilePage": { "path": "/user-profile/:user_id", "params": [":user_id"] }
     }

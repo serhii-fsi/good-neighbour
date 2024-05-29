@@ -10,14 +10,18 @@ import SmartButton from "../SmartButton/SmartButton";
  * @param {array} props.fields
  * @param {string} props.username
  * @param {function} props.handleClick
- *
+ * @param {function} props.logout
  */
 
-const UserProfileView = ({ fields, username, handleClick }) => {
+const UserProfileView = ({ fields, user, handleClick, logout }) => {
     return (
         <div className="UserProfileView__container">
             <Descriptions
-                title={<div style={{ textAlign: "center" }}>{username}</div>}
+                title={
+                    <div
+                        style={{ textAlign: "center" }}
+                    >{`${user.first_name} ${user.last_name}`}</div>
+                }
                 layout="vertical"
                 column={1}
             >
@@ -42,6 +46,7 @@ const UserProfileView = ({ fields, username, handleClick }) => {
                 </Descriptions.Item>
             </Descriptions>
             <div className="UserProfileView__button">
+                <SmartButton onClick={logout}>Log Out</SmartButton>
                 <SmartButton onClick={handleClick}>Edit</SmartButton>
             </div>
         </div>

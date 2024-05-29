@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
 import OfferHelpPage from "./pages/OfferHelpPage";
@@ -9,6 +9,7 @@ import RequestPage from "./pages/RequestPage";
 import MyOffersPage from "./pages/MyOffersPage";
 import MyRequestsPage from "./pages/MyRequestsPage";
 import SignUpPage from "./pages/SignUpPage";
+import LoginPage from "./pages/LoginPage";
 import UserProfileEditPage from "./pages/UserProfileEditPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import Page404 from "./pages/Page404";
@@ -23,26 +24,39 @@ function App() {
     const { routes } = config;
     const { isLoggedIn, user, login, logout } = useAuth();
 
+    let currentRoutes;
+
+    if (isLoggedIn) {
+        currentRoutes = (
+            <>
+                <Route path={routes.offerHelpPage.path} element={<OfferHelpPage />} />
+                <Route path={routes.requestCreatePage.path} element={<RequestCreatePage />} />
+                <Route path={routes.requestEditPage.path} element={<RequestEditPage />} />
+                <Route path={routes.requestPage.path} element={<RequestPage />} />
+                <Route path={routes.myOffersPage.path} element={<MyOffersPage />} />
+                <Route path={routes.myRequestsPage.path} element={<MyRequestsPage />} />
+                <Route path={routes.userProfileEditPage.path} element={<UserProfileEditPage />} />
+                <Route path={routes.userProfilePage.path} element={<UserProfilePage />} />
+                <Route path="*" element={<Navigate to={routes.offerHelpPage} />} />
+                <Route path={"*"} element={<Page404 />} />
+            </>
+        );
+    } else {
+        currentRoutes = (
+            <>
+                <Route path={routes.offerHelpRootPage.path} element={<Page404 />} />
+                <Route path={routes.signUpPage.path} element={<SignUpPage />} />
+                <Route path={routes.loginPage.path} element={<LoginPage />} />
+                <Route path="*" element={<Navigate to={routes.loginPage.path} />} />
+                <Route path={"*"} element={<Page404 />} />
+            </>
+        );
+    }
+
     return (
         <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
             <HelpTypesProvider>
-                <Routes>
-                    <Route path={routes.offerHelpRootPage.path} element={<Page404 />} />
-                    <Route path={routes.offerHelpPage.path} element={<OfferHelpPage />} />
-                    <Route path={routes.requestCreatePage.path} element={<RequestCreatePage />} />
-                    <Route path={routes.requestEditPage.path} element={<RequestEditPage />} />
-                    <Route path={routes.requestPage.path} element={<RequestPage />} />
-                    <Route path={routes.myOffersPage.path} element={<MyOffersPage />} />
-                    <Route path={routes.myRequestsPage.path} element={<MyRequestsPage />} />
-                    <Route path={routes.signUpPage.path} element={<SignUpPage />} />
-                    <Route
-                        path={routes.userProfileEditPage.path}
-                        element={<UserProfileEditPage />}
-                    />
-                    <Route path={routes.userProfilePage.path} element={<UserProfilePage />} />
-
-                    <Route path={"*"} element={<Page404 />} />
-                </Routes>
+                <Routes>{currentRoutes}</Routes>
             </HelpTypesProvider>
         </AuthContext.Provider>
     );

@@ -15,19 +15,18 @@ afterAll(async () => {
     await db.end();
 });
 
-describe("update HelpOffer as helper", () => {
+describe("update HelpOffer as help request author", () => {
     test("200 - PATCH: Responds with an updated help offer status,", async () => {
         const helpOfferBody: Partial<HelpOffer> = {
-            status: "accepted",
-            help_request_id: 2
+            status: "active",
         };
         const {
             body: { updatedHelpOffer },
-        } = await request(app).patch("/api/users/10/help-offers").send(helpOfferBody).expect(200);
+        } = await request(app).patch("/api/help-requests/10/help-offers/7").send(helpOfferBody).expect(200);
         expect(updatedHelpOffer).toMatchObject({
-            helper_id: 10,
-            help_request_id: 2,
-            status: "accepted"
+            helper_id: 7,
+            help_request_id: 10,
+            status: "active"
         });
     });
 });
