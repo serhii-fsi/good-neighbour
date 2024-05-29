@@ -22,13 +22,19 @@ export default function RequestOfferControl(props) {
         { acceptedOffer: null }
     );
 
-    const output = { isDeclineButton: null, isAcceptButton: null, isCancelButton: null };
+    const output = {
+        isDeclineButton: null,
+        isAcceptButton: null,
+        isAcceptDisabledButton: false,
+        isCancelButton: null,
+    };
 
     if (props.offerStatus === "declined") {
         // no buttons
     } else if (props.offerStatus === "active") {
         output.isDeclineButton = true;
-        if (!acceptedOffer) output.isAcceptButton = true;
+        output.isAcceptButton = true;
+        if (acceptedOffer) output.isAcceptDisabledButton = true;
     } else if (props.offerStatus === "accepted") {
         output.isDeclineButton = true;
         output.isCancelButton = true;

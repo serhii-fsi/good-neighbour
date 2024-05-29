@@ -1,3 +1,5 @@
+import SmartButton from "../SmartButton/SmartButton";
+
 /**
  * @param {object} props
  * @param {boolean} props.isOfferHelpButton
@@ -8,8 +10,16 @@
 export default function OfferControlView(props) {
     return (
         <>
-            {props.isOfferHelpButton ? "[OfferHelpButton]" : ""} <br />
-            {props.isWithdrawHelpButton ? "[WithdrawHelpButton]" : ""} <br />
+            {props.isOfferHelpButton ? (
+                <SmartButton onClick={props.onOfferHelp} type="primary">
+                    Offer Help
+                </SmartButton>
+            ) : null}
+            {props.isWithdrawHelpButton ? (
+                <SmartButton onClick={props.onWithdrawHelp} type="default">
+                    Withdraw Help
+                </SmartButton>
+            ) : null}
         </>
     );
 }

@@ -10,6 +10,7 @@ import ContactCard from "../components/ContactCard/ContactCard";
 import RequestOffersList from "../components/RequestOffersList/RequestOffersList";
 import RequestControl from "../components/RequestControl/RequestControl";
 import RequestOfferControl from "../components/RequestOfferControl/RequestOfferControl";
+import Row from "../components/Row/Row";
 
 export default function RequestPage() {
     const { user } = useContext(AuthContext); // user.id === 1
@@ -106,8 +107,8 @@ export default function RequestPage() {
             // and other offer only with "accepted" status
             {
                 // Other helper's offer
-                status: "accepted",
-                // status: "active",
+                // status: "accepted",
+                status: "active",
                 helper: {
                     id: 9,
                     first_name: "David",
@@ -117,6 +118,7 @@ export default function RequestPage() {
             {
                 // My offer
                 status: "active",
+                // status: "accepted",
                 // status: "declined",
                 helper: {
                     id: 1, // My id
@@ -127,8 +129,8 @@ export default function RequestPage() {
         ],
     };
 
-    const requestData = requestDataForHelper;
-    // const requestData = requestDataForRequester;
+    // const requestData = requestDataForHelper;
+    const requestData = requestDataForRequester;
 
     const isHelper = user.id !== requestData.request.author_id;
     const isRequester = !isHelper;
@@ -161,19 +163,21 @@ export default function RequestPage() {
                     phoneNumber={requestData.requester.phone_number}
                     additionalContacts={requestData.requester.additional_contacts}
                 />
-                <Status
-                    isHelper={true}
-                    authUserId={user.id}
-                    requestStatus={requestData.request.status}
-                    requestOffers={requestData.offers}
-                />
-                <OfferControl
-                    authUserId={user.id}
-                    requestStatus={requestData.request.status}
-                    requestOffers={requestData.offers}
-                    onOfferHelp={offerControlOnOfferHelp}
-                    onWithdrawHelp={offerControlOnWithdrawHelp}
-                />
+                <Row justify="flex-end" gap="middle">
+                    <Status
+                        isHelper={true}
+                        authUserId={user.id}
+                        requestStatus={requestData.request.status}
+                        requestOffers={requestData.offers}
+                    />
+                    <OfferControl
+                        authUserId={user.id}
+                        requestStatus={requestData.request.status}
+                        requestOffers={requestData.offers}
+                        onOfferHelp={offerControlOnOfferHelp}
+                        onWithdrawHelp={offerControlOnWithdrawHelp}
+                    />
+                </Row>
             </>
         );
     }
@@ -201,14 +205,16 @@ export default function RequestPage() {
                     requestStatus={requestData.request.status}
                     requestOffers={requestData.offers}
                 />
-                <RequestControl
-                    authUserId={user.id}
-                    requestStatus={requestData.request.status}
-                    requestOffers={requestData.offers}
-                    onClose={requestControlOnClose}
-                    onEdit={requestControlOnEdit}
-                    onCompleted={requestControlOnCompleted}
-                />
+                <Row justify="flex-end" gap="middle">
+                    <RequestControl
+                        authUserId={user.id}
+                        requestStatus={requestData.request.status}
+                        requestOffers={requestData.offers}
+                        onClose={requestControlOnClose}
+                        onEdit={requestControlOnEdit}
+                        onCompleted={requestControlOnCompleted}
+                    />
+                </Row>
                 <RequestOffersList>
                     {requestData.offers
                         .filter((offer) => offer.status !== "declined")
@@ -225,21 +231,22 @@ export default function RequestPage() {
                                     phoneNumber={offer.helper.phone_number}
                                     additionalContacts={offer.helper.additional_contacts}
                                 >
-                                    <OfferStatus offerStatus={offer.status} />
-
-                                    <RequestOfferControl
-                                        offerStatus={offer.status}
-                                        requestOffers={requestData.offers}
-                                        onDecline={() => {
-                                            /* Code */
-                                        }}
-                                        onAccept={() => {
-                                            /* Code */
-                                        }}
-                                        onCancel={() => {
-                                            /* Code */
-                                        }}
-                                    />
+                                    <Row justify="flex-end" gap="middle">
+                                        <OfferStatus offerStatus={offer.status} />
+                                        <RequestOfferControl
+                                            offerStatus={offer.status}
+                                            requestOffers={requestData.offers}
+                                            onDecline={() => {
+                                                /* Code */
+                                            }}
+                                            onAccept={() => {
+                                                /* Code */
+                                            }}
+                                            onCancel={() => {
+                                                /* Code */
+                                            }}
+                                        />
+                                    </Row>
                                 </ContactCard>
                             );
                         })}

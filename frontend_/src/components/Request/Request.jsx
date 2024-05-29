@@ -11,6 +11,6 @@ import RequestView from "./RequestView";
  * @param {string} props.description
  * @param {string} props.helpType
  */
-export default function RequestCard(props) {
+export default function Request(props) {
     return <RequestView {...props} />;
 }
