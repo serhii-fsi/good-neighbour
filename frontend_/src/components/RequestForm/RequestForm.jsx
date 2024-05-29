@@ -3,20 +3,18 @@ import { useState } from "react";
 import RequestFormView from "./RequestFormView";
 
 /**
+ * @param {string} props.formType
+ * @param {object} props.requestFormData
+ * @param {function} props.setRequestFormData
  * @param {function} props.createHelpRequest
+ * @param {function} props.editHelpRequest
+ *
  */
 
 const RequestForm = (props) => {
-    const [requestFormData, setRequestFormData] = useState({
-        title: null,
-        req_date: null,
-        help_type: null,
-        description: "",
-    });
-
     const handleFormChange = (changedValues, allValues) => {
         const { title, req_date, description, help_type } = allValues;
-        setRequestFormData(() => {
+        props.setRequestFormData(() => {
             return {
                 title: title,
                 req_date: req_date?.$d.toISOString(),
@@ -27,15 +25,17 @@ const RequestForm = (props) => {
     };
 
     const handleSubmit = () => {
-        const isFormValid = Object.values(requestFormData).every((input) => !!input);
-        if (isFormValid) {
-            props.createHelpRequest(requestFormData);
+        const isFormValid = Object.values(props.requestFormData).every((input) => !!input);
+        if (isFormValid && props.formType === "create") {
+            props.createHelpRequest();
+        } else if (isFormValid && props.formType === "edit") {
+            props.editHelpRequest();
         }
     };
 
     return (
         <RequestFormView
-            requestFormData={requestFormData}
+            requestFormData={props.requestFormData}
             handleFormChange={handleFormChange}
             handleSubmit={handleSubmit}
         />

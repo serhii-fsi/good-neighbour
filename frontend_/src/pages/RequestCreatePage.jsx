@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAxios } from "../hooks/useAxios";
@@ -9,16 +10,22 @@ import config from "../config.json";
 import getRoute from "../utils/getRoute";
 
 export default function RequestCreatePage() {
+    const [requestFormData, setRequestFormData] = useState({
+        title: null,
+        req_date: null,
+        help_type: null,
+        description: "",
+    });
     const { isLoading, sendRequest, contextHolder } = useAxios();
     const { routes } = config;
     const navigate = useNavigate();
 
-    const createHelpRequest = async (body) => {
+    const createHelpRequest = async () => {
         try {
             const { newHelpRequest } = await sendRequest(
                 `${import.meta.env.VITE_API_URL}/api/help-requests`,
                 "POST",
-                body
+                requestFormData
             );
 
             if (!isLoading && newHelpRequest) {
@@ -30,7 +37,12 @@ export default function RequestCreatePage() {
         <>
             {contextHolder}
             <NavTop title={"Create Help Request"} isRootComponent={false} />
-            <RequestForm createHelpRequest={createHelpRequest} />
+            <RequestForm
+                formType={"create"}
+                requestFormData={requestFormData}
+                setRequestFormData={setRequestFormData}
+                createHelpRequest={createHelpRequest}
+            />
         </>
     );
 }

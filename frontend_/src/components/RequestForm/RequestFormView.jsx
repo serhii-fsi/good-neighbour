@@ -48,7 +48,7 @@ const RequestFormView = ({ requestFormData, handleFormChange, handleSubmit }) =>
                 </Form.Item>
                 <Form.Item valuePropName="checked">
                     <TimePicker style={{ marginRight: "1rem" }} disabled />
-                    <Switch checkedChildren="All day" defaultChecked value={true} />
+                    <Switch checkedChildren="All day" disabled defaultChecked value={true} />
                 </Form.Item>
                 <Form.Item
                     name="help_type"

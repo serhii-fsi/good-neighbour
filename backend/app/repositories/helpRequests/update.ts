@@ -6,7 +6,16 @@ export const update = async (
     help_request_id: string,
     helpRequestBody: any
 ): Promise<HelpRequest> => {
-    const { title, help_type_id, description, req_date } = helpRequestBody;
+    const { title, help_type, description, req_date } = helpRequestBody;
+
+    // Extra query to get type name soon will be deleted
+    const helpTypeName = await db.query(
+        `SELECT id, name FROM help_types
+        WHERE help_types.name= $1`,
+        [help_type]
+    );
+
+    const help_type_id = helpTypeName.rows[0].id;
 
     const updates = [];
     const values = [];
