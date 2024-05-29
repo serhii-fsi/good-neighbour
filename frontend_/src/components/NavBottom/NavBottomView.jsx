@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import config from "../../config.json";
 import { Menu } from "antd";
 import {
     SearchOutlined,
@@ -8,38 +8,40 @@ import {
 } from "@ant-design/icons";
 import "./NavBottomView.css";
 
-const NavBottomView = ({ routes }) => {
+const NavBottomView = ({ NavLink }) => {
+    const { routes } = config;
+
     const menuItems = [
         {
             key: "1",
             label: (
-                <Link id="navlink1" to={routes.offerHelpPage.path}>
-                    <SearchOutlined style={{ width: "50px" }} />
-                </Link>
+                <NavLink id="navlink1" to={routes.offerHelpPage.path} matchExact>
+                    <SearchOutlined />
+                </NavLink>
             ),
         },
         {
             key: "2",
             label: (
-                <Link id="navlink2" to={routes.myOffersPage.path}>
-                    <ToTopOutlined style={{ width: "50px" }} />
-                </Link>
+                <NavLink id="navlink2" to={routes.myOffersPage.path} matchExact>
+                    <ToTopOutlined />
+                </NavLink>
             ),
         },
         {
             key: "3",
             label: (
-                <Link id="navlink3" to={routes.requestCreatePage.path}>
-                    <PlusCircleOutlined style={{ width: "50px" }} />
-                </Link>
+                <NavLink id="navlink3" to={routes.requestCreatePage.path} matchExact>
+                    <PlusCircleOutlined />
+                </NavLink>
             ),
         },
         {
             key: "4",
             label: (
-                <Link id="navlink4" to={routes.myRequestsPage.path}>
-                    <VerticalAlignBottomOutlined style={{ width: "50px" }} />
-                </Link>
+                <NavLink id="navlink4" to={routes.myRequestsPage.path} matchExact>
+                    <VerticalAlignBottomOutlined />
+                </NavLink>
             ),
         },
     ];

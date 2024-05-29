@@ -1,7 +1,53 @@
-.NavBottomView__footer {
+/* footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     display: flex;
+    justify-content: space-between, center;
+    align-items: center;
+} */
+
+.NavBottomView__footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #e8e8e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+#navbottom {
+    display: flex;
     justify-content: space-around;
+    width: 100%;
+    background: transparent;
+    border: none;
+}
+
+#navbottom .ant-menu-item {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+#navbottom .ant-menu-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 24px;
+    color: inherit;
+    height: 50px;
+}
+
+.active {
+    color: #1677ff;
+}
+
+.inactive {
+    color: black;
 }
