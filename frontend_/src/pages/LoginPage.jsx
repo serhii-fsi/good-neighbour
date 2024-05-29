@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../context/auth-context";
 import { useAxios } from "../hooks/useAxios";
@@ -11,7 +12,7 @@ const LoginPage = () => {
     const { sendRequest, isLoading, contextHolder } = useAxios();
 
     const handleLogin = (userData) => {
-        const currentUser = allUsers.find((user) => user.username === userData.username);
+        const currentUser = allUsers?.find((user) => user.username === userData.username);
         if (currentUser) {
             login(currentUser);
         }
