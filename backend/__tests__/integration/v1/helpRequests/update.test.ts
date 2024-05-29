@@ -27,30 +27,14 @@ describe("updateHelpRequest", () => {
         const {
             body: { updatedHelpRequest },
         } = await request(app).patch("/api/help-requests/3").send(helpRequestBody).expect(200);
-        console.log(updatedHelpRequest)
         expect(updatedHelpRequest).toMatchObject({
             title: "A pint of milk please",
-            // help_type: "Shopping",
+            help_type: "Shopping",
             description: "Can I just get a pint of gold top please?",
             req_date: expect.any(String),
-            status: "active"
-            // author_id: number,
-            // created_at: "date now",
+            status: "active",
+            author_id: 10,
+            created_at: expect.any(String),
         });
     });
 });
-
-// title: string,
-// req_date: UTC date,
-// help_type: string,
-// description: string, 
-// status: ENUM help_request type
-
-// id: number,
-//            title: string",
-//            help_type: string,
-//            author_id: number,
-//            description: string,
-//            req_date: "2024-05-21T17:31:15.482Z",
-//            created_at: "date now",
-//            status: "active",

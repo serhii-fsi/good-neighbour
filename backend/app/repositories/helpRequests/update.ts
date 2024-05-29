@@ -6,7 +6,7 @@ export const update = async (
     help_request_id: string,
     helpRequestBody: any
 ): Promise<HelpRequest> => {
-
+    
     const { title, help_type, description, req_date } = helpRequestBody;
 
     // Extra query to get type name soon will be deleted
@@ -70,52 +70,49 @@ export const update = async (
         );
         return rows[0];
     }
-    const query = `
-    UPDATE
-        help_requests SET ${updates},
-        status =$5
-    WHERE
-        id = ${help_request_id}
-    RETURNING
-        id,
-        title,
-        author_id,
-        help_type_id,
-        description,
-        req_date,
-        status,
-        created_at`;
 
+    const query = `
+        UPDATE
+            help_requests SET ${updates},
+            status =$${values.length}
+        WHERE
+            id = ${help_request_id}
+        RETURNING
+            id,
+            title,
+            author_id,
+            help_type_id,
+            description,
+            req_date,
+            status,
+            created_at`;
+            
     const viewQuery = `
-    SELECT
-        help_requests.id,
-        title, author_id,
-        help_type_id,
-        help_requests.description,
-        created_at,
-        help_requests.req_date,
-        status,
-        users.first_name,
-        users.last_name,
-        users.postcode,
-        help_types.name,
-        users.longitude,
-        users.latitude
-    FROM
-        help_requests
-    LEFT JOIN
-        users
-    ON
-        users.id = help_requests.author_id
-    LEFT JOIN
-        help_types
-    ON
-        help_types.id = help_requests.help_type_id
-    WHERE
-        help_requests.id = ${help_request_id}`;
+        SELECT
+            help_requests.id,
+            title,
+            author_id,
+            help_types.name AS help_type,
+            help_requests.description,
+            created_at,
+            help_requests.req_date,
+            status
+        FROM
+            help_requests
+        LEFT JOIN
+            users
+        ON
+            users.id = help_requests.author_id
+        LEFT JOIN
+            help_types
+        ON
+            help_types.id = help_requests.help_type_id
+        WHERE
+            help_requests.id = ${help_request_id}`;
 
     const { rows } = await db.query(query, values);
+
     const viewRows = await db.query(viewQuery);
-    
+
     return viewRows.rows[0];
 };
