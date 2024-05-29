@@ -1,4 +1,4 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, matchPath } from "react-router-dom";
 import NavBottomView from "./NavBottomView";
 
 const NavLink = ({ to, children, matchExact = false, matchPattern }) => {
@@ -10,9 +10,9 @@ const NavLink = ({ to, children, matchExact = false, matchPattern }) => {
         : location.pathname.startsWith(to);
 
     return (
-        <div className={isActive ? "active" : "inactive"}>
+        <li className={isActive ? "active" : "inactive"}>
             <Link to={to}>{children}</Link>
-        </div>
+        </li>
     );
 };
 

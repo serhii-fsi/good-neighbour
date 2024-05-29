@@ -11,7 +11,6 @@ import MyRequestsPage from "./pages/MyRequestsPage";
 import SignUpPage from "./pages/SignUpPage";
 import UserProfileEditPage from "./pages/UserProfileEditPage";
 import UserProfilePage from "./pages/UserProfilePage";
-import NavBottom from "./components/NavBottom/NavBottom";
 import Page404 from "./pages/Page404";
 
 import { AuthContext } from "./context/auth-context";
@@ -38,7 +37,6 @@ function App() {
 
                 <Route path={"*"} element={<Page404 />} />
             </Routes>
-            <NavBottom />
         </AuthContext.Provider>
     );
 }
