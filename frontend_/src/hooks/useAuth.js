@@ -6,7 +6,7 @@ import getRoute from "../utils/getRoute";
 
 export const useAuth = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [user, setUser] = useState({ username: "Irwin Howe", id: 1 });
+    const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const { routes } = config;
 
