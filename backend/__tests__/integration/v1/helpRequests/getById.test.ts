@@ -16,24 +16,21 @@ afterAll(async () => {
 describe("GET /api/help-requests/:help_request_id", () => {
     test("200 - GET responds with a singular help request associated with the help_request_id", async () => {
         const {
-            body: { helpRequest },
-        } = await request(app).get("/api/help-requests/1").expect(200);
-        expect(helpRequest).toMatchObject({
-            id: 1,
-            title: "decet",
-            author_id: 10,
-            help_type_id: 5,
-            description:
-                "Temptatio demonstro acidus tredecim decerno hic antea veniam. Illum comedo sordeo uterque quod quae sortitus denuncio aperte curto. Adipiscor officia illo cuius agnosco spoliatio autus.",
-            created_at: expect.any(String),
-            req_date: expect.any(String),
-            status: "active",
-            first_name: "Makenna",
-            last_name: "Wuckert",
-            postcode: expect.any(String),
-            name: "DIY",
-            latitude: 51.54144,
-            longitude: 0.07218,
+            body: { helpRequestById } ,
+        } = await request(app).get("/api/help-requests/10").expect(200);
+        expect(helpRequestById
+            .request.id).toBe(10);
+        expect(helpRequestById.request.title).toBe("sit");
+        expect(helpRequestById.request).toHaveProperty("description");
+        expect(helpRequestById.request).toHaveProperty("created_at");
+        expect(helpRequestById.request).toHaveProperty("req_date");
+        expect(helpRequestById.request.status).toBe("active");
+        expect(helpRequestById.offers[0]).toHaveProperty("status");
+        expect(helpRequestById.offers[0]).toHaveProperty("helper");
+        helpRequestById.offers.forEach((off: any) => {
+            expect(off.helper.id).toBe(7);
+            expect(off.helper.first_name).toBe("Gloria");
+            expect(off.helper.last_name).toBe("McKenzie");
         });
     });
 
