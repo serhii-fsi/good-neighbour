@@ -6,17 +6,21 @@ export const update = async (
     help_request_id: string,
     helpRequestBody: any
 ): Promise<HelpRequest> => {
+
     const { title, help_type, description, req_date } = helpRequestBody;
 
     // Extra query to get type name soon will be deleted
     const helpTypeName = await db.query(
-        `SELECT id, name FROM help_types
-        WHERE help_types.name= $1`,
+        `SELECT
+            help_types.id
+        FROM
+            help_types
+        WHERE
+            help_types.name= $1`,
         [help_type]
     );
 
     const help_type_id = helpTypeName.rows[0].id;
-
     const updates = [];
     const values = [];
 
@@ -33,7 +37,7 @@ export const update = async (
         updates.push(`req_date =$${values.push(req_date)}`);
     }
     values.push("active");
-
+    
     if (updates.length === 0) {
         const { rows } = await db.query(
             `SELECT
@@ -112,5 +116,6 @@ export const update = async (
 
     const { rows } = await db.query(query, values);
     const viewRows = await db.query(viewQuery);
+    
     return viewRows.rows[0];
 };

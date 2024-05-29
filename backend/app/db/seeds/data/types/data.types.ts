@@ -51,3 +51,7 @@ export interface HelpType {
     name: string;
     description?: string;
 }
+
+export interface PatchHelpRequest extends HelpRequest {
+    help_type: string;
+   }
