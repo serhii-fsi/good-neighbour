@@ -18,6 +18,8 @@ import Row from "../components/Row/Row";
 
 export default function RequestPage() {
     let [requestData, setRequestData] = useState(null);
+    const [refreshCounter, setRefreshCounter] = useState(0);
+
     const { sendRequest, isLoading, error, contextHolder } = useAxios();
 
     const { user } = useContext(AuthContext); // user.id === 1
@@ -46,19 +48,24 @@ export default function RequestPage() {
                 "POST",
                 { help_request_id: help_request_id, status: "active" }
             );
-
-            console.log(updateHelpOffer);
+            setRefreshCounter((prev) => prev + 1);
         } catch (error) {}
     };
 
-    console.log(user.id, requestData);
+    const deleteHelpOffer = async () => {
+        try {
+            await sendRequest(
+                `${import.meta.env.VITE_API_URL}/api/help-requests/${help_request_id}/help-offers`,
+                "DELETE"
+            );
+            setRefreshCounter((prev) => prev + 1);
+        } catch (error) {}
+    };
+
+    // console.log(user.id, requestData);
     useEffect(() => {
         fetchHelpRequest();
-    }, []);
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+    }, [refreshCounter]);
 
     if (!requestData) {
         return <div>No data available</div>;
@@ -189,7 +196,9 @@ export default function RequestPage() {
         const offerControlOnOfferHelp = () => {
             createHelpOffer();
         };
-        const offerControlOnWithdrawHelp = () => {};
+        const offerControlOnWithdrawHelp = () => {
+            deleteHelpOffer();
+        };
 
         content = (
             <>
