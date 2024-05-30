@@ -12,6 +12,7 @@ import {
 import { AuthContext } from "../../context/auth-context";
 import MenuView from "./MenuView";
 import config from "../../config.json";
+import getRoute from "../../utils/getRoute";
 
 const Menu = () => {
     const { routes } = config;
@@ -21,7 +22,7 @@ const Menu = () => {
         {
             key: 1,
             label: (
-                <Link to={routes.userProfilePage.path}>
+                <Link to={getRoute(routes.userProfilePage, user.id)}>
                     {user ? `${user.first_name}  ${user.last_name}` : "Profile"}
                 </Link>
             ),
