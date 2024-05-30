@@ -310,42 +310,53 @@ export default function RequestPage() {
                         onCompleted={requestControlOnCompleted}
                     />
                 </Row>
-                <RequestOffersList>
-                    {requestData.offers
-                        .filter((offer) => offer.status !== "declined")
-                        .map((offer) => {
-                            return (
-                                <ContactCard
-                                    key={offer.helper.id}
-                                    userId={offer.helper.id}
-                                    fullName={
-                                        offer.helper.first_name + " " + offer.helper.last_name
-                                    }
-                                    address={offer.helper.address}
-                                    postcode={offer.helper.postcode}
-                                    phoneNumber={offer.helper.phone_number}
-                                    additionalContacts={offer.helper.additional_contacts}
-                                >
-                                    <Row justify="flex-end" align="center" gap="middle">
-                                        <OfferStatus offerStatus={offer.status} />
-                                        <RequestOfferControl
-                                            offerStatus={offer.status}
-                                            requestOffers={requestData.offers}
-                                            onDecline={() => {
-                                                updateHelpOfferStatus(offer.helper.id, "declined");
-                                            }}
-                                            onAccept={() => {
-                                                updateHelpOfferStatus(offer.helper.id, "accepted");
-                                            }}
-                                            onCancel={() => {
-                                                updateHelpOfferStatus(offer.helper.id, "active");
-                                            }}
-                                        />
-                                    </Row>
-                                </ContactCard>
-                            );
-                        })}
-                </RequestOffersList>
+                {requestData.offers?.length ? (
+                    <RequestOffersList>
+                        {requestData.offers
+                            .filter((offer) => offer.status !== "declined")
+                            .map((offer) => {
+                                return (
+                                    <ContactCard
+                                        key={offer.helper.id}
+                                        userId={offer.helper.id}
+                                        fullName={
+                                            offer.helper.first_name + " " + offer.helper.last_name
+                                        }
+                                        address={offer.helper.address}
+                                        postcode={offer.helper.postcode}
+                                        phoneNumber={offer.helper.phone_number}
+                                        additionalContacts={offer.helper.additional_contacts}
+                                    >
+                                        <Row justify="flex-end" align="center" gap="middle">
+                                            <OfferStatus offerStatus={offer.status} />
+                                            <RequestOfferControl
+                                                offerStatus={offer.status}
+                                                requestOffers={requestData.offers}
+                                                onDecline={() => {
+                                                    updateHelpOfferStatus(
+                                                        offer.helper.id,
+                                                        "declined"
+                                                    );
+                                                }}
+                                                onAccept={() => {
+                                                    updateHelpOfferStatus(
+                                                        offer.helper.id,
+                                                        "accepted"
+                                                    );
+                                                }}
+                                                onCancel={() => {
+                                                    updateHelpOfferStatus(
+                                                        offer.helper.id,
+                                                        "active"
+                                                    );
+                                                }}
+                                            />
+                                        </Row>
+                                    </ContactCard>
+                                );
+                            })}
+                    </RequestOffersList>
+                ) : null}
             </>
         );
     }
