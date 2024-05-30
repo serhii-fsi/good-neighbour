@@ -20,8 +20,7 @@ export default function MyRequestsPage() {
             const { userHelpRequests } = await sendRequest(
                 `${import.meta.env.VITE_API_URL}/api/users/${user.id}/help-requests`
             );
-            // should be:
-            // setMyRequestCardObjects(userHelpRequests);
+            // setMyRequestsCardObjects(userHelpRequests);
             setMyRequestsCardObjects(
                 [
                     {
