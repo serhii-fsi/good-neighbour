@@ -34,7 +34,7 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
 
 /**
  * @swagger
- * /api/help-requests/:help-request_id:
+ * /api/help-requests/{help-request_id}:
  *   patch:
  *     summary: Updates a help request based on help_request_id
  *     tags: [Help Requests]
@@ -45,6 +45,14 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
  *             schema:
  *               $ref: '#/components/schemas/HelpRequest'
  *     description: Update a help request with the corresponding id.
+ *     parameters:
+ *       - name: user_id
+ *         in: path
+ *         description: ID of help request to return
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           format: int64
  *     responses:
  *       200:
  *         description: Responds with an updated help request with the corresponding id

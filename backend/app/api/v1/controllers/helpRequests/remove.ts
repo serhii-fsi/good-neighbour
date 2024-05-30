@@ -14,11 +14,19 @@ export const remove = async (req: Request, res: Response, next: NextFunction) =>
 
 /**
  * @swagger
- * /api/help-requests/:help-request_id:
+ * /api/help-requests/{help-request_id}:
  *   delete:
  *     summary: Removes a help request based on help_request_id
  *     tags: [Help Requests]
  *     description: Removes a help request with the corresponding id.
+ *     parameters:
+ *       - name: help_request_id
+ *         in: path
+ *         description: ID of help request to return
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           format: int64
  *     responses:
  *       204:
  *         description: Removes a help request with the corresponding id
