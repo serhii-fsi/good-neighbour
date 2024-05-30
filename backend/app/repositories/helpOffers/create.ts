@@ -13,6 +13,7 @@ export const create = async (helper_id: number, helpOfferBody: HelpOffer): Promi
 
     const values = [helper_id, help_request_id, status];
 
+    console.log({ helper_id, help_request_id, status });
     const { rows } = await db.query(query, values);
 
     return rows[0];

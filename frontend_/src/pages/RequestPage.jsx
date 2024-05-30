@@ -18,7 +18,8 @@ import Row from "../components/Row/Row";
 
 export default function RequestPage() {
     let [requestData, setRequestData] = useState(null);
-    const { sendRequest, isLoading, error } = useAxios();
+    const { sendRequest, isLoading, error, contextHolder } = useAxios();
+
     const { user } = useContext(AuthContext); // user.id === 1
     const { help_request_id } = useParams();
 
@@ -38,16 +39,19 @@ export default function RequestPage() {
         } catch (error) {}
     };
 
-    const updateHelpOffer = async () => {
+    const createHelpOffer = async () => {
         try {
             const { updateHelpOffer } = await sendRequest(
-                `${import.meta.env.VITE_API_URL}/api/help-requests/${help_request_id}/help-offers`,
-                "PATCH",
-                {}
+                `${import.meta.env.VITE_API_URL}/api/users/${user.id}/help-offers`,
+                "POST",
+                { help_request_id: help_request_id, status: "active" }
             );
+
+            console.log(updateHelpOffer);
         } catch (error) {}
     };
 
+    console.log(user.id, requestData);
     useEffect(() => {
         fetchHelpRequest();
     }, []);
@@ -182,7 +186,9 @@ export default function RequestPage() {
     let content;
 
     if (isHelper) {
-        const offerControlOnOfferHelp = () => {};
+        const offerControlOnOfferHelp = () => {
+            createHelpOffer();
+        };
         const offerControlOnWithdrawHelp = () => {};
 
         content = (
@@ -308,6 +314,7 @@ export default function RequestPage() {
 
     return (
         <>
+            {contextHolder}
             <NavTop title={"Help Request"} isRootComponent={false} />
             <div className="S-pl-m S-pr-m S-pb-l">{content}</div>
             <NavBottom />
