@@ -25,6 +25,9 @@ export const getById = async (id: number, authId: number) => {
         first_name: request[0].first_name,
         last_name: request[0].last_name,
         postcode: request[0].postcode,
+        additional_contacts: request[0].additional_contacts,
+        phone_number: request[0].phone_number,
+        address: request[0].address,
     };
 
     const offersArr: any = [];
@@ -40,6 +43,9 @@ export const getById = async (id: number, authId: number) => {
                     postcode: offer.postcode,
                     description: offer.description,
                     additional_contacts: offer.additional_contacts,
+
+                    phone_number: offer.phone_number,
+                    address: offer.address,
                 },
             });
         } else {

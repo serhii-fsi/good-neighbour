@@ -8,6 +8,7 @@
     },
     "scripts": {
         "start": "npm run build && node ./dist/server.js",
+        "startDev": "NODE_ENV=test npx ts-node ./app/server.ts",
         "build": "rimraf ./dist && tsc",
         "start-dev": "NODE_ENV=test npx nodemon",
         "setup-dbs": "psql -f ./app/db/setup.sql",

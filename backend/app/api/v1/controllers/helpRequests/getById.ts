@@ -6,8 +6,10 @@ import { errors } from "../../../../common/errors/errors";
 
 export const getById = async (req: Request, res: Response, next: NextFunction) => {
     const AuthUserId = Number(req.header("X-User-ID"));
+
     try {
         const help_request_id = Number(req.params.help_request_id);
+        console.log(help_request_id);
 
         if (isNaN(help_request_id)) {
             throw new AppError(errors.VALIDATION_ERROR, "Invalid help request id provided");

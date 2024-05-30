@@ -33,6 +33,11 @@ export const getById = async (id: number): Promise<any> => {
         users.first_name,
         users.last_name,
         users.postcode,
+
+        users.address,
+        users.phone_number,
+        users.additional_contacts,
+
         help_requests.author_id,
         help_requests.id AS help_request_id,
         help_requests.title,
