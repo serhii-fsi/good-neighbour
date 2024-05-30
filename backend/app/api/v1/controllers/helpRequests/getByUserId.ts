@@ -21,11 +21,19 @@ export const getByUserId = async (req: Request, res: Response, next: NextFunctio
 
 /**
  * @swagger
- * /api/users/:user_id/help-requests:
+ * /api/users/{user_id}/help-requests:
  *   get:
  *     summary: Gets help requests associated with a user_id
  *     tags: [Help Requests]
  *     description: Retrieves an array of help requests with the corresponding id.
+ *     parameters:
+ *       - name: user_id
+ *         in: path
+ *         description: ID of user to return
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           format: int64
  *     responses:
  *       200:
  *         description: Responds with an array of help requests with the corresponding id

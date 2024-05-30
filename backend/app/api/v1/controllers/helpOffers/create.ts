@@ -29,7 +29,7 @@ export const create = async (req: Request, res: Response, next: NextFunction) =>
 
 /**
  * @swagger
- * /api/users/:user_id/help-offers:
+ * /api/users/{user_id}/help-offers:
  *   post:
  *     summary: Create help offer
  *     tags: [Help Offers]
@@ -40,6 +40,14 @@ export const create = async (req: Request, res: Response, next: NextFunction) =>
  *             schema:
  *               $ref: '#/components/schemas/HelpOffer'
  *     description: Creates a help offer
+ *     parameters:
+ *       - name: user_id
+ *         in: path
+ *         description: ID of user to return
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           format: int64
  *     responses:
  *       201:
  *         description: Responds with a newly created help offer

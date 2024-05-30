@@ -15,7 +15,7 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
 
 /**
  * @swagger
- * /api/users/:user_id:
+ * /api/users/{user_id}:
  *   patch:
  *     summary: Update user
  *     tags: [Users]
@@ -26,6 +26,14 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
  *             schema:
  *               $ref: '#/components/schemas/User'
  *     description: Update a user with corresponding id.
+ *     parameters:
+ *       - name: user_id
+ *         in: path
+ *         description: ID of user to return
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           format: int64
  *     responses:
  *       200:
  *         description: Responds with an updated user by corresponding id

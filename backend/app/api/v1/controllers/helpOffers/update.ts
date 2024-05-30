@@ -15,9 +15,9 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
 
 /**
  * @swagger
- * /api/users/:user_id/help-offers:
+ * /api/users/{user_id}/help-offers:
  *   patch:
- *     summary: Update help-offer
+ *     summary: Update help offer
  *     tags: [Help Offers]
  *     requestBody:
  *         required: true
@@ -26,6 +26,14 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
  *             schema:
  *               $ref: '#/components/schemas/HelpOffer'
  *     description: Update a help offer with a corresponding composit id.
+ *     parameters:
+ *       - name: user_id
+ *         in: path
+ *         description: ID of user to return
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           format: int64
  *     responses:
  *       200:
  *         description: Responds with an updated help offer with a corresponding composit id

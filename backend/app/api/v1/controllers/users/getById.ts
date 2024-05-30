@@ -19,11 +19,19 @@ export const getById = async (req: Request, res: Response, next: NextFunction) =
 
 /**
  * @swagger
- * /api/users/:user_id:
+ * /api/users/{user_id}:
  *   get:
  *     summary: Get user by id
  *     tags: [Users]
  *     description: Retrieve a user with corresponding id.
+ *     parameters:
+ *       - name: user_id
+ *         in: path
+ *         description: ID of user to return
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           format: int64
  *     responses:
  *       200:
  *         description: Responds with a user with corresponding id

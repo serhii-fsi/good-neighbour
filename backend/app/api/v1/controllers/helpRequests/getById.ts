@@ -23,11 +23,19 @@ export const getById = async (req: Request, res: Response, next: NextFunction) =
 
 /**
  * @swagger
- * /api/help-requests/:help_request_id:
+ * /api/help-requests/{help_request_id}:
  *   get:
  *     summary: Get help request by help_id
  *     tags: [Help Requests]
  *     description: Retrieve a help request with the corresponding id.
+ *     parameters:
+ *       - name: help_request_id
+ *         in: path
+ *         description: ID of help request to return
+ *         required: true
+ *         schema:
+ *           type: integer
+ *           format: int64
  *     responses:
  *       200:
  *         description: Responds with a help request with the corresponding id
