@@ -75,6 +75,17 @@ export default function RequestPage() {
         } catch (error) {}
     };
 
+    const updateHelpOfferStatus = async (helperId, state) => {
+        try {
+            const { updatedHelpOffer } = await sendRequest(
+                `${import.meta.env.VITE_API_URL}/api/help-requests/${help_request_id}/help-offers`,
+                "PATCH",
+                { helper_id: helperId, status: state }
+            );
+            setRefreshCounter((prev) => prev + 1);
+        } catch (error) {}
+    };
+
     useEffect(() => {
         fetchHelpRequest();
     }, [refreshCounter]);
@@ -202,7 +213,6 @@ export default function RequestPage() {
     const isHelper = user.id !== requestData.request.author_id;
     const isRequester = !isHelper;
 
-    console.log({ isRequester });
     let content;
 
     if (isHelper) {
@@ -322,13 +332,13 @@ export default function RequestPage() {
                                             offerStatus={offer.status}
                                             requestOffers={requestData.offers}
                                             onDecline={() => {
-                                                /* Code */
+                                                updateHelpOfferStatus(offer.helper.id, "declined");
                                             }}
                                             onAccept={() => {
-                                                /* Code */
+                                                updateHelpOfferStatus(offer.helper.id, "accepted");
                                             }}
                                             onCancel={() => {
-                                                /* Code */
+                                                updateHelpOfferStatus(offer.helper.id, "active");
                                             }}
                                         />
                                     </Row>
