@@ -5,6 +5,11 @@
     background-color: #fff;
     border-top: 1px solid #eaeaea;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1049;
+}
+
+.ant-tooltip {
+    z-index: 1048;
 }
 
 .NavBottomView__ul {

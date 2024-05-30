@@ -8,11 +8,11 @@ import "./RequestOffersListView.css";
  */
 export default function RequestOffersListView(props) {
     return (
-        <>
-            Offers:
-            <Flex className={"RequestOffersListView__container"} gap="30px" vertical align="center">
+        <section className="S-mt-xl S-mb-xl">
+            <Flex className="S-mt-0 S-mb-0" gap="large" vertical align="stretch">
+                <h2 className="F-base F-m F-medium F-black S-mt-0 S-mb-0">Offers</h2>
                 {props.children}
             </Flex>
-        </>
+        </section>
     );
 }
