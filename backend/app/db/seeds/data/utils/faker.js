@@ -49,7 +49,7 @@ function generateUsers() {
             last_name: lastName,
             about: about,
             address: address,
-            post_code: postCode,
+            postcode: postCode,
             phone_number: phoneNumber,
             additional_contacts: additionalContacts,
             help_radius: helpRadius,

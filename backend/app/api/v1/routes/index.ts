@@ -20,15 +20,18 @@ router.post("/api/users", usersController.create);
 // * Help requests
 router.get("/api/help-requests", helpRequestsController.getAll);
 router.get("/api/help-requests/:help_request_id", helpRequestsController.getById);
+router.get("/api/users/:user_id/help-requests", helpRequestsController.getByUserId);
+router.post("/api/help-requests", helpRequestsController.create);
 router.delete("/api/help-requests/:help_request_id", helpRequestsController.remove);
 router.patch("/api/help-requests/:help_request_id", helpRequestsController.update);
-router.post("/api/help-requests", helpRequestsController.create);
-router.get("/api/users/:user_id/help-requests", helpRequestsController.getByUserId);
 
 // * Help Offers
 router.get("/api/help-requests/:help_request_id/help-offers", helpOffersController.getByRequestId);
 router.post("/api/users/:user_id/help-offers", helpOffersController.create);
 router.patch("/api/users/:user_id/help-offers", helpOffersController.update);
+router.patch("/api/help-requests/:help_request_id/help-offers/:helper_id", helpOffersController.requesterUpdate)
+router.get("/api/users/:user_id/help-offers", helpOffersController.getByUserId);
+router.delete("/api/help-requests/:help_request_id/help-offers", helpOffersController.remove);
 
 // * Types
 router.get("/api/help-types", typesController.getAll);

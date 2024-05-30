@@ -17,7 +17,7 @@ export interface User {
     last_name: string;
     about?: string;
     address: string;
-    post_code: string;
+    postcode: string;
     phone_number?: string;
     additional_contacts?: string;
     help_radius: string | number;
@@ -33,7 +33,7 @@ export interface HelpRequest {
     description: string;
     created_at: string;
     req_date: string;
-    post_code?: string;
+    postcode?: string;
     status: string;
 }
 export interface HelpOffer {
@@ -51,3 +51,7 @@ export interface HelpType {
     name: string;
     description?: string;
 }
+
+export interface PatchHelpRequest extends HelpRequest {
+    help_type: string;
+   }

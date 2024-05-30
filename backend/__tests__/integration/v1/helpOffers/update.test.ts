@@ -15,7 +15,7 @@ afterAll(async () => {
     await db.end();
 });
 
-describe("update HelpOffer", () => {
+describe("update HelpOffer as helper", () => {
     test("200 - PATCH: Responds with an updated help offer status,", async () => {
         const helpOfferBody: Partial<HelpOffer> = {
             status: "accepted",

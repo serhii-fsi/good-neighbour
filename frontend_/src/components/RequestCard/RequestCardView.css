@@ -49,3 +49,7 @@
     font-size: 14px;
     border: 2px solid rgba(0, 0, 0, 0.1);
 }
+
+.RequestCardView__Card a {
+    color: inherit;
+}

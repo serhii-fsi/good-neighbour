@@ -9,7 +9,7 @@ const usersData = [
         last_name: "Howe",
         about: "Labore virtus admiratio expedita benevolentia curriculum usitas voveo odio vilitas. Viriliter beatae nobis porro cruentus sufficio cohaero pectus patruus clibanus. Ter crapula thalassinus sumptus tandem torrens amplus sortitus ars pecco.",
         address: "Henniker Rd, London",
-        post_code: "E15 1JP",
+        postcode: "E15 1JP",
         phone_number: "01281 97323",
         additional_contacts:
             "Censura basium carcer. Delicate alius aperiam color virga cruentus traho. Correptius vesper supplanto voluptatum.",
@@ -28,7 +28,7 @@ const usersData = [
         last_name: "Yundt",
         about: "Defleo adeptio pauci dapifer cunabula. Collum viriliter vulticulus. Vesco arx conturbo amiculum.",
         address: "108 Maryland St, London",
-        post_code: "E15 1JD",
+        postcode: "E15 1JD",
         phone_number: "0332 074 9381",
         additional_contacts:
             "Tricesimus thorax adficio spiculum tutis sumptus minus avarus tripudio. Absorbeo desino varius crudelis sperno admiratio sophismata blanditiis demitto conspergo. Spero aeternus uberrime tactus fugit traho.",
@@ -48,7 +48,7 @@ const usersData = [
         last_name: "Stracke",
         about: "Deprimo cibus adficio vito laudantium thesaurus vel quaerat pecto tredecim. Bonus ad vesco consectetur decerno. Deleo cubitum arceo cerno cohors tero thermae absens.",
         address: "59 Chatsworth Rd, London",
-        post_code: "E15 1RB",
+        postcode: "E15 1RB",
         phone_number: "0331 494 4011",
         additional_contacts:
             "Angelus exercitationem utrum hic desipio aestus corroboro vinco ubi. Argentum titulus cattus aedificium caste. Culpa universe molestias.",
@@ -68,7 +68,7 @@ const usersData = [
         last_name: "Cruickshank",
         about: "Vulgo caecus decretum desolo. Triduana trans tollo quia deputo antiquus crapula tribuo fugit adversus. Canonicus aufero subnecto ademptio autus urbanus video.",
         address: "52 Prospect Row, East Village, London",
-        post_code: "E15 1FY",
+        postcode: "E15 1FY",
         phone_number: "013938 31871",
         additional_contacts:
             "Sponte absque ait occaecati benevolentia ullus voluptate averto comprehendo dignissimos. Fugiat cenaculum sto defero coniuratio acceptus pecto tui suscipit voluptates. Vulgus utilis claustrum crebro cognomen curtus tantillus eos candidus conitor.",
@@ -87,7 +87,7 @@ const usersData = [
         last_name: "Larkin",
         about: "Admoneo clam vulgaris censura sufficio constans tempus. Commodi impedit cernuus confugo usus. Utpote defluo careo calcar sit xiphias urbanus stabilis.",
         address: "2 Angel Ln, London",
-        post_code: "E15 1FF",
+        postcode: "E15 1FF",
         phone_number: "0800 999 3156",
         additional_contacts:
             "Dignissimos acsi approbo odit colligo ulterius. Laborum voro ago cupressus vox coerceo astrum vae voluptate sulum. Capto anser comes argumentum speciosus vae rerum.",
@@ -107,7 +107,7 @@ const usersData = [
         last_name: "Abbott",
         about: "Apto viriliter conforto clibanus decens depromo. Conitor capio adhuc. Complectus thorax contra argentum stips.",
         address: "Carpenters Rd, London",
-        post_code: "E15 2JL",
+        postcode: "E15 2JL",
         phone_number: "016977 8943",
         additional_contacts:
             "Cerno contego averto thorax surgo tubineus brevis sopor doloremque. Adflicto vis conturbo deleniti concedo officia unde impedit villa error. Aqua ultra conor abundans aeneus tepesco absconditus.",
@@ -126,7 +126,7 @@ const usersData = [
         last_name: "McKenzie",
         about: "Aequus vos aeternus cinis atque voco. Balbus cibo amplitudo cubicularis. Aestas spargo vesper suadeo minus consequuntur valens victus.",
         address: "6, Hyett Terrace, Honour Lea Ave, Chobham Manor, London",
-        post_code: "E20 1HH",
+        postcode: "E20 1HH",
         phone_number: "0800 424 2536",
         additional_contacts:
             "Uberrime crux clarus contego accedo curso adulatio autem. Vulnus clamo charisma perspiciatis vociferor adeo sophismata vere. Nesciunt carcer eligendi quae.",
@@ -146,7 +146,7 @@ const usersData = [
         last_name: "Huels",
         about: "Magni quod attonbitus thymbra artificiose aeneus. Arcesso ancilla concedo blanditiis rerum aeternus adfectus. Crux acsi vigilo apparatus.",
         address: "137 N Birkbeck Rd, London",
-        post_code: "E11 4JL",
+        postcode: "E11 4JL",
         phone_number: "0873 288 8696",
         additional_contacts:
             "Cervus ullam sollicito curatio sponte ara amo totam tantillus verto. Una triduana eligendi officiis est calculus. Delinquo vinco agnitio carus arcesso commodo audentia tondeo patrocinor.",
@@ -166,7 +166,7 @@ const usersData = [
         last_name: "Raynor",
         about: "Curvo creptio tubineus tactus soleo thorax. Sint adsidue textus ulterius surgo. Tonsor verto vulpes tergo vicissitudo est ciminatio aeneus coruscus.",
         address: "8 Godbold Rd, London",
-        post_code: "E15 3AL",
+        postcode: "E15 3AL",
         phone_number: "0114 711 0575",
         additional_contacts:
             "Occaecati varius debeo. Veritas adhuc denique. Sol excepturi debilito causa vulnero ascit vae urbanus admoneo.",
@@ -186,7 +186,7 @@ const usersData = [
         last_name: "Wuckert",
         about: "Absconditus studio vitium temeritas spectaculum admoveo. Voro adversus pecto sopor ullus amaritudo soluta bellicus magnam cogito. Vulgivagus defungo soleo angulus officiis carbo.",
         address: "178 Harts Ln, Barking",
-        post_code: "IG11 8NB",
+        postcode: "IG11 8NB",
         phone_number: "056 7311 5442",
         additional_contacts:
             "Apostolus ustilo stella provident voluptates. Solutio carcer tandem comparo assentator deinde. Deprecator sperno debilito taceo corrumpo cavus testimonium.",
