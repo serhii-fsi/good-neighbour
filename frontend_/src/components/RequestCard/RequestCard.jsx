@@ -3,6 +3,7 @@ import RequestCardView from "./RequestCardView";
 /**
  * @param {object} props
  * @param {string} props.title
+ * @param {number} props.authorId
  * @param {string|undefined} props.name
  * @param {string|undefined} props.postCode
  * @param {string} props.reqDate
