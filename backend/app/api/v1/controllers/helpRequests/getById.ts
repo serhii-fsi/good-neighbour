@@ -5,18 +5,17 @@ import { AppError } from "../../../../common/errors/AppError";
 import { errors } from "../../../../common/errors/errors";
 
 export const getById = async (req: Request, res: Response, next: NextFunction) => {
-    const AuthUserId = Number(req.header('X-User-ID'));
+    const AuthUserId = Number(req.header("X-User-ID"));
     try {
         const help_request_id = Number(req.params.help_request_id);
 
         if (isNaN(help_request_id)) {
             throw new AppError(errors.VALIDATION_ERROR, "Invalid help request id provided");
-        };
-        
-        const helpRequestById = await helpRequestsService.getById(help_request_id, AuthUserId);
+        }
 
-        res.status(200).send( helpRequestById );
+        const helpRequest = await helpRequestsService.getById(help_request_id, AuthUserId);
 
+        res.status(200).send({ helpRequest });
     } catch (error) {
         next(error);
     }

@@ -1,4 +1,7 @@
-import { useContext } from "react";
+import { useEffect, useState, useContext } from "react";
+import { useParams } from "react-router-dom";
+
+import { useAxios } from "../hooks/useAxios";
 import { AuthContext } from "../context/auth-context";
 
 import NavTop from "../components/NavTop/NavTop";
@@ -14,10 +17,49 @@ import RequestOfferControl from "../components/RequestOfferControl/RequestOfferC
 import Row from "../components/Row/Row";
 
 export default function RequestPage() {
+    const [requestData, setRequestData] = useState(null);
+    const { sendRequest, isLoading, error } = useAxios();
     const { user } = useContext(AuthContext); // user.id === 1
+    const { help_request_id } = useParams();
 
+    // console.log(help_request_id);
     // Fetch data GET "/api/help-request/:help_request_id"
     // isRequester server returns data like this if authorId === authUserId
+
+    const fetchHelpRequest = async () => {
+        try {
+            const { helpRequest } = await sendRequest(
+                `${import.meta.env.VITE_API_URL}/api/help-requests/${help_request_id}`
+            );
+
+            if (helpRequest) {
+                setRequestData(helpRequest);
+            }
+        } catch (error) {}
+    };
+
+    const updateHelpOffer = async () => {
+        try {
+            const { updateHelpOffer } = await sendRequest(
+                `${import.meta.env.VITE_API_URL}/api/help-requests/${help_request_id}/help-offers`,
+                "PATCH",
+                {}
+            );
+        } catch (error) {}
+    };
+
+    useEffect(() => {
+        fetchHelpRequest();
+    }, []);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (!requestData) {
+        return <div>No data available</div>;
+    }
+
     const requestDataForRequester = {
         request: {
             id: 3,
@@ -132,11 +174,12 @@ export default function RequestPage() {
     };
 
     // const requestData = requestDataForHelper;
-    const requestData = requestDataForRequester;
+    // const requestData = requestDataForRequester;
 
     const isHelper = user.id !== requestData.request.author_id;
     const isRequester = !isHelper;
 
+    console.log("Helper", isHelper);
     let content;
 
     if (isHelper) {
