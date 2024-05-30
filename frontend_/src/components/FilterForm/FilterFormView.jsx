@@ -17,14 +17,13 @@ const FilterFormView = (props) => {
     return (
         <>
             <Collapse
-                className="FilterFormView__container"
                 items={[
                     {
                         key: "1",
                         label: "Filter",
                         children: (
                             <Flex gap="middle" vertical>
-                                <Flex justify="space-between">
+                                <Flex justify="space-between" gap="middle">
                                     <DatePicker
                                         placeholder="From Date"
                                         onChange={props.handleDateFromChange}

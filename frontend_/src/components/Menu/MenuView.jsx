@@ -3,6 +3,8 @@ import React from "react";
 import { MenuOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Space } from "antd";
 
+import "./MenuView.css";
+
 /**
  *
  * @param {object} props
@@ -17,6 +19,7 @@ const MenuView = (props) => {
                     menu={{
                         items,
                     }}
+                    trigger={["click"]}
                     placement="bottomRight"
                 >
                     <Button type="text" icon={<MenuOutlined />}></Button>

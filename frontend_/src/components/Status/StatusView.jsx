@@ -1,3 +1,9 @@
+import { Link } from "react-router-dom";
+
+import { Flex } from "antd";
+
+import "./StatusView.css";
+
 /**
  * @param {object} props
  * @param {string|null} props.greenText
@@ -6,22 +12,27 @@
  * @param {string|null} props.grayBoldText
  * @param {string|null} props.linkText
  * @param {string|null} props.linkPath
- * 
- *            
  */
-import { Link } from "react-router-dom";
-import "./StatusView.css";
-
-
 export default function StatusView(props) {
     return (
         <>
-            {props.greenText ? <p className="greenText">{props.greenText} </p> : null}
-            {props.greenBoldText ? <p className="greenBoldText">{props.greenBoldText} </p> : null}
-            {props.grayText ? <p className="grayText"> {props.grayText} </p> : null}
-            {props.grayBoldText ? <p className="grayBoldText"> {props.grayBoldText}</p> : null}{" "}
-            {props.linkText && props.linkPath ? <Link to = {props.linkPath}>  {props.linkText} </Link> : null}
-            {props.linkPath}
+            {props.greenText ? (
+                <span className="F-base F-xs F-regular F-green">{props.greenText}</span>
+            ) : null}
+            {props.greenBoldText ? (
+                <span className="F-base F-xs F-bold F-green">{props.greenBoldText}</span>
+            ) : null}
+            {props.grayText ? (
+                <span className="F-base F-xs F-regular F-gray">{props.grayText}</span>
+            ) : null}
+            {props.grayBoldText ? (
+                <span className="F-base F-xs F-bold F-gray">{props.grayBoldText}</span>
+            ) : null}{" "}
+            {props.linkText && props.linkPath ? (
+                <Link to={props.linkPath} className="F-base F-xs F-regular F-gray F-underline">
+                    {props.linkText}
+                </Link>
+            ) : null}
         </>
     );
 }

@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
-import { Space, Card, Tag } from "antd";
 
 import dayjs from "dayjs";
-import getRoute from "../../utils/getRoute";
 
 import config from "../../config.json";
+import getRoute from "../../utils/getRoute";
+
+import { Flex, Tag } from "antd";
+
 import "./RequestView.css";
 
 /**
@@ -23,15 +25,26 @@ export default function RequestView(props) {
     const formattedDate = dayjs(props.reqDate).format("DD.MM.YYYY");
 
     return (
-        <Card className="RequestView__container">
-            <h1>{props.title}</h1>
-            <Space style={{ height: "15px" }} className="RequestView__subheader">
-                <Link to={getRoute(routes.userProfilePage, props.authorId)}>{props.name}</Link>
-                <p style={{ margin: "5px 0" }}>{props.postCode}</p>
-            </Space>
-            <p style={{ margin: "5px 0" }}>On {formattedDate} All Day</p>
-            <p style={{ margin: "10px 0" }}>{props.description}</p>
-            <Tag style={{ padding: "2px 10px" }}>{props.helpType}</Tag>
-        </Card>
+        <article className="F-line-m S-mt-l S-mb-m">
+            <h1 className="F-base F-m F-medium F-black S-mt-0 S-mb-m S-pt-0 S-pb-0">
+                {props.title}
+            </h1>
+            <Flex className="S-mb-s" gap="middle">
+                <Link
+                    className="F-base F-s F-regular F-gray F-underline"
+                    to={getRoute(routes.userProfilePage, props.authorId)}
+                >
+                    {props.name}
+                </Link>
+                <p className="F-base F-s F-regular F-gray S-mt-0 S-mb-0">{props.postCode}</p>
+            </Flex>
+            <p className="F-base F-s F-regular F-gray S-mt-0 S-mb-s">On {formattedDate}</p>
+            <p className="F-base F-s F-regular F-black S-mt-0 S-mb-m">{props.description}</p>
+            <Flex gap="middle" justify="flex-start">
+                <Tag className="F-base F-xs F-regular F-black" style={{ padding: "5px 10px" }}>
+                    {props.helpType}
+                </Tag>
+            </Flex>
+        </article>
     );
 }

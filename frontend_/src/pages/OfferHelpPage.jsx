@@ -5,6 +5,7 @@ import { HelpTypesContext } from "../context/help-types";
 import { useAxios } from "../hooks/useAxios";
 
 import NavTop from "../components/NavTop/NavTop";
+import NavBottom from "../components/NavBottom/NavBottom";
 import FilterForm from "../components/FilterForm/FilterForm";
 import CardsList from "../components/CardsList/CardsList";
 import RequestCard from "../components/RequestCard/RequestCard";
@@ -35,23 +36,26 @@ export default function OfferHelpPage() {
     return (
         <>
             <NavTop title={"Offer Help"} logo={"Good Neighbour"} />
-            <FilterForm helpTypes={helpTypes} setSearchParams={setSearchParams} />
-            <CardsList>
-                {helpRequestsCards?.length > 0
-                    ? helpRequestsCards.map((card) => (
-                          <RequestCard
-                              key={card.request.id}
-                              requestId={card.request.id}
-                              title={card.request.title}
-                              name={card.requester.first_name + " " + card.requester.last_name}
-                              postCode={card.requester.postcode}
-                              reqDate={card.request.reqDate}
-                              description={card.request.description}
-                              helpType={card.request.help_type}
-                          ></RequestCard>
-                      ))
-                    : []}
-            </CardsList>
+            <div className="S-pl-m S-pr-m S-pt-l S-pb-l">
+                <FilterForm helpTypes={helpTypes} setSearchParams={setSearchParams} />
+                <CardsList>
+                    {helpRequestsCards?.length > 0
+                        ? helpRequestsCards.map((card) => (
+                              <RequestCard
+                                  key={card.request.id}
+                                  requestId={card.request.id}
+                                  title={card.request.title}
+                                  name={card.requester.first_name + " " + card.requester.last_name}
+                                  postCode={card.requester.postcode}
+                                  reqDate={card.request.reqDate}
+                                  description={card.request.description}
+                                  helpType={card.request.help_type}
+                              ></RequestCard>
+                          ))
+                        : []}
+                </CardsList>
+            </div>
+            <NavBottom />
         </>
     );
 }

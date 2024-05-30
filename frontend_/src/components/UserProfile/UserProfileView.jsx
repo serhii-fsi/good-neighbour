@@ -15,7 +15,7 @@ import SmartButton from "../SmartButton/SmartButton";
 
 const UserProfileView = ({ fields, user, handleClick, logout }) => {
     return (
-        <div className="UserProfileView__container">
+        <div className="">
             <Descriptions
                 title={
                     <div

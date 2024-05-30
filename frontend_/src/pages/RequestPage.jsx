@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/auth-context";
 
 import NavTop from "../components/NavTop/NavTop";
+import NavBottom from "../components/NavBottom/NavBottom";
 import Request from "../components/Request/Request";
 import Status from "../components/Status/Status";
 import OfferStatus from "../components/Status/OfferStatus";
@@ -59,7 +60,8 @@ export default function RequestPage() {
                     address: "London Road, 12",
                     postcode: "SW1A 1AA",
                     phone_number: "073455522",
-                    additional_contacts: "Feel free to call me.",
+                    additional_contacts:
+                        "Feel free to call me. Feel free to call me.Feel free to call me.Feel free to call me.Feel free to call me.Feel free to call me.Feel free to call me.Feel free to call me.Feel free to call me.Feel free to call me.",
                 },
             },
             {
@@ -163,7 +165,7 @@ export default function RequestPage() {
                     phoneNumber={requestData.requester.phone_number}
                     additionalContacts={requestData.requester.additional_contacts}
                 />
-                <Row justify="flex-end" gap="middle">
+                <Row justify="flex-end" align="center" gap="middle" className="S-pt-m S-pb-m">
                     <Status
                         isHelper={true}
                         authUserId={user.id}
@@ -199,12 +201,14 @@ export default function RequestPage() {
                     description={requestData.request.description}
                     helpType={requestData.request.help_type}
                 />
-                <Status
-                    isRequester={true}
-                    authUserId={user.id}
-                    requestStatus={requestData.request.status}
-                    requestOffers={requestData.offers}
-                />
+                <Row justify="flex-end" gap="middle" className="S-pb-s">
+                    <Status
+                        isRequester={true}
+                        authUserId={user.id}
+                        requestStatus={requestData.request.status}
+                        requestOffers={requestData.offers}
+                    />
+                </Row>
                 <Row justify="flex-end" gap="middle">
                     <RequestControl
                         authUserId={user.id}
@@ -231,7 +235,7 @@ export default function RequestPage() {
                                     phoneNumber={offer.helper.phone_number}
                                     additionalContacts={offer.helper.additional_contacts}
                                 >
-                                    <Row justify="flex-end" gap="middle">
+                                    <Row justify="flex-end" align="center" gap="middle">
                                         <OfferStatus offerStatus={offer.status} />
                                         <RequestOfferControl
                                             offerStatus={offer.status}
@@ -258,7 +262,8 @@ export default function RequestPage() {
     return (
         <>
             <NavTop title={"Help Request"} isRootComponent={false} />
-            {content}
+            <div className="S-pl-m S-pr-m S-pb-l">{content}</div>
+            <NavBottom />
         </>
     );
 }

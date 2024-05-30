@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAxios } from "../hooks/useAxios";
 
 import NavTop from "../components/NavTop/NavTop";
+import NavBottom from "../components/NavBottom/NavBottom";
 import RequestForm from "../components/RequestForm/RequestForm";
 
 import config from "../config.json";
@@ -43,6 +44,7 @@ export default function RequestCreatePage() {
                 setRequestFormData={setRequestFormData}
                 createHelpRequest={createHelpRequest}
             />
+            <NavBottom />
         </>
     );
 }

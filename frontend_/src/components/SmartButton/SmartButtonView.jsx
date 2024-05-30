@@ -20,6 +20,7 @@ export default function SmartButtonView(props) {
             danger={props.isDanger}
             onClick={props.onClick}
             shape="round"
+            className="F-base F-xs F-regular"
         >
             {props.children}
         </Button>

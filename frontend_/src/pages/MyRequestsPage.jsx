@@ -1,8 +1,10 @@
 import objectsArrayToLookupObj from "../utils/objectsArrayToLookupObj";
 
 import NavTop from "../components/NavTop/NavTop";
+import NavBottom from "../components/NavBottom/NavBottom";
 import CardsList from "../components/CardsList/CardsList";
 import RequestCard from "../components/RequestCard/RequestCard";
+import Row from "../components/Row/Row";
 import Status from "../components/Status/Status";
 
 export default function MyRequestsPage() {
@@ -192,26 +194,30 @@ export default function MyRequestsPage() {
     return (
         <>
             <NavTop title={"My Help Requests"} isRootComponent={true} />
-
-            <CardsList>
-                {myRequestsCardObjects.map((card) => (
-                    <RequestCard
-                        key={card.request.id}
-                        requestId={card.request.id}
-                        title={card.request.title}
-                        reqDate={card.request.reqDate}
-                        description={card.request.description}
-                        helpType={card.request.help_type}
-                    >
-                        <Status
-                            isRequester={true}
-                            authUserId={myId}
-                            requestStatus={card.request.status}
-                            requestOffers={card.offers}
-                        />
-                    </RequestCard>
-                ))}
-            </CardsList>
+            <div className="S-pl-m S-pr-m S-pb-l">
+                <CardsList>
+                    {myRequestsCardObjects.map((card) => (
+                        <RequestCard
+                            key={card.request.id}
+                            requestId={card.request.id}
+                            title={card.request.title}
+                            reqDate={card.request.reqDate}
+                            description={card.request.description}
+                            helpType={card.request.help_type}
+                        >
+                            <Row justify="flex-end" gap="middle">
+                                <Status
+                                    isRequester={true}
+                                    authUserId={myId}
+                                    requestStatus={card.request.status}
+                                    requestOffers={card.offers}
+                                />
+                            </Row>
+                        </RequestCard>
+                    ))}
+                </CardsList>
+            </div>
+            <NavBottom />
         </>
     );
 }

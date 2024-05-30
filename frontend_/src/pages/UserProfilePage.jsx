@@ -11,11 +11,10 @@ export default function UserProfilePage() {
     return (
         <>
             <NavTop title={"My Profile"} isRootComponent={false} />
-
+            <div className="S-pl-m S-pr-m S-pt-l" style={{ paddingBottom: "150px" }}>
+                <UserProfile user={user} logout={logout} />
+            </div>
             <NavBottom />
-
-            <UserProfile user={user} logout={logout} />
-
         </>
     );
 }
