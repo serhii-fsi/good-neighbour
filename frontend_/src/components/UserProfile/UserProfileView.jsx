@@ -9,11 +9,12 @@ import SmartButton from "../SmartButton/SmartButton";
  *
  * @param {array} props.fields
  * @param {string} props.username
+ * @param {boolean} props.isMyProfile
  * @param {function} props.handleClick
  * @param {function} props.logout
  */
 
-const UserProfileView = ({ fields, user, handleClick, logout }) => {
+const UserProfileView = ({ fields, user, handleClick, logout, isMyProfile }) => {
     return (
         <div className="">
             <Descriptions
@@ -45,10 +46,12 @@ const UserProfileView = ({ fields, user, handleClick, logout }) => {
                     />
                 </Descriptions.Item>
             </Descriptions>
-            <div className="UserProfileView__button">
-                <SmartButton onClick={logout}>Log Out</SmartButton>
-                <SmartButton onClick={handleClick}>Edit</SmartButton>
-            </div>
+            {!isMyProfile ? null : (
+                <div className="UserProfileView__button">
+                    <SmartButton onClick={logout}>Log Out</SmartButton>
+                    <SmartButton onClick={handleClick}>Edit</SmartButton>
+                </div>
+            )}
         </div>
     );
 };
