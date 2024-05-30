@@ -2,31 +2,31 @@ import { Request, Response, NextFunction } from "express";
 
 import * as helpRequestsServices from "../../../../services/helpRequests";
 
-import { getByUserId } from "../../../../services/helpRequests/getByUserId";
 import { AppError } from "../../../../common/errors/AppError";
 import { errors } from "../../../../common/errors/errors";
 
 export const update = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const AuthUserId = Number(req.header("X-User-ID"));
-
         const helpRequestBody = req.body;
         const { help_request_id } = req.params;
-        // checks requests against logged in user id (to test, hardcode AuthUserId -> 10)
-        const requestsByUserId = await getByUserId(AuthUserId);
 
-        if (
-            requestsByUserId.length !== 0 &&
-            requestsByUserId.some((reqObj: any) => reqObj.request.id === Number(help_request_id))
-        ) {
-            const updatedHelpRequest = await helpRequestsServices.update(
-                help_request_id,
-                helpRequestBody
-            );
-            res.status(200).send({ updatedHelpRequest });
-        } else {
+        const requestsByUserId = await helpRequestsServices.getByUserId(AuthUserId);
+
+        if (requestsByUserId.length === 0) {
+            throw new AppError(errors.HELP_REQUEST_NOT_FOUND, "No help request found");
+        }
+
+        // Authorisation validation
+        if (!requestsByUserId.some(({ request }: any) => request.id === Number(help_request_id))) {
             throw new AppError(errors.VALIDATION_ERROR, "User is not authorised");
         }
+
+        const updatedHelpRequest = await helpRequestsServices.update(
+            help_request_id,
+            helpRequestBody
+        );
+        res.status(200).send({ updatedHelpRequest });
     } catch (error) {
         next(error);
     }

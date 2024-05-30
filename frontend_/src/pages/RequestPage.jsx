@@ -1,8 +1,11 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { useAxios } from "../hooks/useAxios";
 import { AuthContext } from "../context/auth-context";
+
+import config from "../config.json";
+import getRoute from "../utils/getRoute";
 
 import NavTop from "../components/NavTop/NavTop";
 import NavBottom from "../components/NavBottom/NavBottom";
@@ -19,13 +22,12 @@ import Row from "../components/Row/Row";
 export default function RequestPage() {
     let [requestData, setRequestData] = useState(null);
     const [refreshCounter, setRefreshCounter] = useState(0);
-
     const { sendRequest, isLoading, error, contextHolder } = useAxios();
-
     const { user } = useContext(AuthContext); // user.id === 1
     const { help_request_id } = useParams();
+    const navigate = useNavigate();
+    const { routes } = config;
 
-    // console.log(help_request_id);
     // Fetch data GET "/api/help-request/:help_request_id"
     // isRequester server returns data like this if authorId === authUserId
 
@@ -62,7 +64,17 @@ export default function RequestPage() {
         } catch (error) {}
     };
 
-    // console.log(user.id, requestData);
+    const updateHelpRequest = async (statusToChange) => {
+        try {
+            const { updatedHelpRequest } = await sendRequest(
+                `${import.meta.env.VITE_API_URL}/api/help-requests/${help_request_id}`,
+                "PATCH",
+                { status: statusToChange }
+            );
+            setRefreshCounter((prev) => prev + 1);
+        } catch (error) {}
+    };
+
     useEffect(() => {
         fetchHelpRequest();
     }, [refreshCounter]);
@@ -190,6 +202,7 @@ export default function RequestPage() {
     const isHelper = user.id !== requestData.request.author_id;
     const isRequester = !isHelper;
 
+    console.log({ isRequester });
     let content;
 
     if (isHelper) {
@@ -247,9 +260,15 @@ export default function RequestPage() {
     }
 
     if (isRequester) {
-        const requestControlOnClose = () => {};
-        const requestControlOnEdit = () => {};
-        const requestControlOnCompleted = () => {};
+        const requestControlOnClose = () => {
+            updateHelpRequest("closed");
+        };
+        const requestControlOnEdit = () => {
+            navigate(getRoute(routes.requestEditPage, help_request_id));
+        };
+        const requestControlOnCompleted = () => {
+            updateHelpRequest("completed");
+        };
 
         content = (
             <>
