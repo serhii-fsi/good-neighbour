@@ -6,21 +6,24 @@ export const update = async (
     help_request_id: string,
     helpRequestBody: any
 ): Promise<HelpRequest> => {
-    
-    const { title, help_type, description, req_date } = helpRequestBody;
+    const { title, help_type, description, req_date, status } = helpRequestBody;
 
-    // Extra query to get type name soon will be deleted
-    const helpTypeName = await db.query(
-        `SELECT
-            help_types.id
-        FROM
-            help_types
-        WHERE
-            help_types.name= $1`,
-        [help_type]
-    );
+    let help_type_id;
 
-    const help_type_id = helpTypeName.rows[0].id;
+    if (help_type) {
+        // Extra query to get type name soon will be deleted
+        const helpTypeName = await db.query(
+            `SELECT
+                help_types.id
+            FROM
+                help_types
+             WHERE help_types.name= $1`,
+            [help_type]
+        );
+
+        help_type_id = helpTypeName.rows[0].id;
+    }
+
     const updates = [];
     const values = [];
 
@@ -36,8 +39,10 @@ export const update = async (
     if (req_date) {
         updates.push(`req_date =$${values.push(req_date)}`);
     }
-    values.push("active");
-    
+    if (status) {
+        updates.push(`status =$${values.push(status)}`);
+    }
+
     if (updates.length === 0) {
         const { rows } = await db.query(
             `SELECT
@@ -56,11 +61,11 @@ export const update = async (
                 users.longitude
             FROM
                 help_requests
-            LEFT JOIN
+            JOIN
                 users
             ON
                 users.id = help_requests.author_id
-            LEFT JOIN
+            JOIN
                 help_types
             ON
                 help_types.id = help_requests.help_type_id
@@ -73,8 +78,7 @@ export const update = async (
 
     const query = `
         UPDATE
-            help_requests SET ${updates},
-            status =$${values.length}
+            help_requests SET ${updates}
         WHERE
             id = ${help_request_id}
         RETURNING
@@ -86,7 +90,7 @@ export const update = async (
             req_date,
             status,
             created_at`;
-            
+
     const viewQuery = `
         SELECT
             help_requests.id,
@@ -99,11 +103,11 @@ export const update = async (
             status
         FROM
             help_requests
-        LEFT JOIN
+        JOIN
             users
         ON
             users.id = help_requests.author_id
-        LEFT JOIN
+        JOIN
             help_types
         ON
             help_types.id = help_requests.help_type_id

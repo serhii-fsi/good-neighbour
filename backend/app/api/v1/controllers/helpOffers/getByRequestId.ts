@@ -12,8 +12,8 @@ export const getByRequestId = async (req: Request, res: Response, next: NextFunc
             throw new AppError(errors.VALIDATION_ERROR, "Invalid help request id provided");
         }
         // await helpRequestsService.getById(help_request_id);
-        // const helpOffers = await helpOffersService.getByRequestId(help_request_id);
-        // res.status(200).send({ helpOffers });
+        const helpOffers = await helpOffersService.getByRequestId(help_request_id);
+        res.status(200).send({ helpOffers });
     } catch (error) {
         next(error);
     }

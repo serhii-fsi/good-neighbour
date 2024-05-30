@@ -5,7 +5,8 @@ import { HelpOffer } from "../../db/seeds/data/types/data.types";
 export const create = async (helper_id: number, helpOfferBody: HelpOffer): Promise<HelpOffer> => {
     const { status, help_request_id } = helpOfferBody;
 
-    const query = `INSERT INTO help_offers
+    const query = `
+    INSERT INTO help_offers
     (helper_id, help_request_id, status)
     VALUES ($1, $2, $3)
     RETURNING helper_id, help_request_id, status

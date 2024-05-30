@@ -22,7 +22,7 @@ export const useAxios = () => {
                     "X-User-ID": user?.id,
                     ...headers,
                 },
-                data: body ? JSON.stringify(body) : null,
+                data: body ? JSON.stringify(body) : undefined,
             });
             setIsLoading(false);
             if (method !== "GET") {
