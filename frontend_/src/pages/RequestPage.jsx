@@ -17,7 +17,7 @@ import RequestOfferControl from "../components/RequestOfferControl/RequestOfferC
 import Row from "../components/Row/Row";
 
 export default function RequestPage() {
-    const [requestData, setRequestData] = useState(null);
+    let [requestData, setRequestData] = useState(null);
     const { sendRequest, isLoading, error } = useAxios();
     const { user } = useContext(AuthContext); // user.id === 1
     const { help_request_id } = useParams();
@@ -151,8 +151,8 @@ export default function RequestPage() {
             // and other offer only with "accepted" status
             {
                 // Other helper's offer
-                // status: "accepted",
-                status: "active",
+                status: "accepted",
+                // status: "active",
                 helper: {
                     id: 9,
                     first_name: "David",
@@ -173,13 +173,12 @@ export default function RequestPage() {
         ],
     };
 
-    // const requestData = requestDataForHelper;
-    // const requestData = requestDataForRequester;
+    // requestData = requestDataForHelper;
+    // requestData = requestDataForRequester;
 
     const isHelper = user.id !== requestData.request.author_id;
     const isRequester = !isHelper;
 
-    console.log("Helper", isHelper);
     let content;
 
     if (isHelper) {
@@ -198,17 +197,22 @@ export default function RequestPage() {
                     description={requestData.request.description}
                     helpType={requestData.request.help_type}
                 />
-                <ContactCard
-                    userId={requestData.requester.id}
-                    fullName={
-                        requestData.requester.first_name + " " + requestData.requester.last_name
-                    }
-                    address={requestData.requester.address}
-                    postcode={requestData.requester.postcode}
-                    phoneNumber={requestData.requester.phone_number}
-                    additionalContacts={requestData.requester.additional_contacts}
-                />
-                <Row justify="flex-end" align="center" gap="middle" className="S-pt-m S-pb-m">
+                {requestData.offers.some(
+                    (offer) => offer.status === "accepted" && offer.helper.id === user.id
+                ) ? (
+                    <ContactCard
+                        userId={requestData.requester.id}
+                        fullName={
+                            requestData.requester.first_name + " " + requestData.requester.last_name
+                        }
+                        address={requestData.requester.address}
+                        postcode={requestData.requester.postcode}
+                        phoneNumber={requestData.requester.phone_number}
+                        additionalContacts={requestData.requester.additional_contacts}
+                        className="S-mb-m"
+                    />
+                ) : null}
+                <Row justify="flex-end" align="center" gap="middle" className="S-pb-m">
                     <Status
                         isHelper={true}
                         authUserId={user.id}

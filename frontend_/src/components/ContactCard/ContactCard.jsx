@@ -8,6 +8,7 @@ import ContactCardView from "./ContactCardView";
  * @param {string} props.postcode
  * @param {string} props.phoneNumber
  * @param {string} props.additionalContacts
+ * @param {string} props.className
  * @param {array|undefined} props.children
  */
 export default function ContactCard(props) {

@@ -15,6 +15,7 @@ import "./ContactCardView.css";
  * @param {string} props.postcode
  * @param {string} props.phoneNumber
  * @param {string} props.additionalContacts
+ * @param {string} props.className
  * @param {array|undefined} props.children
  */
 export default function ContactCardView(props) {
@@ -30,6 +31,7 @@ export default function ContactCardView(props) {
                     {props.fullName}
                 </Link>
             }
+            className={props.className}
         >
             <Flex className="S-mb-s F-line-m" gap="4px" vertical="vertical">
                 <p className="S-pm-reset">
