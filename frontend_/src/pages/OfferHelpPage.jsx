@@ -9,6 +9,7 @@ import NavBottom from "../components/NavBottom/NavBottom";
 import FilterForm from "../components/FilterForm/FilterForm";
 import CardsList from "../components/CardsList/CardsList";
 import RequestCard from "../components/RequestCard/RequestCard";
+import Map from "../components/Map/Map";
 
 export default function OfferHelpPage() {
     const { isLoading, sendRequest, error } = useAxios();
@@ -38,6 +39,8 @@ export default function OfferHelpPage() {
             <NavTop title={"Offer Help"} logo={"Good Neighbour"} />
             <div className="S-pl-m S-pr-m S-pt-l S-pb-l">
                 <FilterForm helpTypes={helpTypes} setSearchParams={setSearchParams} />
+                <br />
+                <Map />
                 <CardsList>
                     {helpRequestsCards?.length > 0
                         ? helpRequestsCards.map((card) => (
