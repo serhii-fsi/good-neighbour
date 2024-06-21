@@ -1,7 +1,7 @@
 import { GoogleMap, useLoadScript, MarkerF, InfoWindowF } from '@react-google-maps/api';
 import { useState } from 'react';
 
-
+import { Flex } from "antd";
 
 const usersData = [
     {
@@ -240,7 +240,7 @@ function MapView(props) {
   
     return (
         <div>
-          
+        <Flex>
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 zoom={13}
@@ -276,7 +276,7 @@ function MapView(props) {
                 </MarkerF>
             })}
             </GoogleMap>
-
+        </Flex>
         </div>
     );
   };
