@@ -1,49 +1,64 @@
-import { Routes, Route } from "react-router-dom";
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+
 import "./App.css";
-import Header from "./components/Header";
-import NavBar from "./components/NavBar";
+import OfferHelpPage from "./pages/OfferHelpPage";
+import RequestCreatePage from "./pages/RequestCreatePage";
+import RequestEditPage from "./pages/RequestEditPage";
+import RequestPage from "./pages/RequestPage";
+import MyOffersPage from "./pages/MyOffersPage";
+import MyRequestsPage from "./pages/MyRequestsPage";
+import SignUpPage from "./pages/SignUpPage";
+import LoginPage from "./pages/LoginPage";
+import UserProfileEditPage from "./pages/UserProfileEditPage";
+import UserProfilePage from "./pages/UserProfilePage";
+import Page404 from "./pages/Page404";
 
-import SignupLogin from "./pages/SignupLogin";
-import SignUpForm from "./components/SignupForm";
-import LoginForm from "./components/LoginForm";
-import Preferences from "./components/Preferences";
-import OwnProfile from "./pages/OwnProfile";
+import { useAuth } from "./hooks/useAuth";
+import { AuthContext } from "./context/auth-context";
+import { HelpTypesProvider } from "./context/help-types";
 
-import UserProfile from "./pages/UserProfile";
-import Homepage from "./pages/Homepage";
-import HelpListView from "./pages/HelpListView";
-import MapPage from "./pages/MapPage";
-import RequestHelp from "./pages/RequestHelp";
-import HelpView from "./pages/HelpView";
-import OwnHelpList from "./pages/OwnHelpList";
-import OwnOfferedHelp from "./pages/OwnOfferedHelp";
-
-import UserProvider from "./contexts/User";
+import config from "./config.json";
 
 function App() {
-  return (
-    <>
-      <UserProvider>
-        <Header />
-        <Routes>
-          <Route path="/signup" element={<SignUpForm />} />
-          <Route path="/" element={<LoginForm />} />
-          <Route path="/preferences" element={<Preferences />} />
-          <Route path="/profile" element={<OwnProfile />} />
+    const { routes } = config;
+    const { isLoggedIn, user, login, logout } = useAuth();
 
-          <Route path="/user/:user_id" element={<UserProfile />} />
-          <Route path="/home" element={<Homepage />} />
-          <Route path="/helpListView" element={<HelpListView />} />
-          <Route path="/map" element={<MapPage />} />
-          <Route path="/helpListView/:help_request_id" element={<HelpView />} />
-          <Route path="/helpListView/:user_id" element={<OwnHelpList />} />
-          <Route path="/ownOfferedHelp" element={<OwnOfferedHelp />} />
-          <Route path="/requestHelp" element={<RequestHelp />} />
-        </Routes>
-        <NavBar />
-      </UserProvider>
-    </>
-  );
+    let currentRoutes;
+
+    if (isLoggedIn) {
+        currentRoutes = (
+            <>
+                <Route path={routes.offerHelpPage.path} element={<OfferHelpPage />} />
+                <Route path={routes.requestCreatePage.path} element={<RequestCreatePage />} />
+                <Route path={routes.requestEditPage.path} element={<RequestEditPage />} />
+                <Route path={routes.requestPage.path} element={<RequestPage />} />
+                <Route path={routes.myOffersPage.path} element={<MyOffersPage />} />
+                <Route path={routes.myRequestsPage.path} element={<MyRequestsPage />} />
+                <Route path={routes.userProfileEditPage.path} element={<UserProfileEditPage />} />
+                <Route path={routes.userProfilePage.path} element={<UserProfilePage />} />
+                <Route path="*" element={<Navigate to={routes.offerHelpPage} />} />
+            </>
+        );
+    } else {
+        currentRoutes = (
+            <>
+                <Route path={routes.signUpPage.path} element={<SignUpPage />} />
+                <Route path={routes.loginPage.path} element={<LoginPage />} />
+            </>
+        );
+    }
+
+    return (
+        <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
+            <HelpTypesProvider>
+                <Routes>
+                    <Route path={routes.offerHelpRootPage.path} element={<Page404 />} />
+                    {currentRoutes}
+                </Routes>
+            </HelpTypesProvider>
+        </AuthContext.Provider>
+    );
 }
 
 export default App;
