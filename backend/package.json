@@ -7,7 +7,7 @@
         "test": "tests"
     },
     "scripts": {
-        "start": "npm run build && node ./dist/server.js",
+        "start": "npm run build && node ./dist/app/server.js",
         "startDev": "NODE_ENV=test npx ts-node ./app/server.ts",
         "build": "rimraf ./dist && tsc",
         "start-dev": "NODE_ENV=test npx nodemon",
