@@ -1,3 +1,8 @@
+import { GoogleMap, useLoadScript, MarkerF, InfoWindowF } from '@react-google-maps/api';
+import { useState } from 'react';
+
+import { Flex } from "antd";
+
 const usersData = [
     {
         username: "Cuthbert85",
@@ -191,4 +196,89 @@ const usersData = [
     },
 ];
 
-export default usersData;
+
+function MapView(props) {
+
+    const libraries = ['places'];
+
+    const { isLoaded, loadError } = useLoadScript({
+      googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API_KEY,
+      libraries,
+    });
+  
+    const [markerUsername, setMarkerUsername] = useState(null);
+
+    const mapContainerStyle = {
+        width: '100vw',
+        height: '100vh',
+    };
+
+    // defaultCenter is the user location, will be fetched from joined user-helpRequest table.
+    const defaultCenter = {
+        lat: 51.5167, // default latitude
+        lng: -0.1769, // default longitude
+    };
+
+    if (loadError) {
+      return <div>Error loading maps</div>;
+    }
+  
+    if (!isLoaded) {
+      return <div>Loading maps</div>;
+    }
+  
+    const handleClick = (user) => {
+      setMarkerUsername(user)
+    }
+  
+    const ukBounds = {
+      south: defaultCenter.lat - 0.1,
+      west: defaultCenter.lng - 0.1,
+      north: defaultCenter.lat + 0.1,
+      east: defaultCenter.lng + 0.1
+    };
+  
+    return (
+        <div>
+        <Flex>
+            <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                zoom={13}
+                center={defaultCenter}
+                options={{
+                    restriction: {
+                        latLngBounds: ukBounds,
+                        strictBounds: true,
+                    }
+                }}
+            >
+            <MarkerF position={defaultCenter} 
+                options={{
+                    zIndex: 1,
+                    icon: "./home-map-location-svgrepo-com.svg"
+                }}
+            />
+            {usersData.map(user => {
+                const center = {
+                    lat: user.latitude, // default latitude
+                    lng: user.longitude, // default longitude
+                };
+                const username = user.username;
+                return <MarkerF 
+                    key={user.username}
+                    position={center}
+                    onClick={() => handleClick(user)}
+                    >
+                    {markerUsername && markerUsername.username === user.username && (<InfoWindowF onCloseClick={() => setMarkerUsername(null)}>
+                    <h1>Hi I am Info Window for {username}</h1>
+                    </InfoWindowF>
+                    )}
+                </MarkerF>
+            })}
+            </GoogleMap>
+        </Flex>
+        </div>
+    );
+  };
+
+export default MapView;
