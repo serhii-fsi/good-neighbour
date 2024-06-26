@@ -45,6 +45,7 @@ function App() {
             <>
                 <Route path={routes.signUpPage.path} element={<SignUpPage />} />
                 <Route path={routes.loginPage.path} element={<LoginPage />} />
+                <Route path="*" element={<Navigate to={routes.loginPage.path} />} />
             </>
         );
     }
