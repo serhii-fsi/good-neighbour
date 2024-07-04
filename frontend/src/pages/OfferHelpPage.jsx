@@ -58,7 +58,7 @@ export default function OfferHelpPage() {
                               ></RequestCard>
                           ))
                         : []}
-                </CardsList>: <Map />}                
+                </CardsList>: <Map  helpRequestsCards={helpRequestsCards}/>}                
             </div>
             <NavBottom />
         </>
